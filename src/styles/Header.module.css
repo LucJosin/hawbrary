@@ -1,0 +1,16 @@
+.header {
+  height: 4rem;
+  width: 100%;
+  display: flex;
+  position: sticky;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(var(--background-rgb), 0.2);
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.title {
+  font-family: Benguiat;
+}
