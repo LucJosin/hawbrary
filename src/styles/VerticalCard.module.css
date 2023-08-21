@@ -1,0 +1,49 @@
+.card {
+  width: 100%;
+  height: 32rem;
+  border: 1px solid #dd0400;
+  border-radius: 20px;
+  position: relative;
+}
+
+.image {
+  height: 100%;
+  width: inherit;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.more {
+  height: 13rem;
+  width: inherit;
+  display: flex;
+  gap: 2rem;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background-image: linear-gradient(0deg, #000000e0 70%, transparent);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.description {
+  font-size: 0.9em;
+}
+
+.routers {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
