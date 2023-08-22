@@ -3,14 +3,50 @@
   width: 100%;
   display: flex;
   position: sticky;
+  z-index: 99;
   align-items: center;
-  justify-content: center;
-  background-color: rgba(var(--background-rgb), 0.2);
+  justify-content: space-between;
+  padding: 0 4rem;
+  background-color: rgba(var(--background-rgb), 0.5);
+  backdrop-filter: blur(2px);
   top: 0;
   left: 0;
   right: 0;
+  bottom: 0;
 }
 
 .title {
   font-family: Benguiat;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  justify-content: space-between;
+  color: red;
+}
+
+.selection {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: red;
+}
+
+.select {
+  padding: 1rem;
+  appearance: none;
+  color: red;
+  font-size: 1em;
+  border: 0;
+  background-color: transparent;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.select > option {
+  cursor: pointer;
+  background: #000;
 }

@@ -1,4 +1,4 @@
-import styles from '@/styles/Card.module.css';
+import styles from '@/styles/HorizontalCard.module.css';
 import Image from 'next/image';
 
 interface Props {
@@ -7,9 +7,17 @@ interface Props {
   thumbnail: string;
 }
 
-export default function Card({ title, description, thumbnail }: Props) {
+export default function HorizontalCard({
+  title,
+  description,
+  thumbnail,
+}: Props) {
   return (
     <div className={styles.card}>
+      <div className={styles.info}>
+        <h2>{title}</h2>
+        <p>{description}</p>
+      </div>
       <Image
         src={thumbnail}
         height={0}
@@ -17,10 +25,6 @@ export default function Card({ title, description, thumbnail }: Props) {
         alt={title}
         className={styles.image}
       />
-      <div className={styles.container}>
-        <h1 className={styles.title}>{title}</h1>
-        <p className={styles.description}>{description}</p>
-      </div>
     </div>
   );
 }
