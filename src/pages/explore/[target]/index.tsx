@@ -1,32 +1,34 @@
+import Card from '@/components/core/Card';
 import { PATHS } from '@/constants';
 import Layout from '@/layout/Layout';
+import styles from '@/styles/Items.module.css';
 import type { GetStaticPropsContext } from 'next';
-import { useRouter } from 'next/router';
-import useSWR from 'swr';
 
-interface Props {
-  target: string;
-}
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
-
-export default function Actors({ target }: Props) {
-  const router = useRouter();
-  const { uuid } = router.query;
-
-  const { data, error, isLoading } = useSWR(
-    uuid ? `http://localhost:8080/api/v1/${target}/${uuid}` : undefined,
-    fetcher
-  );
-
+export default function Items() {
   return (
     <Layout>
-      {error || (data && data['code'] && <p>Failed to load</p>)}
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <p>{data !== undefined ? data.first_name : 'Error'}</p>
-      )}
+      <div className={styles.items}>
+        <Card
+          title="Lorem"
+          description="On his way home from a friend's house, young Will sees something terrifying. Nearby, a sinister secret lurks in the depths of a government lab."
+          thumbnail="https://s6.imgcdn.dev/x3zIV.jpg"
+        />
+        <Card
+          title="Lorem"
+          description="On his way home from a friend's house, young Will sees something terrifying. Nearby, a sinister secret lurks in the depths of a government lab."
+          thumbnail="https://s6.imgcdn.dev/xdC1O.jpg"
+        />
+        <Card
+          title="Lorem"
+          description="On his way home from a friend's house, young Will sees something terrifying. Nearby, a sinister secret lurks in the depths of a government lab."
+          thumbnail="https://s6.imgcdn.dev/xdC1O.jpg"
+        />
+        <Card
+          title="Lorem"
+          description="On his way home from a friend's house, young Will sees something terrifying. Nearby, a sinister secret lurks in the depths of a government lab."
+          thumbnail="https://s6.imgcdn.dev/xdC1O.jpg"
+        />
+      </div>
     </Layout>
   );
 }
