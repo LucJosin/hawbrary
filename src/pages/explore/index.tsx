@@ -20,7 +20,7 @@ export default function Explore() {
         <VerticalCard
           title="Lorem"
           description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo deserunt enim sequi ratione, praesentium cum illum necessitatibus ipsa? Cumque reprehenderit autem assumenda, quasi optio totam non. Nobis voluptatibus fugit quam?"
-          thumbnail="https://s6.imgcdn.dev/x3zIV.jpg"
+          thumbnail="https://s6.imgcdn.dev/xdKqL.jpg"
           priButton="See more"
           priButtonHref=""
           secButton="Episodes"
@@ -29,7 +29,7 @@ export default function Explore() {
         <VerticalCard
           title="Lorem"
           description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo deserunt enim sequi ratione, praesentium cum illum necessitatibus ipsa? Cumque reprehenderit autem assumenda, quasi optio totam non. Nobis voluptatibus fugit quam?"
-          thumbnail="https://s6.imgcdn.dev/x3zIV.jpg"
+          thumbnail="https://s6.imgcdn.dev/xdKqL.jpg"
           priButton="See more"
           priButtonHref=""
           secButton="Episodes"
@@ -38,7 +38,7 @@ export default function Explore() {
         <VerticalCard
           title="Lorem"
           description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo deserunt enim sequi ratione, praesentium cum illum necessitatibus ipsa? Cumque reprehenderit autem assumenda, quasi optio totam non. Nobis voluptatibus fugit quam?"
-          thumbnail="https://s6.imgcdn.dev/x3zIV.jpg"
+          thumbnail="https://s6.imgcdn.dev/xdKqL.jpg"
           priButton="See more"
           priButtonHref=""
           secButton="Episodes"
@@ -47,7 +47,7 @@ export default function Explore() {
         <VerticalCard
           title="Lorem"
           description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo deserunt enim sequi ratione, praesentium cum illum necessitatibus ipsa? Cumque reprehenderit autem assumenda, quasi optio totam non. Nobis voluptatibus fugit quam?"
-          thumbnail="https://s6.imgcdn.dev/x3zIV.jpg"
+          thumbnail="https://s6.imgcdn.dev/xdKqL.jpg"
           priButton="See more"
           priButtonHref=""
           secButton="Episodes"
