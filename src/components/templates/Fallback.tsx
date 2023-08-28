@@ -1,7 +1,6 @@
 import styles from '@/styles/Fallback.module.css';
 import { useRouter } from 'next/router';
-import BaseLink from '../core/BaseLink';
-import PrimaryButton from '../core/PrimaryButton';
+import { Link } from '../core/Link';
 
 export default function Fallback() {
   const router = useRouter();
@@ -16,11 +15,11 @@ export default function Fallback() {
     <div className={styles.fallback}>
       <h2>The requested URL was not found</h2>
       <span className={styles.options}>
-        <PrimaryButton href="/explore" isLocal={true} name="Go to explorer" />
+        <Link.Primary href="/explore" isLocal={true} name="Go to explorer" />
       </span>
       <span className={styles.report}>
         Something is wrong?{' '}
-        <BaseLink
+        <Link.Simple
           href={`${report.url}?title=${report.title}&assignees=${report.assignees}&labels=${report.labels}&body=${report.body}`}
           name="Report error"
         />

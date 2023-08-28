@@ -1,4 +1,4 @@
-import PrimaryButton from '@/components/core/PrimaryButton';
+import { Link as HLink } from '@/components/core/Link';
 import FallbackLayout from '@/layout/FallbackLayout';
 import { getSingleActor } from '@/services/hawapi';
 import styles from '@/styles/ActorDetailsPage.module.css';
@@ -96,7 +96,7 @@ export default function ActorDetailsPage() {
           </div>
           <div className={styles.character}>
             <h2>Character:</h2>
-            <PrimaryButton
+            <HLink.Primary
               href={`/explore/characters/details/?uuid=${getUuidFromHref(
                 data?.data?.character ?? ''
               )}`}

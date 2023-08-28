@@ -1,4 +1,4 @@
-import styles from '@/styles/BaseLink.module.css';
+import styles from '@/styles/SimpleLink.module.css';
 import Link from 'next/link';
 
 interface Props {
@@ -7,7 +7,7 @@ interface Props {
   isLocal?: boolean;
 }
 
-export default function BaseLink({ href, name, isLocal = false }: Props) {
+export default function SimpleLink({ href, name, isLocal = false }: Props) {
   return (
     <Link
       href={href}

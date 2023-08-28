@@ -1,4 +1,4 @@
-import HorizontalCard from '@/components/core/HorizontalCard';
+import { Card } from '@/components/core/Card';
 import FallbackLayout from '@/layout/FallbackLayout';
 import { getAllLocations } from '@/services/hawapi';
 import styles from '@/styles/Items.module.css';
@@ -20,7 +20,7 @@ export default function Items() {
               key={key}
               href={`/explore/locations/details/?uuid=${item.uuid}`}
             >
-              <HorizontalCard
+              <Card.Horizontal
                 title={item.name}
                 description={item.description}
                 thumbnail={item.thumbnail}

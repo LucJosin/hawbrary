@@ -1,4 +1,4 @@
-import VerticalCard from '@/components/core/VerticalCard';
+import { Card } from '@/components/core/Card';
 import FallbackLayout from '@/layout/FallbackLayout';
 import { getAllSeasons } from '@/services/hawapi';
 import styles from '@/styles/Items.module.css';
@@ -20,7 +20,7 @@ export default function Items() {
               key={key}
               href={`/explore/seasons/details/?uuid=${item.uuid}`}
             >
-              <VerticalCard
+              <Card.Vertical
                 title={item.title}
                 description={item.description}
                 thumbnail={item.thumbnail}

@@ -1,5 +1,6 @@
-import styles from '@/styles/CardRow.module.css';
+import styles from '@/styles/HorizontalRow.module.css';
 import { Icon } from '@iconify-icon/react';
+import Link from 'next/link';
 import type { ReactNode } from 'react';
 
 interface Props {
@@ -8,7 +9,7 @@ interface Props {
   maxColumns?: string;
 }
 
-export default function CardRow({
+export default function HorizontalRow({
   title,
   children,
   maxColumns = 'auto-fit',
@@ -17,10 +18,13 @@ export default function CardRow({
     <div className={styles.row} id={title.toLocaleLowerCase()}>
       <div className={styles.info}>
         <h2>{title}</h2>
-        <span className={styles.more}>
+        <Link
+          className={styles.more}
+          href={`/explore/${title.toLocaleLowerCase()}/`}
+        >
           <p>See more</p>
           <Icon icon="octicon:arrow-right-16" width="24" />
-        </span>
+        </Link>
       </div>
       <div
         className={styles.items}

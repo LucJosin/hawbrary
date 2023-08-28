@@ -1,5 +1,4 @@
-import PrimaryButton from '@/components/core/PrimaryButton';
-import SecondaryButton from '@/components/core/SecondaryButton';
+import { Link } from '@/components/core/Link';
 import FallbackLayout from '@/layout/FallbackLayout';
 import { getSingleSeason } from '@/services/hawapi';
 import styles from '@/styles/SeasonDetailsPage.module.css';
@@ -56,7 +55,7 @@ export default function SeasonDetailsPage() {
             <span className={styles.eps}>
               {data?.data?.episodes.map((item, key) => {
                 return (
-                  <SecondaryButton
+                  <Link.Secondary
                     key={key}
                     href={`/explore/episodes/details/?uuid=${getUuidFromHref(
                       item
@@ -72,7 +71,7 @@ export default function SeasonDetailsPage() {
             <h3>Seasons: </h3>
             <span className={styles.seas}>
               {data?.data?.prev_season && (
-                <PrimaryButton
+                <Link.Primary
                   href={`/explore/seasons/details/?uuid=${getUuidFromHref(
                     data?.data?.prev_season
                   )}`}
@@ -81,7 +80,7 @@ export default function SeasonDetailsPage() {
                 />
               )}
               {data?.data?.next_season && (
-                <PrimaryButton
+                <Link.Primary
                   href={`/explore/seasons/details/?uuid=${getUuidFromHref(
                     data?.data?.next_season
                   )}`}

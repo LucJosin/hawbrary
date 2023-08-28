@@ -1,4 +1,4 @@
-import Card from '@/components/core/Card';
+import { Card } from '@/components/core/Card';
 import FallbackLayout from '@/layout/FallbackLayout';
 import { getAllEpisodes } from '@/services/hawapi';
 import styles from '@/styles/Items.module.css';
@@ -20,7 +20,7 @@ export default function Items() {
               key={key}
               href={`/explore/episodes/details/?uuid=${item.uuid}`}
             >
-              <Card
+              <Card.Simple
                 title={item.title}
                 description={item.description}
                 thumbnail={item.thumbnail}

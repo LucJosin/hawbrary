@@ -1,4 +1,4 @@
-import PrimaryButton from '@/components/core/PrimaryButton';
+import { Link } from '@/components/core/Link';
 import FallbackLayout from '@/layout/FallbackLayout';
 import { getSingleEpisode } from '@/services/hawapi';
 import styles from '@/styles/EpisodeDetailsPage.module.css';
@@ -41,7 +41,7 @@ export default function EpisodeDetailsPage() {
             <h3>Episodes: </h3>
             <span className={styles.eps}>
               {data?.data?.prev_episode && (
-                <PrimaryButton
+                <Link.Primary
                   href={`/explore/episodes/details/?uuid=${getUuidFromHref(
                     data?.data?.prev_episode
                   )}`}
@@ -50,7 +50,7 @@ export default function EpisodeDetailsPage() {
                 />
               )}
               {data?.data?.next_episode && (
-                <PrimaryButton
+                <Link.Primary
                   href={`/explore/episodes/details/?uuid=${getUuidFromHref(
                     data?.data?.next_episode
                   )}`}
@@ -64,7 +64,7 @@ export default function EpisodeDetailsPage() {
             <h3>Season:</h3>
             <span className={styles.seas}>
               {data?.data?.season && (
-                <PrimaryButton
+                <Link.Primary
                   href={`/explore/seasons/details/?uuid=${getUuidFromHref(
                     data?.data?.season
                   )}`}

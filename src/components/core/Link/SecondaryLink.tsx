@@ -1,4 +1,4 @@
-import styles from '@/styles/PrimaryButton.module.css';
+import styles from '@/styles/SecondaryLink.module.css';
 import Link from 'next/link';
 
 interface Props {
@@ -7,7 +7,7 @@ interface Props {
   isLocal?: boolean;
 }
 
-export default function PrimaryButton({ href, name, isLocal = false }: Props) {
+export function SecondaryLink({ href, name, isLocal = false }: Props) {
   return (
     <Link href={href} target={isLocal ? undefined : '_blank'}>
       <div className={styles.button}>{name}</div>

@@ -1,4 +1,4 @@
-import styles from '@/styles/Card.module.css';
+import styles from '@/styles/SimpleCard.module.css';
 import Image from 'next/image';
 
 interface Props {
@@ -7,7 +7,7 @@ interface Props {
   thumbnail: string;
 }
 
-export default function Card({ title, description, thumbnail }: Props) {
+export default function SimpleCard({ title, description, thumbnail }: Props) {
   return (
     <div className={styles.card}>
       <Image

@@ -1,4 +1,4 @@
-import PersonCard from '@/components/core/PersonCard';
+import { Card } from '@/components/core/Card';
 import FallbackLayout from '@/layout/FallbackLayout';
 import { getAllActors } from '@/services/hawapi';
 import styles from '@/styles/Items.module.css';
@@ -15,7 +15,7 @@ export default function Items() {
       <div className={styles.items}>
         {data?.data?.map((item, key) => {
           return (
-            <PersonCard
+            <Card.Person
               key={key}
               uuid={item.uuid}
               target="actors"

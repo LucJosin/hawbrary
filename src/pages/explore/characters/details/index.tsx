@@ -1,4 +1,4 @@
-import PrimaryButton from '@/components/core/PrimaryButton';
+import { Link } from '@/components/core/Link';
 import FallbackLayout from '@/layout/FallbackLayout';
 import { getSingleCharacter } from '@/services/hawapi';
 import styles from '@/styles/CharacterDetailsPage.module.css';
@@ -70,7 +70,7 @@ export default function CharacterDetailsPage() {
           </span>
           <div className={styles.actor}>
             <h2>Actor:</h2>
-            <PrimaryButton
+            <Link.Primary
               href={`/explore/characters/details/?uuid=${getUuidFromHref(
                 data?.data?.actor ?? ''
               )}`}
