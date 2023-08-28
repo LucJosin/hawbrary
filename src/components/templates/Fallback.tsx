@@ -1,9 +1,9 @@
-import styles from '@/styles/DetailsFallback.module.css';
+import styles from '@/styles/Fallback.module.css';
 import { useRouter } from 'next/router';
 import BaseLink from '../core/BaseLink';
 import PrimaryButton from '../core/PrimaryButton';
 
-export default function DetailsFallback() {
+export default function Fallback() {
   const router = useRouter();
   const report = {
     url: 'https://github.com/LucJosin/hawbrary/issues/new',

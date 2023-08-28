@@ -62,7 +62,7 @@ export default function Explore() {
         />
         <Card
           title="Lorem"
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo deserunt enim sequi ratione, praesentium cum illum necessitatibus ipsa? Cumque reprehenderit autem assumenda, quasi optio totam non. Nobis voluptatibus fugit quam?"
+          description="Hopper consegue entrar no laboratório enquanto Nancy e Jonathan confrontam as forças que levaram Will. Os meninos perguntam ao Sr. Clarke como se vai para outra dimensão."
           thumbnail="https://s6.imgcdn.dev/xdC1O.jpg"
         />
         <Card

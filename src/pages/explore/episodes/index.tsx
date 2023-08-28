@@ -1,32 +1,34 @@
 import Card from '@/components/core/Card';
-import Layout from '@/layout/Layout';
+import FallbackLayout from '@/layout/FallbackLayout';
+import { getAllEpisodes } from '@/services/hawapi';
 import styles from '@/styles/Items.module.css';
+import Link from 'next/link';
+import useSWR from 'swr';
 
 export default function Items() {
+  const { data, error, isLoading } = useSWR('episodes', getAllEpisodes);
+
   return (
-    <Layout>
+    <FallbackLayout
+      isLoading={isLoading}
+      hasData={!(error || data?.status !== 200)}
+    >
       <div className={styles.items}>
-        <Card
-          title="Lorem"
-          description="On his way home from a friend's house, young Will sees something terrifying. Nearby, a sinister secret lurks in the depths of a government lab."
-          thumbnail="https://s6.imgcdn.dev/x3zIV.jpg"
-        />
-        <Card
-          title="Lorem"
-          description="On his way home from a friend's house, young Will sees something terrifying. Nearby, a sinister secret lurks in the depths of a government lab."
-          thumbnail="https://s6.imgcdn.dev/xdC1O.jpg"
-        />
-        <Card
-          title="Lorem"
-          description="On his way home from a friend's house, young Will sees something terrifying. Nearby, a sinister secret lurks in the depths of a government lab."
-          thumbnail="https://s6.imgcdn.dev/xdC1O.jpg"
-        />
-        <Card
-          title="Lorem"
-          description="On his way home from a friend's house, young Will sees something terrifying. Nearby, a sinister secret lurks in the depths of a government lab."
-          thumbnail="https://s6.imgcdn.dev/xdC1O.jpg"
-        />
+        {data?.data?.map((item, key) => {
+          return (
+            <Link
+              key={key}
+              href={`/explore/episodes/details/?uuid=${item.uuid}`}
+            >
+              <Card
+                title={item.title}
+                description={item.description}
+                thumbnail={item.thumbnail}
+              />
+            </Link>
+          );
+        })}
       </div>
-    </Layout>
+    </FallbackLayout>
   );
 }

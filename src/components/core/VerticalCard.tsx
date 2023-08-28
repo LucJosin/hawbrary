@@ -7,10 +7,10 @@ interface Props {
   title: string;
   description: string;
   thumbnail: string;
-  priButton: string;
-  priButtonHref: string;
-  secButton: string;
-  secButtonHref: string;
+  priButton?: string;
+  priButtonHref?: string;
+  secButton?: string;
+  secButtonHref?: string;
 }
 
 export default function VerticalCard(props: Props) {
@@ -29,8 +29,15 @@ export default function VerticalCard(props: Props) {
           <p className={styles.description}>{props.description}</p>
         </div>
         <div className={styles.routers}>
-          <PrimaryButton href={props.priButtonHref} name={props.priButton} />
-          <SecondaryButton href={props.secButtonHref} name={props.secButton} />
+          {props.priButton && props.priButtonHref && (
+            <PrimaryButton href={props.priButtonHref} name={props.priButton} />
+          )}
+          {props.secButton && props.secButtonHref && (
+            <SecondaryButton
+              href={props.secButtonHref}
+              name={props.secButton}
+            />
+          )}
         </div>
       </div>
     </div>

@@ -10,7 +10,7 @@
 }
 
 .card:hover > .container {
-  height: 61%;
+  height: 40%;
   cursor: pointer;
   background-image: linear-gradient(0deg, #000000e1 50%, transparent);
 }
@@ -28,7 +28,7 @@
   height: 100%;
   width: 100%;
   object-fit: cover;
-  object-position: 50% 40%;
+  object-position: 50% 25%;
   border-radius: 20px;
   background-size: cover;
   transition: all 0.5s;
@@ -50,16 +50,12 @@
   transition: all 0.2s;
 }
 
-.title {
+.name {
   font-size: 1em;
 }
 
 .description {
-  height: 50%;
   width: 100%;
   font-size: 0.9em;
   overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
 }

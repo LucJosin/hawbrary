@@ -1,66 +1,94 @@
 import PrimaryButton from '@/components/core/PrimaryButton';
 import SecondaryButton from '@/components/core/SecondaryButton';
-import DetailsPage from '@/layout/DetailsPage';
+import FallbackLayout from '@/layout/FallbackLayout';
+import { getSingleSeason } from '@/services/hawapi';
 import styles from '@/styles/SeasonDetailsPage.module.css';
+import { getUuidFromHref } from '@/utils';
 import { Icon } from '@iconify-icon/react/dist/iconify.js';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import useSWR from 'swr';
 
 export default function SeasonDetailsPage() {
+  const router = useRouter();
+  const { uuid } = router.query;
+
+  const { data, error, isLoading } = useSWR(uuid, getSingleSeason);
+
   return (
-    <DetailsPage>
+    <FallbackLayout isLoading={isLoading} hasData={error || data !== undefined}>
       <div className={styles.content}>
         <div className={styles.container}>
           <Image
-            src="https://s6.imgcdn.dev/xdKqL.jpg"
-            alt=""
+            src={data?.data?.thumbnail ?? ''}
+            alt={data?.data?.title ?? ''}
             className={styles.image}
             height={0}
             width={0}
           />
         </div>
         <div className={styles.info}>
-          <h1 className={styles.title}>Stranger Things 2</h1>
-          <p className={styles.description}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam
-            voluptas aperiam dolore nihil omnis, at accusamus sed quidem sint
-            vitae ullam blanditiis vero, rerum repellat labore amet voluptatum
-            velit ducimus?
-          </p>
+          <h1 className={styles.title}>{data?.data?.title}</h1>
+          <p className={styles.description}>{data?.data?.description}</p>
           <span className={styles.genres}>
-            <span className={styles.genre}>Finn</span>
-            <span className={styles.genre}>Wolfhard</span>
-            <span className={styles.genre}>Wolf</span>
+            {data?.data?.genres.map((item, key) => {
+              return (
+                <span key={key} className={styles.genre}>
+                  {item}
+                </span>
+              );
+            })}
           </span>
           <span className={styles.information}>
-            <Icon icon="system-uicons:episodes" width="18" />1
+            <Icon icon="system-uicons:episodes" width="18" />
+            {`Season: ${data?.data?.season_num}`}
           </span>
           <span className={styles.information}>
             <Icon icon="ic:baseline-access-time" width="18" />
-            58m
+            {`Watch time: ${data?.data?.duration_total}`}
           </span>
           <span className={styles.information}>
             <Icon icon="ic:baseline-attach-money" width="18" />
-            15m
+            {`Budget: ${data?.data?.budget}`}
           </span>
           <div className={styles.episodes}>
             <h3>Episodes: </h3>
             <span className={styles.eps}>
-              <SecondaryButton href="" name="Episode 1" />
-              <SecondaryButton href="" name="Episode 1" />
-              <SecondaryButton href="" name="Episode 1" />
-              <SecondaryButton href="" name="Episode 1" />
-              <SecondaryButton href="" name="Episode 1" />
-              <SecondaryButton href="" name="Episode 1" />
-              <SecondaryButton href="" name="Episode 1" />
-              <SecondaryButton href="" name="Episode 1" />
-              <SecondaryButton href="" name="Episode 1" />
+              {data?.data?.episodes.map((item, key) => {
+                return (
+                  <SecondaryButton
+                    key={key}
+                    href={`/explore/episodes/details/?uuid=${getUuidFromHref(
+                      item
+                    )}`}
+                    name={`Episode ${key + 1}`}
+                    isLocal={true}
+                  />
+                );
+              })}
             </span>
           </div>
           <div className={styles.seasons}>
             <h3>Seasons: </h3>
             <span className={styles.seas}>
-              <PrimaryButton href="" name="Prev season" />
-              <PrimaryButton href="" name="Next season" />
+              {data?.data?.prev_season && (
+                <PrimaryButton
+                  href={`/explore/seasons/details/?uuid=${getUuidFromHref(
+                    data?.data?.prev_season
+                  )}`}
+                  name="Prev season"
+                  isLocal={true}
+                />
+              )}
+              {data?.data?.next_season && (
+                <PrimaryButton
+                  href={`/explore/seasons/details/?uuid=${getUuidFromHref(
+                    data?.data?.next_season
+                  )}`}
+                  name="Next season"
+                  isLocal={true}
+                />
+              )}
             </span>
           </div>
           <div className={styles.sources}>
@@ -71,6 +99,6 @@ export default function SeasonDetailsPage() {
           </div>
         </div>
       </div>
-    </DetailsPage>
+    </FallbackLayout>
   );
 }

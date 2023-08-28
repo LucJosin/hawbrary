@@ -1,78 +1,107 @@
 import PrimaryButton from '@/components/core/PrimaryButton';
-import DetailsPage from '@/layout/DetailsPage';
+import FallbackLayout from '@/layout/FallbackLayout';
+import { getSingleActor } from '@/services/hawapi';
 import styles from '@/styles/ActorDetailsPage.module.css';
+import { getUuidFromHref } from '@/utils';
 import { Icon } from '@iconify-icon/react/dist/iconify.js';
 import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import useSWR from 'swr';
 
 export default function ActorDetailsPage() {
+  const router = useRouter();
+  const { uuid } = router.query;
+
+  const { data, error, isLoading } = useSWR(uuid, getSingleActor);
+
   return (
-    <DetailsPage>
+    <FallbackLayout isLoading={isLoading} hasData={error || data !== undefined}>
       <div className={styles.content}>
         <div className={styles.images}>
           <Image
-            src="https://s6.imgcdn.dev/xmI5e.png"
-            alt=""
+            src={data?.data?.thumbnail ?? ''}
+            alt={data?.data?.first_name ?? ''}
             className={styles.avatar}
             height={0}
             width={0}
           />
           <span className={styles.list}>
-            <Image
-              src="https://media.cnn.com/api/v1/images/stellar/prod/230605141033-01-finn-wolfhard-file.jpg"
-              alt=""
-              className={styles.image}
-              height={0}
-              width={0}
-            />{' '}
-            <Image
-              src="https://assets.teenvogue.com/photos/5e5e76939c18f10008d38c44/1:1/w_1600%2Cc_limit/tout.jpg"
-              alt=""
-              className={styles.image}
-              height={0}
-              width={0}
-            />
+            {data?.data?.images.map((item, key) => {
+              return (
+                <Image
+                  key={key}
+                  src={item}
+                  alt={data?.data?.first_name ?? ''}
+                  className={styles.image}
+                  height={0}
+                  width={0}
+                />
+              );
+            })}
           </span>
         </div>
         <div className={styles.info}>
-          <h1 className={styles.title}>Finn Wolfhard</h1>
+          <h1 className={styles.title}>
+            {data?.data?.first_name + ' ' + data?.data?.last_name}
+          </h1>
           <span className={styles.nicknames}>
-            <span className={styles.nick}>Finn</span>
-            <span className={styles.nick}>Wolfhard</span>
-            <span className={styles.nick}>Wolf</span>
+            {data?.data?.nicknames &&
+              data?.data?.nicknames.map((item, key) => {
+                return (
+                  <span key={key} className={styles.nick}>
+                    {item}
+                  </span>
+                );
+              })}
           </span>
           <span className={styles.information}>
             <Icon icon="ic:baseline-place" width="18" />
-            American
+            {`Nationality: ${data?.data?.nationality}`}
           </span>
           <span className={styles.information}>
             <Icon icon="mdi:birthday-cake-outline" width="18" />
-            0000-00-00
+            {`Birth Date: ${data?.data?.birth_date}`}
           </span>
-          <span className={styles.information}>
-            <Icon icon="mdi:coffin" width="18" />
-            0000-00-00
-          </span>
+          {data?.data?.death_date && (
+            <span className={styles.information}>
+              <Icon icon="mdi:coffin" width="18" />
+              {`Death Date: ${data?.data?.death_date}`}
+            </span>
+          )}
           <span className={styles.information}>
             <Icon icon="icons8:gender" width="18" />
-            Male
+            {`Gender: ${data?.data?.gender}`}
           </span>
           <div className={styles.socials}>
-            <span className={styles.social}>
-              <Icon icon="simple-icons:instagram" width="18" />
-              Instagram
-            </span>
-            <span className={styles.social}>
-              <Icon icon="simple-icons:facebook" width="18" />
-              Facebook
-            </span>
-            <span className={styles.social}>
-              <Icon icon="simple-icons:twitter" width="18" />
-              Twitter
-            </span>
+            {data?.data?.socials &&
+              data?.data?.socials.map((item, key) => {
+                return (
+                  <Link
+                    key={key}
+                    href={item.url}
+                    title={item.social + ` (${item.handle})`}
+                    target="_blank"
+                  >
+                    <span className={styles.social}>
+                      <Icon
+                        icon={`simple-icons:${item.social.toLocaleLowerCase()}`}
+                        width="18"
+                      />
+                      {item.social}
+                    </span>
+                  </Link>
+                );
+              })}
           </div>
           <div className={styles.character}>
             <h2>Character:</h2>
-            <PrimaryButton href="" name="See character" />
+            <PrimaryButton
+              href={`/explore/characters/details/?uuid=${getUuidFromHref(
+                data?.data?.character ?? ''
+              )}`}
+              name="See character"
+            />
           </div>
           <div className={styles.sources}>
             <span>example.com</span>
@@ -82,6 +111,6 @@ export default function ActorDetailsPage() {
           </div>
         </div>
       </div>
-    </DetailsPage>
+    </FallbackLayout>
   );
 }

@@ -1,5 +1,5 @@
-import DetailsFallback from '@/components/templates/DetailsFallback';
-import styles from '@/styles/DetailsPage.module.css';
+import Fallback from '@/components/templates/Fallback';
+import styles from '@/styles/FallbackLayout.module.css';
 import type { ReactNode } from 'react';
 import Layout from './Layout';
 
@@ -9,7 +9,7 @@ interface Props {
   hasData?: boolean;
 }
 
-export default function DetailsPage({
+export default function FallbackLayout({
   children,
   isLoading,
   hasData = false,
@@ -18,7 +18,7 @@ export default function DetailsPage({
     <Layout isCentered={true}>
       {isLoading && <div className={styles.loading}></div>}
       {hasData && <span className={styles.container}>{children}</span>}
-      {!isLoading && !hasData && <DetailsFallback />}
+      {!isLoading && !hasData && <Fallback />}
     </Layout>
   );
 }

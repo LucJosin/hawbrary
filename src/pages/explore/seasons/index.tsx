@@ -1,33 +1,38 @@
-import Card from '@/components/core/Card';
-import Layout from '@/layout/Layout';
+import VerticalCard from '@/components/core/VerticalCard';
+import FallbackLayout from '@/layout/FallbackLayout';
+import { getAllSeasons } from '@/services/hawapi';
 import styles from '@/styles/Items.module.css';
+import Link from 'next/link';
+import useSWR from 'swr';
 
 export default function Items() {
+  const { data, error, isLoading } = useSWR('seasons', getAllSeasons);
+
   return (
-    <Layout>
+    <FallbackLayout
+      isLoading={isLoading}
+      hasData={!(error || data?.status !== 200)}
+    >
       <div className={styles.items}>
-        s{' '}
-        <Card
-          title="Lorem"
-          description="On his way home from a friend's house, young Will sees something terrifying. Nearby, a sinister secret lurks in the depths of a government lab."
-          thumbnail="https://s6.imgcdn.dev/x3zIV.jpg"
-        />
-        <Card
-          title="Lorem"
-          description="On his way home from a friend's house, young Will sees something terrifying. Nearby, a sinister secret lurks in the depths of a government lab."
-          thumbnail="https://s6.imgcdn.dev/xdC1O.jpg"
-        />
-        <Card
-          title="Lorem"
-          description="On his way home from a friend's house, young Will sees something terrifying. Nearby, a sinister secret lurks in the depths of a government lab."
-          thumbnail="https://s6.imgcdn.dev/xdC1O.jpg"
-        />
-        <Card
-          title="Lorem"
-          description="On his way home from a friend's house, young Will sees something terrifying. Nearby, a sinister secret lurks in the depths of a government lab."
-          thumbnail="https://s6.imgcdn.dev/xdC1O.jpg"
-        />
+        {data?.data?.map((item, key) => {
+          return (
+            <Link
+              key={key}
+              href={`/explore/seasons/details/?uuid=${item.uuid}`}
+            >
+              <VerticalCard
+                title={item.title}
+                description={item.description}
+                thumbnail={item.thumbnail}
+                priButton=""
+                priButtonHref=""
+                secButton=""
+                secButtonHref=""
+              />
+            </Link>
+          );
+        })}
       </div>
-    </Layout>
+    </FallbackLayout>
   );
 }
