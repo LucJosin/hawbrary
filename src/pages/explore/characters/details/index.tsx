@@ -1,6 +1,6 @@
 import { Link } from '@/components/core/Link';
 import { Fallback } from '@/components/templates/Fallback';
-import { getSingleCharacter } from '@/services/hawapi';
+import { getSingleCharacter } from '@/lib/hawapi';
 import styles from '@/styles/CharacterDetailsPage.module.css';
 import { getUuidFromHref } from '@/utils';
 import { Icon } from '@iconify-icon/react/dist/iconify.js';

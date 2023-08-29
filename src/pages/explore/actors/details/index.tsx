@@ -1,6 +1,6 @@
 import { Link } from '@/components/core/Link';
 import { Fallback } from '@/components/templates/Fallback';
-import { getSingleActor } from '@/services/hawapi';
+import { getSingleActor } from '@/lib/hawapi';
 import styles from '@/styles/ActorDetailsPage.module.css';
 import { getUuidFromHref } from '@/utils';
 import { Icon } from '@iconify-icon/react/dist/iconify.js';

@@ -1,6 +1,6 @@
 import { Link } from '@/components/core/Link';
 import { Fallback } from '@/components/templates/Fallback';
-import { getSingleSeason } from '@/services/hawapi';
+import { getSingleSeason } from '@/lib/hawapi';
 import styles from '@/styles/SeasonDetailsPage.module.css';
 import { getUuidFromHref } from '@/utils';
 import { Icon } from '@iconify-icon/react/dist/iconify.js';

@@ -1,6 +1,6 @@
 import { Card } from '@/components/core/Card';
 import { Fallback } from '@/components/templates/Fallback';
-import { getAllActors } from '@/services/hawapi';
+import { getAllActors } from '@/lib/hawapi';
 import styles from '@/styles/Items.module.css';
 import useSWR from 'swr';
 

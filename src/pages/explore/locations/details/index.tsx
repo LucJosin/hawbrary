@@ -1,5 +1,5 @@
 import { Fallback } from '@/components/templates/Fallback';
-import { getSingleLocation } from '@/services/hawapi';
+import { getSingleLocation } from '@/lib/hawapi';
 import styles from '@/styles/LocationDetailsPage.module.css';
 import Image from 'next/image';
 import { useRouter } from 'next/router';

@@ -11,7 +11,7 @@ import {
   getAllLocations,
   getAllSeasons,
   getOverview,
-} from '@/services/hawapi';
+} from '@/lib/hawapi';
 import styles from '@/styles/Explore.module.css';
 import useSWR from 'swr';
 
