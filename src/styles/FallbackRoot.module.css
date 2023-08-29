@@ -1,12 +1,3 @@
-.container {
-  width: 100%;
-  margin: 5rem 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
 .loading {
   border: 0.4rem solid #00000091;
   border-top: 0.4rem solid red;

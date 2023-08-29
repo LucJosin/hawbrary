@@ -9,9 +9,12 @@
   overflow: hidden;
 }
 
+.card:hover {
+  cursor: pointer;
+}
+
 .card:hover > .container {
   height: 61%;
-  cursor: pointer;
   background-image: linear-gradient(0deg, #000000e1 50%, transparent);
 }
 

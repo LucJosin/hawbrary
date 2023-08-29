@@ -1,8 +1,12 @@
-import styles from '@/styles/Fallback.module.css';
+import styles from '@/styles/FallbackModel.module.css';
 import { useRouter } from 'next/router';
-import { Link } from '../core/Link';
+import { Link } from '../../core/Link';
 
-export default function Fallback() {
+interface Props {
+  message?: string;
+}
+
+export default function FallbackModel({ message }: Props) {
   const router = useRouter();
   const report = {
     url: 'https://github.com/LucJosin/hawbrary/issues/new',
@@ -13,7 +17,7 @@ export default function Fallback() {
   };
   return (
     <div className={styles.fallback}>
-      <h2>The requested URL was not found</h2>
+      <h2>{message ?? 'Something went wrong!'}</h2>
       <span className={styles.options}>
         <Link.Primary href="/explore" isLocal={true} name="Go to explorer" />
       </span>
