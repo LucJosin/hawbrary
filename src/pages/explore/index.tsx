@@ -13,6 +13,7 @@ import {
   getOverview,
 } from '@/lib/hawapi';
 import styles from '@/styles/Explore.module.css';
+import { getDetailsUrl } from '@/utils';
 import useSWR from 'swr';
 
 export default function Explore() {
@@ -67,7 +68,7 @@ function SeasonSection() {
               thumbnail={season.thumbnail}
             >
               <Link.Primary
-                href={'/explore/seasons/details/?uuid=' + season.uuid}
+                href={getDetailsUrl('seasons', season.uuid)}
                 name="See more"
               />
               <Link.Secondary

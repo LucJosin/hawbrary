@@ -2,7 +2,7 @@ import { Link } from '@/components/core/Link';
 import { Fallback } from '@/components/templates/Fallback';
 import { getSingleCharacter } from '@/lib/hawapi';
 import styles from '@/styles/CharacterDetailsPage.module.css';
-import { getUuidFromHref } from '@/utils';
+import { getDetailsUrlFromHref } from '@/utils';
 import { Icon } from '@iconify-icon/react/dist/iconify.js';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -74,9 +74,7 @@ export default function CharacterDetailsPage() {
           <div className={styles.actor}>
             <h2>Actor:</h2>
             <Link.Primary
-              href={`/explore/characters/details/?uuid=${getUuidFromHref(
-                data?.data?.actor ?? ''
-              )}`}
+              href={getDetailsUrlFromHref('actors', data?.data?.actor ?? '')}
               name="See actor"
             />
           </div>

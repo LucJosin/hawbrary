@@ -2,7 +2,7 @@ import { Link } from '@/components/core/Link';
 import { Fallback } from '@/components/templates/Fallback';
 import { getSingleEpisode } from '@/lib/hawapi';
 import styles from '@/styles/EpisodeDetailsPage.module.css';
-import { getUuidFromHref } from '@/utils';
+import { getDetailsUrlFromHref } from '@/utils';
 import { Icon } from '@iconify-icon/react/dist/iconify.js';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -45,18 +45,20 @@ export default function EpisodeDetailsPage() {
             <span className={styles.eps}>
               {data?.data?.prev_episode && (
                 <Link.Primary
-                  href={`/explore/episodes/details/?uuid=${getUuidFromHref(
-                    data?.data?.prev_episode
-                  )}`}
+                  href={getDetailsUrlFromHref(
+                    'episodes',
+                    data.data.prev_episode
+                  )}
                   name="Prev episode"
                   isLocal={true}
                 />
               )}
               {data?.data?.next_episode && (
                 <Link.Primary
-                  href={`/explore/episodes/details/?uuid=${getUuidFromHref(
-                    data?.data?.next_episode
-                  )}`}
+                  href={getDetailsUrlFromHref(
+                    'episodes',
+                    data.data.next_episode
+                  )}
                   name="Next episode"
                   isLocal={true}
                 />
@@ -68,9 +70,7 @@ export default function EpisodeDetailsPage() {
             <span className={styles.seas}>
               {data?.data?.season && (
                 <Link.Primary
-                  href={`/explore/seasons/details/?uuid=${getUuidFromHref(
-                    data?.data?.season
-                  )}`}
+                  href={getDetailsUrlFromHref('seasons', data.data.season)}
                   name="See season"
                   isLocal={true}
                 />

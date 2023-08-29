@@ -5,9 +5,9 @@ export function getUuidFromHref(href: string): string | undefined {
 
 export function getDetailsUrlFromHref(target: string, href: string): string {
   const uuid = getUuidFromHref(href);
-  return buildDetailsUrl(target, uuid ?? '');
+  return getDetailsUrl(target, uuid ?? '');
 }
 
-export function buildDetailsUrl(target: string, uuid: string): string {
-  return `/explore/${target}/details/uuid=${uuid}`;
+export function getDetailsUrl(target: string, uuid: string): string {
+  return `/explore/${target}/details/?uuid=${uuid}`;
 }

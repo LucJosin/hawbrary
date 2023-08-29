@@ -1,4 +1,5 @@
 import styles from '@/styles/HorizontalCard.module.css';
+import { getDetailsUrl } from '@/utils';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -18,7 +19,7 @@ export default function HorizontalCard({
   thumbnail,
 }: Props) {
   return (
-    <Link href={`/explore/${target}/details/?uuid=${uuid}`}>
+    <Link href={getDetailsUrl(target, uuid)}>
       <div className={styles.card}>
         <div className={styles.info}>
           <h2>{title}</h2>

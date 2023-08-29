@@ -2,7 +2,7 @@ import { Link } from '@/components/core/Link';
 import { Fallback } from '@/components/templates/Fallback';
 import { getSingleSeason } from '@/lib/hawapi';
 import styles from '@/styles/SeasonDetailsPage.module.css';
-import { getUuidFromHref } from '@/utils';
+import { getDetailsUrlFromHref } from '@/utils';
 import { Icon } from '@iconify-icon/react/dist/iconify.js';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
@@ -60,9 +60,7 @@ export default function SeasonDetailsPage() {
                 return (
                   <Link.Secondary
                     key={key}
-                    href={`/explore/episodes/details/?uuid=${getUuidFromHref(
-                      item
-                    )}`}
+                    href={getDetailsUrlFromHref('seasons', item)}
                     name={`Episode ${key + 1}`}
                     isLocal={true}
                   />
@@ -75,18 +73,14 @@ export default function SeasonDetailsPage() {
             <span className={styles.seas}>
               {data?.data?.prev_season && (
                 <Link.Primary
-                  href={`/explore/seasons/details/?uuid=${getUuidFromHref(
-                    data?.data?.prev_season
-                  )}`}
+                  href={getDetailsUrlFromHref('seasons', data.data.prev_season)}
                   name="Prev season"
                   isLocal={true}
                 />
               )}
               {data?.data?.next_season && (
                 <Link.Primary
-                  href={`/explore/seasons/details/?uuid=${getUuidFromHref(
-                    data?.data?.next_season
-                  )}`}
+                  href={getDetailsUrlFromHref('seasons', data.data.next_season)}
                   name="Next season"
                   isLocal={true}
                 />

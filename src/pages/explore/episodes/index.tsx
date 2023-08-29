@@ -2,7 +2,6 @@ import { Card } from '@/components/core/Card';
 import { Fallback } from '@/components/templates/Fallback';
 import { getAllEpisodes } from '@/lib/hawapi';
 import styles from '@/styles/Items.module.css';
-import Link from 'next/link';
 import useSWR from 'swr';
 
 export default function Items() {
@@ -16,18 +15,14 @@ export default function Items() {
       <div className={styles.items}>
         {data?.data?.map((item, key) => {
           return (
-            <Link
+            <Card.Simple
               key={key}
-              href={`/explore/episodes/details/?uuid=${item.uuid}`}
-            >
-              <Card.Simple
-                uuid={item.uuid}
-                target="episodes"
-                title={item.title}
-                description={item.description}
-                thumbnail={item.thumbnail}
-              />
-            </Link>
+              uuid={item.uuid}
+              target="episodes"
+              title={item.title}
+              description={item.description}
+              thumbnail={item.thumbnail}
+            />
           );
         })}
       </div>

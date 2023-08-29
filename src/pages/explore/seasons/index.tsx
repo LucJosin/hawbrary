@@ -2,6 +2,7 @@ import { Card } from '@/components/core/Card';
 import { Fallback } from '@/components/templates/Fallback';
 import { getAllSeasons } from '@/lib/hawapi';
 import styles from '@/styles/Items.module.css';
+import { getDetailsUrl } from '@/utils';
 import Link from 'next/link';
 import useSWR from 'swr';
 
@@ -16,10 +17,7 @@ export default function Items() {
       <div className={styles.items}>
         {data?.data?.map((item, key) => {
           return (
-            <Link
-              key={key}
-              href={`/explore/seasons/details/?uuid=${item.uuid}`}
-            >
+            <Link key={key} href={getDetailsUrl('seasons', item.uuid)}>
               <Card.Vertical
                 title={item.title}
                 description={item.description}
