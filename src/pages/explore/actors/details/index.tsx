@@ -1,11 +1,11 @@
-import { Link as HLink } from '@/components/core/Link';
+import { Link } from '@/components/core/Link';
 import { Fallback } from '@/components/templates/Fallback';
 import { getSingleActor } from '@/services/hawapi';
 import styles from '@/styles/ActorDetailsPage.module.css';
 import { getUuidFromHref } from '@/utils';
 import { Icon } from '@iconify-icon/react/dist/iconify.js';
 import Image from 'next/image';
-import Link from 'next/link';
+import { default as NextLink } from 'next/link';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
@@ -80,7 +80,7 @@ export default function ActorDetailsPage() {
             {data?.data?.socials &&
               data?.data?.socials.map((item, key) => {
                 return (
-                  <Link
+                  <NextLink
                     key={key}
                     href={item.url}
                     title={item.social + ` (${item.handle})`}
@@ -93,13 +93,13 @@ export default function ActorDetailsPage() {
                       />
                       {item.social}
                     </span>
-                  </Link>
+                  </NextLink>
                 );
               })}
           </div>
           <div className={styles.character}>
             <h2>Character:</h2>
-            <HLink.Primary
+            <Link.Primary
               href={`/explore/characters/details/?uuid=${getUuidFromHref(
                 data?.data?.character ?? ''
               )}`}
