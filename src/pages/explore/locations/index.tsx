@@ -1,8 +1,7 @@
 import { Card } from '@/components/core/Card';
 import { Fallback } from '@/components/templates/Fallback';
-import { getAllLocations } from '@/services/hawapi';
+import { getAllLocations } from '@/lib/hawapi';
 import styles from '@/styles/Items.module.css';
-import Link from 'next/link';
 import useSWR from 'swr';
 
 export default function Items() {
@@ -16,16 +15,14 @@ export default function Items() {
       <div className={styles.items}>
         {data?.data?.map((item, key) => {
           return (
-            <Link
+            <Card.Horizontal
               key={key}
-              href={`/explore/locations/details/?uuid=${item.uuid}`}
-            >
-              <Card.Horizontal
-                title={item.name}
-                description={item.description}
-                thumbnail={item.thumbnail}
-              />
-            </Link>
+              uuid={item.uuid}
+              target="locations"
+              title={item.name}
+              description={item.description}
+              thumbnail={item.thumbnail}
+            />
           );
         })}
       </div>
