@@ -1,8 +1,8 @@
 import { Card } from '@/components/core/Card';
 import { Fallback } from '@/components/templates/Fallback';
 import { getAllSeasons } from '@/lib/hawapi';
+import { getDetailsUrl } from '@/lib/url';
 import styles from '@/styles/Items.module.css';
-import { getDetailsUrl } from '@/utils';
 import Link from 'next/link';
 import useSWR from 'swr';
 

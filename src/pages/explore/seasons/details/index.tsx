@@ -1,8 +1,8 @@
 import { Link } from '@/components/core/Link';
 import { Fallback } from '@/components/templates/Fallback';
 import { getSingleSeason } from '@/lib/hawapi';
+import { getDetailsUrlFromHref } from '@/lib/url';
 import styles from '@/styles/SeasonDetailsPage.module.css';
-import { getDetailsUrlFromHref } from '@/utils';
 import { Icon } from '@iconify-icon/react/dist/iconify.js';
 import Image from 'next/image';
 import { useRouter } from 'next/router';

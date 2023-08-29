@@ -1,5 +1,5 @@
+import { getDetailsUrl } from '@/lib/url';
 import styles from '@/styles/SimpleCard.module.css';
-import { getDetailsUrl } from '@/utils';
 import Image from 'next/image';
 import Link from 'next/link';
 

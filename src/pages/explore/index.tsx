@@ -12,8 +12,8 @@ import {
   getAllSeasons,
   getOverview,
 } from '@/lib/hawapi';
+import { getDetailsUrl } from '@/lib/url';
 import styles from '@/styles/Explore.module.css';
-import { getDetailsUrl } from '@/utils';
 import useSWR from 'swr';
 
 export default function Explore() {
