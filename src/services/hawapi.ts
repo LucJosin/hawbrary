@@ -80,7 +80,6 @@ export async function getSingleEpisode(
 export async function getAllLocations(
   size?: string
 ): Promise<RequestResult<LocationModel[]>> {
-  console.log(process.env.API_ENDPOINT);
   return await hawapi.getAll<LocationModel>('locations', {
     ...(size && { size }),
   });
