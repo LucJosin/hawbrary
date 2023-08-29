@@ -1,22 +1,27 @@
-import FallbackLayout from '@/layout/FallbackLayout';
+import { Fallback } from '@/components/templates/Fallback';
 import { getSingleLocation } from '@/services/hawapi';
 import styles from '@/styles/LocationDetailsPage.module.css';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 import useSWR from 'swr';
 
 export default function LocationDetailsPage() {
+  const [image, setImage] = useState<string | null>(null);
   const router = useRouter();
   const { uuid } = router.query;
 
   const { data, error, isLoading } = useSWR(uuid, getSingleLocation);
 
   return (
-    <FallbackLayout isLoading={isLoading} hasData={error || data !== undefined}>
+    <Fallback.Layout
+      isLoading={isLoading}
+      hasData={error || data !== undefined}
+    >
       <div className={styles.content}>
         <div className={styles.container}>
           <Image
-            src={data?.data?.thumbnail ?? ''}
+            src={image ?? data?.data?.thumbnail ?? ''}
             alt={data?.data?.name ?? ''}
             className={styles.image}
             height={0}
@@ -26,6 +31,9 @@ export default function LocationDetailsPage() {
             {data?.data?.images.map((item, key) => {
               return (
                 <Image
+                  onClick={() => {
+                    setImage(item);
+                  }}
                   key={key}
                   src={item}
                   alt={`Image ${key}`}
@@ -48,6 +56,6 @@ export default function LocationDetailsPage() {
           </div>
         </div>
       </div>
-    </FallbackLayout>
+    </Fallback.Layout>
   );
 }

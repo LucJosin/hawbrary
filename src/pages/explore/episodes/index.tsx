@@ -1,5 +1,5 @@
 import { Card } from '@/components/core/Card';
-import FallbackLayout from '@/layout/FallbackLayout';
+import { Fallback } from '@/components/templates/Fallback';
 import { getAllEpisodes } from '@/services/hawapi';
 import styles from '@/styles/Items.module.css';
 import Link from 'next/link';
@@ -9,7 +9,7 @@ export default function Items() {
   const { data, error, isLoading } = useSWR('episodes', getAllEpisodes);
 
   return (
-    <FallbackLayout
+    <Fallback.Layout
       isLoading={isLoading}
       hasData={!(error || data?.status !== 200)}
     >
@@ -29,6 +29,6 @@ export default function Items() {
           );
         })}
       </div>
-    </FallbackLayout>
+    </Fallback.Layout>
   );
 }

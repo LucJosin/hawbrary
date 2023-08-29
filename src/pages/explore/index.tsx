@@ -2,142 +2,177 @@ import Banner from '@/components/core/Banner';
 import { Card } from '@/components/core/Card';
 import { Link } from '@/components/core/Link';
 import { Row } from '@/components/data/Row';
+import { Fallback } from '@/components/templates/Fallback';
 import Layout from '@/layout/Layout';
+import {
+  getAllActors,
+  getAllCharacters,
+  getAllEpisodes,
+  getAllLocations,
+  getAllSeasons,
+  getOverview,
+} from '@/services/hawapi';
 import styles from '@/styles/Explore.module.css';
+import useSWR from 'swr';
 
 export default function Explore() {
+  const {
+    data: overviewData,
+    error: overviewError,
+    isLoading: overviewIsLoading,
+  } = useSWR(`overview`, getOverview);
+  const {
+    data: seasonData,
+    error: seasonError,
+    isLoading: seasonIsLoading,
+  } = useSWR('seasons', getAllSeasons);
+  const {
+    data: episodeData,
+    error: episodeError,
+    isLoading: episodeIsLoading,
+  } = useSWR('episodes', getAllEpisodes);
+  const {
+    data: actorData,
+    error: actorError,
+    isLoading: actorIsLoading,
+  } = useSWR('actors', getAllActors);
+  const {
+    data: characterData,
+    error: characterError,
+    isLoading: characterIsLoading,
+  } = useSWR('characters', getAllCharacters);
+  const {
+    data: locationData,
+    error: locationError,
+    isLoading: locationIsLoading,
+  } = useSWR('locations', getAllLocations);
+
   return (
     <Layout>
       <div className={styles.banner}>
-        <Banner
-          title="Lorem"
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo deserunt enim sequi ratione, praesentium cum illum necessitatibus ipsa? Cumque reprehenderit autem assumenda, quasi optio totam non. Nobis voluptatibus fugit quam?"
-          thumbnail="https://s6.imgcdn.dev/2rdwu.jpg"
-        />
+        <Fallback.Root
+          isLoading={overviewIsLoading}
+          hasData={!(overviewError || overviewData?.status !== 200)}
+          fallback={<Fallback.Text />}
+        >
+          <Banner
+            title={overviewData?.data?.title ?? ''}
+            description={overviewData?.data?.description ?? ''}
+            thumbnail={overviewData?.data?.thumbnail ?? ''}
+          />
+        </Fallback.Root>
       </div>
+
       <Row.Horizontal title="Seasons">
-        <Card.Vertical
-          title="Lorem"
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo deserunt enim sequi ratione, praesentium cum illum necessitatibus ipsa? Cumque reprehenderit autem assumenda, quasi optio totam non. Nobis voluptatibus fugit quam?"
-          thumbnail="https://s6.imgcdn.dev/xdKqL.jpg"
+        <Fallback.Root
+          isLoading={seasonIsLoading}
+          hasData={!(seasonError || seasonData?.status !== 200)}
+          fallback={<Fallback.Text />}
         >
-          <Link.Primary href="" name="See more" />
-          <Link.Secondary href="" name="Episodes" />
-        </Card.Vertical>
-        <Card.Vertical
-          title="Lorem"
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo deserunt enim sequi ratione, praesentium cum illum necessitatibus ipsa? Cumque reprehenderit autem assumenda, quasi optio totam non. Nobis voluptatibus fugit quam?"
-          thumbnail="https://s6.imgcdn.dev/xdKqL.jpg"
-        >
-          <Link.Primary href="" name="See more" />
-          <Link.Secondary href="" name="Episodes" />
-        </Card.Vertical>
-        <Card.Vertical
-          title="Lorem"
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo deserunt enim sequi ratione, praesentium cum illum necessitatibus ipsa? Cumque reprehenderit autem assumenda, quasi optio totam non. Nobis voluptatibus fugit quam?"
-          thumbnail="https://s6.imgcdn.dev/xdKqL.jpg"
-        >
-          <Link.Primary href="" name="See more" />
-          <Link.Secondary href="" name="Episodes" />
-        </Card.Vertical>
-        <Card.Vertical
-          title="Lorem"
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo deserunt enim sequi ratione, praesentium cum illum necessitatibus ipsa? Cumque reprehenderit autem assumenda, quasi optio totam non. Nobis voluptatibus fugit quam?"
-          thumbnail="https://s6.imgcdn.dev/xdKqL.jpg"
-        >
-          <Link.Primary href="" name="See more" />
-          <Link.Secondary href="" name="Episodes" />
-        </Card.Vertical>
+          {seasonData?.data?.map((season, key) => {
+            return (
+              <Card.Vertical
+                key={key}
+                title={season.title}
+                description={season.description}
+                thumbnail={season.thumbnail}
+              >
+                <Link.Primary
+                  href={'/explore/seasons/details/?uuid=' + season.uuid}
+                  name="See more"
+                />
+                <Link.Secondary
+                  href={'/explore/episodes/details/?season_uuid=' + season.uuid}
+                  name="Episodes"
+                />
+              </Card.Vertical>
+            );
+          })}
+        </Fallback.Root>
       </Row.Horizontal>
+
       <Row.Horizontal title="Episodes">
-        <Card.Simple
-          title="Lorem"
-          description="On his way home from a friend's house, young Will sees something terrifying. Nearby, a sinister secret lurks in the depths of a government lab."
-          thumbnail="https://s6.imgcdn.dev/xdC1O.jpg"
-        />
-        <Card.Simple
-          title="Lorem"
-          description="Hopper consegue entrar no laboratório enquanto Nancy e Jonathan confrontam as forças que levaram Will. Os meninos perguntam ao Sr. Clarke como se vai para outra dimensão."
-          thumbnail="https://s6.imgcdn.dev/xdC1O.jpg"
-        />
-        <Card.Simple
-          title="Lorem"
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo deserunt enim sequi ratione, praesentium cum illum necessitatibus ipsa? Cumque reprehenderit autem assumenda, quasi optio totam non. Nobis voluptatibus fugit quam?"
-          thumbnail="https://s6.imgcdn.dev/xdC1O.jpg"
-        />
-        <Card.Simple
-          title="Lorem"
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo deserunt enim sequi ratione, praesentium cum illum necessitatibus ipsa? Cumque reprehenderit autem assumenda, quasi optio totam non. Nobis voluptatibus fugit quam?"
-          thumbnail="https://s6.imgcdn.dev/xdC1O.jpg"
-        />
+        <Fallback.Root
+          isLoading={episodeIsLoading}
+          hasData={!(episodeError || episodeData?.status !== 200)}
+          fallback={<Fallback.Text />}
+        >
+          {episodeData?.data?.slice(0, 4).map((episode, key) => {
+            return (
+              <Card.Simple
+                key={key}
+                uuid={episode.uuid}
+                target="episodes"
+                title={episode.title}
+                description={episode.description}
+                thumbnail={episode.thumbnail}
+              />
+            );
+          })}
+        </Fallback.Root>
       </Row.Horizontal>
+
       <Row.Horizontal title="Actors" maxColumns="3">
-        <Card.Person
-          uuid="ef39b8b3-1662-5d7c-b618-841d60572218"
-          target="actors"
-          name="Lorem"
-          description={['Example: 1', 'Example: 2']}
-          thumbnail="https://s6.imgcdn.dev/xmI5e.png"
-        />
-        <Card.Person
-          uuid="9a9bf1f1-2a04-5c81-b3b8-5c1428e411d4"
-          target="actors"
-          name="Lorem"
-          description={['Example: 1', 'Example: 2']}
-          thumbnail="https://s6.imgcdn.dev/xmI5e.png"
-        />
-        <Card.Person
-          uuid="2d0090b8-fd7f-5fbc-b050-debc3f2005c1"
-          target="actors"
-          name="Lorem"
-          description={['Example: 1', 'Example: 2']}
-          thumbnail="https://s6.imgcdn.dev/xmI5e.png"
-        />
+        <Fallback.Root
+          isLoading={actorIsLoading}
+          hasData={!(actorError || actorData?.status !== 200)}
+          fallback={<Fallback.Text />}
+        >
+          {actorData?.data?.slice(0, 3).map((actor, key) => {
+            return (
+              <Card.Person
+                key={key}
+                uuid={actor.uuid}
+                target="actors"
+                name={`${actor.first_name} ${actor.last_name}`}
+                description={['Example: 1', 'Example: 2']}
+                thumbnail={actor.thumbnail}
+              />
+            );
+          })}
+        </Fallback.Root>
       </Row.Horizontal>
-      <Row.Horizontal title="Characters" maxColumns="3">
-        <Card.Person
-          uuid="cd5b7cae-7ac7-5836-a310-3cdef93d306e"
-          target="characters"
-          name="Lorem"
-          description={['Example: 1', 'Example: 2']}
-          thumbnail="https://s6.imgcdn.dev/xm7Sq.jpg"
-        />
-        <Card.Person
-          uuid="928a8530-b342-5088-bfd1-7a8cfcfdab54"
-          target="characters"
-          name="Lorem"
-          description={['Example: 1', 'Example: 2']}
-          thumbnail="https://s6.imgcdn.dev/xm7Sq.jpg"
-        />
-        <Card.Person
-          uuid="d86f764f-1859-5b08-84b7-edc0beb6471d"
-          target="characters"
-          name="Lorem"
-          description={['Example: 1', 'Example: 2']}
-          thumbnail="https://s6.imgcdn.dev/xm7Sq.jpg"
-        />
+
+      <Row.Horizontal title="Characters" maxColumns="4">
+        <Fallback.Root
+          isLoading={characterIsLoading}
+          hasData={!(characterError || characterData?.status !== 200)}
+          fallback={<Fallback.Text />}
+        >
+          {characterData?.data?.slice(0, 4).map((character, key) => {
+            return (
+              <Card.Person
+                key={key}
+                uuid={character.uuid}
+                target="characters"
+                name={`${character.first_name} ${character.last_name}`}
+                description={['Example: 1', 'Example: 2']}
+                thumbnail={character.thumbnail}
+              />
+            );
+          })}
+        </Fallback.Root>
       </Row.Horizontal>
+
       <Row.Horizontal title="Locations" maxColumns="2">
-        <Card.Horizontal
-          title="Lorem"
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo deserunt enim sequi ratione, praesentium cum illum necessitatibus ipsa? Cumque reprehenderit autem assumenda, quasi optio totam non. Nobis voluptatibus fugit quam?"
-          thumbnail="https://s6.imgcdn.dev/xe76H.jpg"
-        />
-        <Card.Horizontal
-          title="Lorem"
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo deserunt enim sequi ratione, praesentium cum illum necessitatibus ipsa? Cumque reprehenderit autem assumenda, quasi optio totam non. Nobis voluptatibus fugit quam?"
-          thumbnail="https://s6.imgcdn.dev/xe76H.jpg"
-        />
-        <Card.Horizontal
-          title="Lorem"
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo deserunt enim sequi ratione, praesentium cum illum necessitatibus ipsa? Cumque reprehenderit autem assumenda, quasi optio totam non. Nobis voluptatibus fugit quam?"
-          thumbnail="https://s6.imgcdn.dev/xe76H.jpg"
-        />
-        <Card.Horizontal
-          title="Lorem"
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo deserunt enim sequi ratione, praesentium cum illum necessitatibus ipsa? Cumque reprehenderit autem assumenda, quasi optio totam non. Nobis voluptatibus fugit quam?"
-          thumbnail="https://s6.imgcdn.dev/xe76H.jpg"
-        />
+        <Fallback.Root
+          isLoading={locationIsLoading}
+          hasData={!(locationError || locationData?.status !== 200)}
+          fallback={<Fallback.Text />}
+        >
+          {locationData?.data?.slice(0, 4).map((location, key) => {
+            return (
+              <Card.Horizontal
+                key={key}
+                uuid={location.uuid}
+                target="locations"
+                title={location.name}
+                description={location.description}
+                thumbnail={location.thumbnail}
+              />
+            );
+          })}
+        </Fallback.Root>
       </Row.Horizontal>
     </Layout>
   );

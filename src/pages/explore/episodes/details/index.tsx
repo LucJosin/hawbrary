@@ -1,5 +1,5 @@
 import { Link } from '@/components/core/Link';
-import FallbackLayout from '@/layout/FallbackLayout';
+import { Fallback } from '@/components/templates/Fallback';
 import { getSingleEpisode } from '@/services/hawapi';
 import styles from '@/styles/EpisodeDetailsPage.module.css';
 import { getUuidFromHref } from '@/utils';
@@ -15,7 +15,10 @@ export default function EpisodeDetailsPage() {
   const { data, error, isLoading } = useSWR(uuid, getSingleEpisode);
 
   return (
-    <FallbackLayout isLoading={isLoading} hasData={error || data !== undefined}>
+    <Fallback.Layout
+      isLoading={isLoading}
+      hasData={error || data !== undefined}
+    >
       <div className={styles.content}>
         <div className={styles.container}>
           <Image
@@ -82,6 +85,6 @@ export default function EpisodeDetailsPage() {
           </div>
         </div>
       </div>
-    </FallbackLayout>
+    </Fallback.Layout>
   );
 }

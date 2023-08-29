@@ -1,5 +1,5 @@
 import { Link } from '@/components/core/Link';
-import FallbackLayout from '@/layout/FallbackLayout';
+import { Fallback } from '@/components/templates/Fallback';
 import { getSingleSeason } from '@/services/hawapi';
 import styles from '@/styles/SeasonDetailsPage.module.css';
 import { getUuidFromHref } from '@/utils';
@@ -15,7 +15,10 @@ export default function SeasonDetailsPage() {
   const { data, error, isLoading } = useSWR(uuid, getSingleSeason);
 
   return (
-    <FallbackLayout isLoading={isLoading} hasData={error || data !== undefined}>
+    <Fallback.Layout
+      isLoading={isLoading}
+      hasData={error || data !== undefined}
+    >
       <div className={styles.content}>
         <div className={styles.container}>
           <Image
@@ -98,6 +101,6 @@ export default function SeasonDetailsPage() {
           </div>
         </div>
       </div>
-    </FallbackLayout>
+    </Fallback.Layout>
   );
 }
