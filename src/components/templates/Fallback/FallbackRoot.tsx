@@ -1,4 +1,4 @@
-import styles from '@/styles/FallbackRoot.module.css';
+import Loading from '@/components/core/Loading';
 import type { ReactNode } from 'react';
 import FallbackModel from './FallbackModel';
 
@@ -17,7 +17,7 @@ export default function FallbackRoot({
 }: Props) {
   return (
     <>
-      {isLoading && <div className={styles.loading}></div>}
+      {isLoading && <Loading />}
       {hasData && <>{children}</>}
       {!isLoading && !hasData && (fallback ?? <FallbackModel />)}
     </>
