@@ -38,3 +38,27 @@
   background-size: cover;
   transition: all 0.5s;
 }
+
+@media (max-width: 768px) {
+  .container {
+    height: 40%;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .image {
+    height: 60%;
+    width: 100%;
+  }
+
+  .banner {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 425px) {
+  .banner {
+    height: 32rem;
+    flex-direction: column;
+  }
+}

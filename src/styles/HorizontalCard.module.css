@@ -31,3 +31,20 @@
   padding: 2rem;
   gap: 2rem;
 }
+
+@media (max-width: 425px) {
+  .image {
+    height: 60%;
+    width: 100%;
+  }
+
+  .info {
+    height: 40%;
+    width: 100%;
+  }
+
+  .card {
+    height: 30rem;
+    flex-direction: column;
+  }
+}
