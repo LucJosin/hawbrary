@@ -10,3 +10,10 @@
   position: absolute;
   z-index: -1;
 }
+
+@media (max-width: 1024px) {
+  .background {
+    border-left: 0rem solid transparent;
+    border-right: 0rem solid transparent;
+  }
+}
