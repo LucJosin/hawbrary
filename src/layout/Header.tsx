@@ -1,16 +1,31 @@
+import Loading from '@/components/core/Loading';
 import TextEffect from '@/components/core/TextEffect';
+import { setLanguage as setHawAPILanguage } from '@/lib/hawapi';
 import styles from '@/styles/Header.module.css';
 import { Icon } from '@iconify-icon/react/dist/iconify.js';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { useSWRConfig } from 'swr';
 
 export default function Header() {
-  const router = useRouter();
+  const [language, setLanguage] = useState<string | null>(null);
+  const { mutate } = useSWRConfig();
 
-  const updateLanguage = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    router.push(
-      window.location.origin + window.location.pathname + `?l=${e.target.value}`
-    );
+  useEffect(() => {
+    let localLanguage = window.sessionStorage.getItem('language');
+    if (!localLanguage) {
+      localLanguage = 'en-US';
+      window.sessionStorage.setItem('language', localLanguage);
+    }
+    setLanguage(localLanguage);
+  }, []);
+
+  const updateLanguage = async (e: React.ChangeEvent<HTMLSelectElement>) => {
+    window.sessionStorage.setItem('language', e.target.value);
+    await setHawAPILanguage(e.target.value);
+
+    // Revalidate all data from SWR
+    await mutate(() => true, undefined, { revalidate: true });
   };
 
   return (
@@ -26,16 +41,20 @@ export default function Header() {
         <Link href="/explore/#locations">Locations</Link>
       </div>
       <div className={styles.selection}>
-        <select
-          name="languages"
-          id="languages"
-          className={styles.select}
-          onChange={updateLanguage}
-          defaultValue="en-US"
-        >
-          <option value="en-US">en-US</option>
-          <option value="pt-BR">pt-BR</option>
-        </select>
+        {language ? (
+          <select
+            name="languages"
+            id="languages"
+            className={styles.select}
+            onChange={updateLanguage}
+            defaultValue={language ?? 'en-US'}
+          >
+            <option value="en-US">en-US</option>
+            <option value="pt-BR">pt-BR</option>
+          </select>
+        ) : (
+          <Loading borderSize="0.2rem" size="1.8rem" margin="1rem" />
+        )}
         <Icon icon="tabler:language" width="20" />
       </div>
     </header>
