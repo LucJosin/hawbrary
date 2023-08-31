@@ -9,23 +9,23 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@hawapi/js-sdk": "^1.0.0",
+    "@hawapi/js-sdk": "^1.1.0",
     "next": "13.4.19",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "swr": "^2.2.1"
+    "swr": "^2.2.2"
   },
   "devDependencies": {
     "@iconify-icon/react": "^1.0.8",
-    "@types/node": "20.5.1",
-    "@types/react": "18.2.20",
+    "@types/node": "20.5.7",
+    "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
-    "@typescript-eslint/eslint-plugin": "^6.4.0",
-    "@typescript-eslint/parser": "^6.4.0",
-    "eslint": "8.47.0",
+    "@typescript-eslint/eslint-plugin": "^6.5.0",
+    "@typescript-eslint/parser": "^6.5.0",
+    "eslint": "8.48.0",
     "eslint-config-next": "13.4.19",
     "eslint-config-prettier": "^9.0.0",
-    "prettier": "^3.0.2",
-    "typescript": "5.1.6"
+    "prettier": "^3.0.3",
+    "typescript": "5.2.2"
   }
 }
