@@ -13,15 +13,14 @@ const options = new HawAPIOptions({
   endpoint: 'http://localhost:8080/api',
 });
 
-let hawapi: HawAPIClient = createClient(options);
+const hawapi: HawAPIClient = createClient(options);
 
-export function setLanguage(language: string) {
-  options.language = language;
-  hawapi = createClient(options);
+export async function setLanguage(language: string) {
+  await hawapi.setLanguage(language);
 }
 
 export async function getOverview() {
-  return await hawapi.getOverview<OverviewModel>('en-US');
+  return await hawapi.getOverview<OverviewModel>();
 }
 
 export async function getAllActors() {
