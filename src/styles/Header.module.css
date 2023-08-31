@@ -50,3 +50,10 @@
   cursor: pointer;
   background: #000;
 }
+
+@media (max-width: 850px) {
+  .links {
+    display: none;
+    pointer-events: none;
+  }
+}
