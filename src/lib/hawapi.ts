@@ -10,7 +10,11 @@ import type {
 } from '@hawapi/js-sdk';
 import { HawAPIOptions, createClient } from '@hawapi/js-sdk';
 
+/**
+ * Disable 'inMemoryCache' to use internal cache from SWR
+ */
 const options = new HawAPIOptions({
+  inMemoryCache: false,
   endpoint: 'http://localhost:8080/api',
   size: 12,
 });
