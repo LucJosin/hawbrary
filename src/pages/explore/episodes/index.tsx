@@ -5,6 +5,7 @@ import { Fallback } from '@/components/templates/Fallback';
 import Grid from '@/components/templates/Grid';
 import { getAllEpisodes } from '@/lib/hawapi';
 import styles from '@/styles/MorePage.module.css';
+import type { ReactNode } from 'react';
 import { useState } from 'react';
 import useSWR from 'swr';
 
@@ -14,6 +15,21 @@ export default function MorePage() {
   const { data, error, isLoading } = useSWR(`actors?page=${page}`, () => {
     return getAllEpisodes({ page });
   });
+
+  const pageComponents = () => {
+    const pagesNodes: ReactNode[] = [];
+    for (let i = 0; i < (data?.page_total ?? 0); i++) {
+      const page = i + 1;
+      pagesNodes.push(
+        <Pagination.Page
+          key={page}
+          name={`${page}`}
+          isSelected={data?.page === page}
+        />
+      );
+    }
+    return pagesNodes;
+  };
 
   return (
     <Fallback.Layout
@@ -37,19 +53,19 @@ export default function MorePage() {
           })}
         </Grid>
         <Pagination.Root>
-          {data?.prev_page && (
-            <Pagination.Page name="Prev" onClick={() => setPage(page - 1)} />
-          )}
-          <Pagination.Page name={`${data?.page}`} isSelected={true} />
-          {data?.page_total !== page && (
-            <>
-              <span>...</span>
-              <Pagination.Page name={`${data?.page_total}`} />
-            </>
-          )}
-          {data?.next_page && data?.page_total !== page && (
-            <Pagination.Page name="Next" onClick={() => setPage(page + 1)} />
-          )}
+          <Pagination.Page
+            icon="ic:round-navigate-before"
+            onClick={() => {
+              if (page !== 1) setPage(page - 1);
+            }}
+          />
+          {pageComponents()}
+          <Pagination.Page
+            icon="ic:round-navigate-next"
+            onClick={() => {
+              if (page !== data?.page_total) setPage(page + 1);
+            }}
+          />
         </Pagination.Root>
       </div>
     </Fallback.Layout>

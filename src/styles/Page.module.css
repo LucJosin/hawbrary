@@ -4,6 +4,10 @@
   box-sizing: content-box;
   border-radius: 0.4rem;
   transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9em;
 }
 
 .box:hover {
