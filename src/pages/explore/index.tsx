@@ -50,7 +50,7 @@ function BannerSection() {
 }
 
 function SeasonSection() {
-  const { data, error, isLoading } = useSWR('seasons?page=1', getAllSeasons);
+  const { data, error, isLoading } = useSWR('seasons', getAllSeasons);
 
   return (
     <Row.Horizontal title="Seasons">
@@ -84,7 +84,7 @@ function SeasonSection() {
 }
 
 function EpisodeSection() {
-  const { data, error, isLoading } = useSWR('episodes?page=1', getAllEpisodes);
+  const { data, error, isLoading } = useSWR('episodes', getAllEpisodes);
 
   return (
     <Row.Horizontal title="Episodes">
@@ -111,7 +111,7 @@ function EpisodeSection() {
 }
 
 function ActorSection() {
-  const { data, error, isLoading } = useSWR('actors?page=1', getAllActors);
+  const { data, error, isLoading } = useSWR('actors', getAllActors);
 
   return (
     <Row.Horizontal title="Actors">
@@ -138,10 +138,7 @@ function ActorSection() {
 }
 
 function CharacterSection() {
-  const { data, error, isLoading } = useSWR(
-    'characters?page=1',
-    getAllCharacters
-  );
+  const { data, error, isLoading } = useSWR('characters', getAllCharacters);
 
   return (
     <Row.Horizontal title="Characters">
@@ -168,10 +165,7 @@ function CharacterSection() {
 }
 
 function LocationSection() {
-  const { data, error, isLoading } = useSWR(
-    'locations?page=1',
-    getAllLocations
-  );
+  const { data, error, isLoading } = useSWR('locations', getAllLocations);
 
   return (
     <Row.Horizontal title="Locations" maxColumns="2">
