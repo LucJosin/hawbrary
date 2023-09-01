@@ -1,0 +1,14 @@
+.title {
+  font-family: Benguiat;
+  color: rgba(0, 0, 0, 0.8);
+  text-shadow:
+    -0.05rem -0.05rem 1px #ed2b12,
+    0.05rem -0.05rem 1px #ed2b12,
+    -0.05rem 0.05rem 1px #ed2b12,
+    0.05rem 0.05rem 1px #ed2b12,
+    0 0 15px #630100,
+    0 0 20px #450100;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}

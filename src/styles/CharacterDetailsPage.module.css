@@ -1,0 +1,91 @@
+.content {
+  height: 100%;
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: #00000091;
+  border-radius: 20px;
+  padding: 2rem;
+  position: relative;
+}
+
+.images {
+  height: fit-content;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.avatar {
+  height: 14rem;
+  width: 100%;
+  object-fit: cover;
+  object-position: 50% 20%;
+}
+
+.list {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(40%, 50%));
+  gap: 1rem;
+}
+
+.image {
+  height: 10rem;
+  width: 100%;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 20px;
+}
+
+.info {
+  height: 100%;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 2rem;
+  gap: 1rem;
+}
+
+.nicknames {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nick {
+  border-radius: 10px;
+  padding: 0.4rem 0.5rem;
+  background-color: rgba(255, 0, 0, 0.596);
+  transition: all 0.2s;
+}
+
+.nick:hover {
+  background-color: rgba(255, 0, 0, 0.767);
+  cursor: pointer;
+}
+
+.information {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.actor {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.sources {
+  position: absolute;
+  display: flex;
+  gap: 0.5rem;
+  bottom: 2rem;
+}

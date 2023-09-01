@@ -1,0 +1,61 @@
+.card {
+  width: 100%;
+  height: 16rem;
+  border: 1px solid #dd0400;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover > .container {
+  height: 40%;
+  cursor: pointer;
+  background-image: linear-gradient(0deg, #000000e1 50%, transparent);
+}
+
+.card:hover > .container > .description {
+  -webkit-line-clamp: unset;
+  -webkit-box-orient: unset;
+}
+
+.card:hover > .image {
+  transform: scale(110%);
+}
+
+.image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: 50% 25%;
+  border-radius: 20px;
+  background-size: cover;
+  transition: all 0.5s;
+}
+
+.container {
+  height: 15%;
+  width: 100%;
+  background-image: linear-gradient(0deg, #000000c2 50%, transparent);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+  gap: 0.5rem;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  position: absolute;
+  bottom: 0;
+  transition: all 0.2s;
+}
+
+.name {
+  font-size: 1em;
+}
+
+.description {
+  width: 100%;
+  font-size: 0.9em;
+  overflow: hidden;
+}

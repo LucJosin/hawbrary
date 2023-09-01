@@ -1,0 +1,46 @@
+.content {
+  height: 100%;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #00000091;
+  border-radius: 20px;
+  padding: 1rem;
+  position: relative;
+  gap: 1rem;
+}
+
+.image {
+  height: fit-content;
+  width: 100%;
+  object-fit: cover;
+  object-position: top;
+  border-radius: 20px;
+}
+
+.list {
+  height: 8rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 20%);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.mini {
+  height: inherit;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.info {
+  height: 100%;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem;
+  gap: 1rem;
+}

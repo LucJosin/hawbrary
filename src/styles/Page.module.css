@@ -1,0 +1,27 @@
+.box {
+  border: 1px solid red;
+  padding: 0.5rem 0.8rem;
+  box-sizing: content-box;
+  border-radius: 0.4rem;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9em;
+}
+
+.box:hover {
+  color: white;
+  background-color: red;
+  cursor: pointer;
+}
+
+.selectedBox {
+  composes: box;
+  color: white;
+  background-color: red;
+}
+
+.selectedBox:hover {
+  background-color: rgba(255, 0, 0, 0.671);
+}
