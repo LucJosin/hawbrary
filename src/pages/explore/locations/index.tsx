@@ -23,6 +23,7 @@ export default function MorePage() {
         <Fallback.Root
           isLoading={isLoading}
           hasData={!(error || data?.status !== 200)}
+          fallback={<Fallback.Text />}
         >
           <Grid min="32rem">
             {data?.data?.map((item, key) => {
