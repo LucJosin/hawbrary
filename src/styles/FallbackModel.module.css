@@ -1,6 +1,6 @@
 .fallback {
   height: 15rem;
-  width: 25%;
+  min-width: 20rem;
   background-color: #00000091;
   border-radius: 20px;
   padding: 2rem;
