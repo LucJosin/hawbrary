@@ -78,12 +78,6 @@ export default function CharacterDetailsPage() {
               name="See actor"
             />
           </div>
-          <div className={styles.sources}>
-            <span>example.com</span>
-            <span>example.com</span>
-            <span>example.com</span>
-            <span>example.com</span>
-          </div>
         </div>
       </div>
     </Fallback.Layout>

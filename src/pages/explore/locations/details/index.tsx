@@ -48,12 +48,6 @@ export default function LocationDetailsPage() {
         <div className={styles.info}>
           <h1 className={styles.title}>{data?.data?.name}</h1>
           <p className={styles.description}>{data?.data?.description}</p>
-          <div className={styles.sources}>
-            <span>example.com</span>
-            <span>example.com</span>
-            <span>example.com</span>
-            <span>example.com</span>
-          </div>
         </div>
       </div>
     </Fallback.Layout>

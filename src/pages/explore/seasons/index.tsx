@@ -17,7 +17,7 @@ export default function MorePage() {
   return (
     <Layout>
       <div className={styles.container}>
-        <Title.Simple text="Locations" />
+        <Title.Simple text="Seasons" />
         <Fallback.Root
           isLoading={isLoading}
           hasData={!(error || data?.status !== 200)}
