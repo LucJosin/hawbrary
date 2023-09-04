@@ -8,14 +8,14 @@
 
 .image {
   height: 100%;
-  width: inherit;
+  width: 100%;
   object-fit: cover;
   border-radius: inherit;
 }
 
 .more {
   height: 13rem;
-  width: inherit;
+  width: 100%;
   display: flex;
   gap: 2rem;
   text-align: center;
@@ -46,4 +46,10 @@
   display: flex;
   flex-direction: row;
   gap: 1rem;
+}
+
+@media (max-width: 350px) {
+  .routers {
+    flex-direction: column;
+  }
 }

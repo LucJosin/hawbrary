@@ -14,7 +14,7 @@ export default function FallbackLayout({
   hasData = false,
 }: Props) {
   return (
-    <Layout isCentered={true}>
+    <Layout>
       <FallbackRoot isLoading={isLoading} hasData={hasData}>
         {children}
       </FallbackRoot>

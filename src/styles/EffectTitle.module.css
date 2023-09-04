@@ -11,4 +11,11 @@
   margin: 0;
   padding: 0;
   text-align: center;
+  font-size: 6vw;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 12vw;
+  }
 }
