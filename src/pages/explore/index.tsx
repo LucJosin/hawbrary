@@ -70,10 +70,12 @@ function SeasonSection() {
               <Link.Primary
                 href={getDetailsUrl('seasons', season.uuid)}
                 name="See more"
+                isLocal={true}
               />
               <Link.Secondary
                 href={'/explore/episodes/details/?season_uuid=' + season.uuid}
                 name="Episodes"
+                isLocal={true}
               />
             </Card.Vertical>
           );
