@@ -13,7 +13,7 @@ export default function HomePage() {
         project
       </p>
       <span className={styles.links}>
-        <Link.Primary href="/explore" isLocal={true} name="Explore" />
+        <Link.Primary href="/explorer" isLocal={true} name="Explore" />
         <Link.Secondary
           href="https://github.com/LucJosin/hawbrary"
           name="Github"

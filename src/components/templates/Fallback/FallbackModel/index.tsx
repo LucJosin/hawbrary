@@ -19,7 +19,7 @@ export default function FallbackModel({ message }: Props) {
     <div className={styles.fallback}>
       <h2>{message ?? 'Something went wrong!'}</h2>
       <span className={styles.options}>
-        <Link.Primary href="/explore" isLocal={true} name="Go to explorer" />
+        <Link.Primary href="/explorer" isLocal={true} name="Go to explorer" />
       </span>
       <span className={styles.report}>
         Something is wrong?{' '}

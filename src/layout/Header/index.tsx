@@ -34,11 +34,11 @@ export default function Header() {
         <Title.Effect title="Hawbrary" size="1.2rem" />
       </Link>
       <div className={styles.links}>
-        <Link href="/explore/#actors">Actors</Link>
-        <Link href="/explore/#characters">Characters</Link>
-        <Link href="/explore/#episodes">Episodes</Link>
-        <Link href="/explore/#seasons">Seasons</Link>
-        <Link href="/explore/#locations">Locations</Link>
+        <Link href="/explorer/#actors">Actors</Link>
+        <Link href="/explorer/#characters">Characters</Link>
+        <Link href="/explorer/#episodes">Episodes</Link>
+        <Link href="/explorer/#seasons">Seasons</Link>
+        <Link href="/explorer/#locations">Locations</Link>
       </div>
       <div className={styles.selection}>
         {language ? (

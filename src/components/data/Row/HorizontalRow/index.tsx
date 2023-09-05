@@ -20,7 +20,7 @@ export default function HorizontalRow({
         <h2>{title}</h2>
         <Link
           className={styles.more}
-          href={`/explore/${title.toLocaleLowerCase()}/`}
+          href={`/explorer/${title.toLocaleLowerCase()}/`}
         >
           <p>See more</p>
           <Icon icon="octicon:arrow-right-16" width="24" />

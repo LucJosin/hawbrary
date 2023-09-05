@@ -9,5 +9,5 @@ export function getDetailsUrlFromHref(target: string, href: string): string {
 }
 
 export function getDetailsUrl(target: string, uuid: string): string {
-  return `/explore/${target}/details/?uuid=${uuid}`;
+  return `/explorer/${target}/details/?uuid=${uuid}`;
 }
