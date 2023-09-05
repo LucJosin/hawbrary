@@ -1,12 +1,12 @@
 import { Link } from '@/components/core/Link';
-import EffectTitle from '@/components/core/Title/EffectTitle';
+import { Title } from '@/components/core/Title';
 import Layout from '@/layout/Layout';
-import styles from '@/styles/Home.module.css';
+import styles from '@/styles/HomePage.module.css';
 
-export default function Home() {
+export default function HomePage() {
   return (
     <Layout isCentered={true}>
-      <EffectTitle title="Hawbrary" />
+      <Title.Effect title="Hawbrary" />
       <p className={styles.description}>
         A Showcase for the{' '}
         <Link.Simple href="https://github.com/HawAPI/HawAPI" name="HawAPI" />{' '}

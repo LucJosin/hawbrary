@@ -13,10 +13,10 @@ import {
   getAllSeasons,
   getOverview,
 } from '@/services/hawapi';
-import styles from '@/styles/Explore.module.css';
+import styles from '@/styles/ExplorerPage.module.css';
 import useSWR from 'swr';
 
-export default function Explore() {
+export default function ExplorerPage() {
   return (
     <Layout>
       <BannerSection />
