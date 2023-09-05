@@ -4,6 +4,7 @@ import { Link } from '@/components/core/Link';
 import { Row } from '@/components/data/Row';
 import { Fallback } from '@/components/templates/Fallback';
 import Layout from '@/layout/Layout';
+import { getDetailsUrl } from '@/lib/url';
 import {
   getAllActors,
   getAllCharacters,
@@ -11,8 +12,7 @@ import {
   getAllLocations,
   getAllSeasons,
   getOverview,
-} from '@/lib/hawapi';
-import { getDetailsUrl } from '@/lib/url';
+} from '@/services/hawapi';
 import styles from '@/styles/Explore.module.css';
 import useSWR from 'swr';
 

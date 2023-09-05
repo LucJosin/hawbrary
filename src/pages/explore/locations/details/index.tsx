@@ -2,7 +2,7 @@ import { APIInfo } from '@/components/templates/APIInfo';
 import { Fallback } from '@/components/templates/Fallback';
 import { Sources } from '@/components/templates/Sources';
 import Layout from '@/layout/Layout';
-import { getSingleLocation } from '@/lib/hawapi';
+import { getSingleLocation } from '@/services/hawapi';
 import styles from '@/styles/LocationDetailsPage.module.css';
 import Image from 'next/image';
 import { useRouter } from 'next/router';

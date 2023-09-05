@@ -4,7 +4,7 @@ import { Fallback } from '@/components/templates/Fallback';
 import Grid from '@/components/templates/Grid';
 import { Pagination } from '@/components/templates/Pagination';
 import Layout from '@/layout/Layout';
-import { getAllEpisodes } from '@/lib/hawapi';
+import { getAllEpisodes } from '@/services/hawapi';
 import styles from '@/styles/MorePage.module.css';
 import { useState } from 'react';
 import useSWR from 'swr';
