@@ -1,7 +1,7 @@
+import InfoBoxItem from './InfoBoxItem';
 import ItemBoxRoot from './InfoBoxRoot';
-import InfoItem from './InfoItem';
 
 export const InfoBox = {
-  Item: InfoItem,
+  Item: InfoBoxItem,
   Root: ItemBoxRoot,
 };

@@ -1,7 +1,7 @@
-import { Page } from './Page';
+import { PaginationItem } from './PaginationItem';
 import { PaginationRoot } from './PaginationRoot';
 
 export const Pagination = {
-  Page: Page,
+  Item: PaginationItem,
   Root: PaginationRoot,
 };
