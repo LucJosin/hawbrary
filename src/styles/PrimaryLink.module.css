@@ -7,6 +7,9 @@
   transition: all 0.2s;
   text-align: center;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  gap: 0.2rem;
 }
 
 .button:hover {
