@@ -1,11 +1,17 @@
 import { Link } from '@/components/core/Link';
+import Reference from '@/components/data/Reference';
+import { APIInfo } from '@/components/templates/APIInfo';
 import { Fallback } from '@/components/templates/Fallback';
+import { InfoBox } from '@/components/templates/InfoBox';
+import { Socials } from '@/components/templates/Socials';
+import { Sources } from '@/components/templates/Sources';
+import Layout from '@/layout/Layout';
+import { getAge } from '@/lib/date';
 import { getSingleActor } from '@/lib/hawapi';
 import { getDetailsUrlFromHref } from '@/lib/url';
+import { getGender } from '@/lib/utils';
 import styles from '@/styles/ActorDetailsPage.module.css';
-import { Icon } from '@iconify-icon/react/dist/iconify.js';
 import Image from 'next/image';
-import { default as NextLink } from 'next/link';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 
@@ -16,99 +22,104 @@ export default function ActorDetailsPage() {
   const { data, error, isLoading } = useSWR(uuid, getSingleActor);
 
   return (
-    <Fallback.Layout
-      isLoading={isLoading}
-      hasData={error || data !== undefined}
-    >
-      <div className={styles.content}>
-        <div className={styles.images}>
-          <Image
-            src={data?.data?.thumbnail ?? ''}
-            alt={data?.data?.first_name ?? ''}
-            className={styles.avatar}
-            height={0}
-            width={0}
-          />
-          <span className={styles.list}>
-            {data?.data?.images.map((item, key) => {
-              return (
+    <Layout>
+      <Fallback.Root
+        isLoading={isLoading}
+        hasData={!error && (data !== undefined || data !== undefined)}
+      >
+        {data?.data && (
+          <div className={styles.container}>
+            <div className={styles.images}>
+              <div className={styles.avatar}>
                 <Image
-                  key={key}
-                  src={item}
-                  alt={data?.data?.first_name ?? ''}
-                  className={styles.image}
+                  src={data.data.thumbnail}
                   height={0}
                   width={0}
+                  alt={data.data.first_name}
+                  className={styles.thumbnail}
                 />
-              );
-            })}
-          </span>
-        </div>
-        <div className={styles.info}>
-          <h1 className={styles.title}>
-            {data?.data?.first_name + ' ' + data?.data?.last_name}
-          </h1>
-          <span className={styles.nicknames}>
-            {data?.data?.nicknames &&
-              data?.data?.nicknames.map((item, key) => {
-                return (
-                  <span key={key} className={styles.nick}>
-                    {item}
-                  </span>
-                );
-              })}
-          </span>
-          <span className={styles.information}>
-            <Icon icon="ic:baseline-place" width="18" />
-            {`Nationality: ${data?.data?.nationality}`}
-          </span>
-          <span className={styles.information}>
-            <Icon icon="mdi:birthday-cake-outline" width="18" />
-            {`Birth Date: ${data?.data?.birth_date}`}
-          </span>
-          {data?.data?.death_date && (
-            <span className={styles.information}>
-              <Icon icon="mdi:coffin" width="18" />
-              {`Death Date: ${data?.data?.death_date}`}
-            </span>
-          )}
-          <span className={styles.information}>
-            <Icon icon="icons8:gender" width="18" />
-            {`Gender: ${data?.data?.gender}`}
-          </span>
-          <div className={styles.socials}>
-            {data?.data?.socials &&
-              data?.data?.socials.map((item, key) => {
-                return (
-                  <NextLink
-                    key={key}
-                    href={item.url}
-                    title={item.social + ` (${item.handle})`}
-                    target="_blank"
-                  >
-                    <span className={styles.social}>
-                      <Icon
-                        icon={`simple-icons:${item.social.toLocaleLowerCase()}`}
-                        width="18"
+              </div>
+              <div className={styles.grid}>
+                {data.data.images &&
+                  data.data.images.map((item, key) => {
+                    return (
+                      <Image
+                        key={key}
+                        src={item}
+                        height={0}
+                        width={0}
+                        alt={'Image ' + key}
+                        className={styles.mini}
                       />
-                      {item.social}
-                    </span>
-                  </NextLink>
-                );
-              })}
+                    );
+                  })}
+              </div>
+            </div>
+            <div className={styles.info}>
+              <h1>{`${data.data.first_name} ${data.data.last_name}`}</h1>
+              <Link.Secondary
+                href={getDetailsUrlFromHref('characters', data.data.character)}
+                name="See Character"
+                isLocal={true}
+              />
+              <InfoBox.Root title="About:">
+                <InfoBox.Item
+                  icon="mdi:calendar-range"
+                  name="Age"
+                  value={`${getAge(data.data.birth_date)}`}
+                />
+                <InfoBox.Item
+                  icon="mdi:account"
+                  name="Gender"
+                  value={`${getGender(data.data.gender)}`}
+                />
+                <InfoBox.Item
+                  icon="mdi:earth"
+                  name="Nationality"
+                  value={data.data.nationality}
+                />
+                <InfoBox.Item
+                  icon="mdi:cake-variant-outline"
+                  name="Birth Date"
+                  value={data.data.birth_date}
+                />
+                {data.data.death_date && (
+                  <InfoBox.Item
+                    icon="mdi:cake-variant-outline"
+                    name="Birth Date"
+                    value={data.data.death_date}
+                  />
+                )}
+              </InfoBox.Root>
+              <Socials.Root>
+                {data.data.socials &&
+                  data.data.socials.map((item, key) => {
+                    return (
+                      <Socials.Item
+                        key={key}
+                        name={item.social}
+                        url={item.url}
+                        handle={item.handle}
+                      />
+                    );
+                  })}
+              </Socials.Root>
+              <Reference
+                title="Seasons:"
+                target="seasons"
+                data={data.data.seasons}
+              />
+              <Sources sources={data.data.sources} />
+              <APIInfo
+                uuid={data.data.uuid}
+                href={data.data.href}
+                createdAt={data.data.created_at}
+                updatedAt={data.data.updated_at}
+              />
+            </div>
           </div>
-          <div className={styles.character}>
-            <h2>Character:</h2>
-            <Link.Primary
-              href={getDetailsUrlFromHref(
-                'characters',
-                data?.data?.character ?? ''
-              )}
-              name="See character"
-            />
-          </div>
-        </div>
-      </div>
-    </Fallback.Layout>
+        )}
+      </Fallback.Root>
+    </Layout>
   );
 }

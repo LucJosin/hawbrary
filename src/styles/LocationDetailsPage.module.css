@@ -1,6 +1,6 @@
-.content {
+.container {
   height: 100%;
-  width: 60%;
+  max-width: 35rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,25 +11,55 @@
   gap: 1rem;
 }
 
-.image {
-  height: fit-content;
+.thumbnail-container {
+  position: relative;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.thumbnail-container:hover::after {
+  content: '';
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-color: #0000003a;
+}
+
+.thumbnail {
+  height: inherit;
   width: 100%;
   object-fit: cover;
-  object-position: top;
   border-radius: 20px;
 }
 
-.list {
-  height: 8rem;
+.images {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, 20%);
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
   gap: 1rem;
   margin-top: 1rem;
 }
 
-.mini {
-  height: inherit;
+.image-container {
+  position: relative;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.image-container:hover::after {
+  content: '';
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-color: #0000003a;
+}
+
+.image {
+  height: 10rem;
   width: 100%;
   object-fit: cover;
   border-radius: 20px;
@@ -37,7 +67,6 @@
 
 .info {
   height: 100%;
-  width: 60%;
   display: flex;
   flex-direction: column;
   justify-content: center;
