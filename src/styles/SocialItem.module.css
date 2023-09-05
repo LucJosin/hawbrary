@@ -1,0 +1,16 @@
+.social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border: 1px solid red;
+  padding: 0.5rem;
+  border-radius: 10px;
+  color: red;
+  transition: all 0.2s;
+}
+
+.social:hover {
+  background-color: #cf0300b4;
+  color: #fff;
+}

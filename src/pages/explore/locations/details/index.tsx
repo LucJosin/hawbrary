@@ -1,4 +1,7 @@
+import { APIInfo } from '@/components/templates/APIInfo';
 import { Fallback } from '@/components/templates/Fallback';
+import { Sources } from '@/components/templates/Sources';
+import Layout from '@/layout/Layout';
 import { getSingleLocation } from '@/lib/hawapi';
 import styles from '@/styles/LocationDetailsPage.module.css';
 import Image from 'next/image';
@@ -7,6 +10,7 @@ import { useState } from 'react';
 import useSWR from 'swr';
 
 export default function LocationDetailsPage() {
+  const [isImageSelected, setImageSelected] = useState(false);
   const [image, setImage] = useState<string | null>(null);
   const router = useRouter();
   const { uuid } = router.query;
@@ -14,48 +18,66 @@ export default function LocationDetailsPage() {
   const { data, error, isLoading } = useSWR(uuid, getSingleLocation);
 
   return (
-    <Fallback.Layout
-      isLoading={isLoading}
-      hasData={error || data !== undefined}
-    >
-      <div className={styles.content}>
-        <div className={styles.container}>
-          <Image
-            src={image ?? data?.data?.thumbnail ?? ''}
-            alt={data?.data?.name ?? ''}
-            className={styles.image}
-            height={0}
-            width={0}
-          />
-          <span className={styles.list}>
-            {data?.data?.images.map((item, key) => {
-              return (
-                <Image
-                  onClick={() => {
-                    setImage(item);
-                  }}
-                  key={key}
-                  src={item}
-                  alt={`Image ${key}`}
-                  className={styles.mini}
-                  height={0}
-                  width={0}
-                />
-              );
-            })}
-          </span>
-        </div>
-        <div className={styles.info}>
-          <h1 className={styles.title}>{data?.data?.name}</h1>
-          <p className={styles.description}>{data?.data?.description}</p>
-          <div className={styles.sources}>
-            <span>example.com</span>
-            <span>example.com</span>
-            <span>example.com</span>
-            <span>example.com</span>
+    <Layout>
+      <Fallback.Root
+        isLoading={isLoading}
+        hasData={error || data !== undefined}
+      >
+        {data?.data && (
+          <div className={styles.container}>
+            <span
+              className={styles['thumbnail-container']}
+              style={{
+                height: isImageSelected ? 'fit-content' : '15rem',
+                cursor: isImageSelected ? 'zoom-out' : 'zoom-in',
+              }}
+              onClick={() => {
+                setImageSelected(!isImageSelected);
+              }}
+            >
+              <Image
+                src={image ?? data.data.thumbnail}
+                alt={data.data.name}
+                className={styles.thumbnail}
+                height={0}
+                width={0}
+              />
+            </span>
+            <span className={styles.images}>
+              {data.data.images.map((item, key) => {
+                return (
+                  <span
+                    className={styles['image-container']}
+                    key={key}
+                    onClick={() => {
+                      setImage(item);
+                    }}
+                  >
+                    <Image
+                      src={item}
+                      alt={`Image ${key}`}
+                      className={styles.image}
+                      height={0}
+                      width={0}
+                    />
+                  </span>
+                );
+              })}
+            </span>
+            <div className={styles.info}>
+              <h1 className={styles.title}>{data.data.name}</h1>
+              <p className={styles.description}>{data.data.description}</p>
+              <Sources sources={data.data.sources} />
+              <APIInfo
+                uuid={data.data.uuid}
+                href={data.data.href}
+                createdAt={data.data.created_at}
+                updatedAt={data.data.updated_at}
+              />
+            </div>
           </div>
-        </div>
-      </div>
-    </Fallback.Layout>
+        )}
+      </Fallback.Root>
+    </Layout>
   );
 }

@@ -5,6 +5,12 @@
   align-items: center;
 }
 
+.description {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .links {
   display: flex;
   margin: 2rem;

@@ -6,8 +6,8 @@ import styles from '@/styles/Home.module.css';
 export default function Home() {
   return (
     <Layout isCentered={true}>
-      <EffectTitle title="Hawbrary" size="8rem" />
-      <p>
+      <EffectTitle title="Hawbrary" />
+      <p className={styles.description}>
         A Showcase for the{' '}
         <Link.Simple href="https://github.com/HawAPI/HawAPI" name="HawAPI" />{' '}
         project

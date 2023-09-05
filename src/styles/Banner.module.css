@@ -58,7 +58,7 @@
 
 @media (max-width: 425px) {
   .banner {
-    height: 32rem;
+    height: 38rem;
     flex-direction: column;
   }
 }
