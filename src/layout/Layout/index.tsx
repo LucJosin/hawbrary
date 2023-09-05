@@ -1,8 +1,8 @@
 import BackgroundEffect from '@/components/core/BackgroundEffect';
-import styles from '@/styles/Layout.module.css';
 import Head from 'next/head';
 import type { ReactNode } from 'react';
-import Header from './Header';
+import Header from '../Header';
+import styles from './Layout.module.css';
 
 interface Props {
   children: ReactNode;

@@ -1,11 +1,11 @@
 import Loading from '@/components/core/Loading';
-import EffectTitle from '@/components/core/Title/EffectTitle';
+import { Title } from '@/components/core/Title';
 import { setLanguage as setHawAPILanguage } from '@/services/hawapi';
-import styles from '@/styles/Header.module.css';
 import { Icon } from '@iconify-icon/react/dist/iconify.js';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useSWRConfig } from 'swr';
+import styles from './Header.module.css';
 
 export default function Header() {
   const [language, setLanguage] = useState<string | null>(null);
@@ -31,7 +31,7 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <Link href="/">
-        <EffectTitle title="Hawbrary" size="1.2rem" />
+        <Title.Effect title="Hawbrary" size="1.2rem" />
       </Link>
       <div className={styles.links}>
         <Link href="/explore/#actors">Actors</Link>
