@@ -1,3 +1,4 @@
+import { API_URL } from '@/lib/constants';
 import type {
   ActorModel,
   CharacterModel,
@@ -15,7 +16,7 @@ import { HawAPIOptions, createClient } from '@hawapi/js-sdk';
  */
 const options = new HawAPIOptions({
   inMemoryCache: false,
-  endpoint: 'http://localhost:8080/api',
+  endpoint: API_URL,
   size: 12,
 });
 

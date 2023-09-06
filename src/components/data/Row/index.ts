@@ -1,4 +1,4 @@
-import HorizontalRow from '../HorizontalRow';
+import HorizontalRow from './HorizontalRow';
 
 export const Row = {
   Horizontal: HorizontalRow,
