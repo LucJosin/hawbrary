@@ -1,3 +1,10 @@
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .loading {
   border-radius: 50%;
   animation: spin 1.2s linear infinite;
