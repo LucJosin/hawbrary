@@ -73,7 +73,9 @@ function SeasonSection() {
                 isLocal={true}
               />
               <Link.Secondary
-                href={'/explorer/episodes/details/?season_uuid=' + season.uuid}
+                href={`/explorer/episodes/?season_uuid=${
+                  season.uuid
+                }&season_num=${key + 1}`}
                 name="Episodes"
                 isLocal={true}
               />
