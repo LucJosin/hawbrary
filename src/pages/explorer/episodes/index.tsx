@@ -6,14 +6,25 @@ import { Pagination } from '@/components/templates/Pagination';
 import Layout from '@/layout/Layout';
 import { getAllEpisodes } from '@/services/hawapi';
 import styles from '@/styles/MorePage.module.css';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import useSWR from 'swr';
 
 export default function MorePage() {
   const [page, setPage] = useState(1);
+  const router = useRouter();
+  const { season_uuid } = router.query;
 
-  const { data, error, isLoading } = useSWR(`episodes?page=${page}`, () => {
-    return getAllEpisodes({ page });
+  let filter: string;
+  let key: string = `episodes?page=${page}`;
+
+  if (season_uuid) {
+    key = `episodes?season=${season_uuid}`;
+    filter = '*' + season_uuid;
+  }
+
+  const { data, error, isLoading } = useSWR(key, () => {
+    return getAllEpisodes({ page }, { ...(season_uuid && { season: filter }) });
   });
 
   return (
