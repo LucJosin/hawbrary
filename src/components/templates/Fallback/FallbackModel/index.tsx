@@ -16,18 +16,20 @@ export default function FallbackModel({ message }: Props) {
     body: `${encodeURI(`Path: ${router.asPath}`)}`,
   };
   return (
-    <div className={styles.fallback}>
-      <h2>{message ?? 'Something went wrong!'}</h2>
-      <span className={styles.options}>
-        <Link.Primary href="/explorer" isLocal={true} name="Go to explorer" />
-      </span>
-      <span className={styles.report}>
-        Something is wrong?{' '}
-        <Link.Simple
-          href={`${report.url}?title=${report.title}&assignees=${report.assignees}&labels=${report.labels}&body=${report.body}`}
-          name="Report error"
-        />
-      </span>
+    <div className={styles.container}>
+      <div className={styles.fallback}>
+        <h2>{message ?? 'Something went wrong!'}</h2>
+        <span className={styles.options}>
+          <Link.Primary href="/explorer" isLocal={true} name="Go to explorer" />
+        </span>
+        <span className={styles.report}>
+          Something is wrong?{' '}
+          <Link.Simple
+            href={`${report.url}?title=${report.title}&assignees=${report.assignees}&labels=${report.labels}&body=${report.body}`}
+            name="Report error"
+          />
+        </span>
+      </div>
     </div>
   );
 }
