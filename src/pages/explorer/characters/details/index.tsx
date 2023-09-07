@@ -66,7 +66,7 @@ export default function CharacterDetailsPage() {
                   name="Age"
                   value={`${getAge(data.data.birth_date, '1983')} (${getAge(
                     data.data.birth_date
-                  )} now)`}
+                  )} today)`}
                 />
                 <InfoBox.Item
                   icon="mdi:account"
