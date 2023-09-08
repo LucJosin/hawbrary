@@ -1,5 +1,4 @@
 .container {
-  height: 70vh;
   display: flex;
   align-items: center;
 }
@@ -34,5 +33,6 @@
 @media (max-width: 375px) {
   .fallback {
     width: 15rem;
+    padding: 1rem;
   }
 }
