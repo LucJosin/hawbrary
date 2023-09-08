@@ -2,7 +2,7 @@ import { Link } from '@/components/core/Link';
 import Loading from '@/components/core/Loading';
 import Reference from '@/components/data/Reference';
 import { APIInfo } from '@/components/templates/APIInfo';
-import { Fallback } from '@/components/templates/Fallback';
+import ErrorModal from '@/components/templates/ErrorModal';
 import { InfoBox } from '@/components/templates/InfoBox';
 import { Socials } from '@/components/templates/Socials';
 import { Sources } from '@/components/templates/Sources';
@@ -32,7 +32,7 @@ function ActorDetails() {
 
   const { data, error, isLoading } = useSWR(uuid ? uuid : null, getSingleActor);
 
-  if (error) return <Fallback.Text />;
+  if (error) return <ErrorModal />;
   if (isLoading || !data?.data) return <Loading />;
 
   return (

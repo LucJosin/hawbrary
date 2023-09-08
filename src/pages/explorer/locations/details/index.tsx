@@ -1,6 +1,6 @@
 import Loading from '@/components/core/Loading';
 import { APIInfo } from '@/components/templates/APIInfo';
-import { Fallback } from '@/components/templates/Fallback';
+import ErrorModal from '@/components/templates/ErrorModal';
 import { Sources } from '@/components/templates/Sources';
 import Layout from '@/layout/Layout';
 import { getSingleLocation } from '@/services/hawapi';
@@ -28,7 +28,7 @@ function LocationDetails() {
 
   const { data, error, isLoading } = useSWR(uuid, getSingleLocation);
 
-  if (error) return <Fallback.Text />;
+  if (error) return <ErrorModal />;
   if (isLoading || !data?.data) return <Loading />;
 
   return (

@@ -1,7 +1,7 @@
 import { Card } from '@/components/core/Card';
 import Loading from '@/components/core/Loading';
 import { Title } from '@/components/core/Title';
-import { Fallback } from '@/components/templates/Fallback';
+import ErrorModal from '@/components/templates/ErrorModal';
 import Grid from '@/components/templates/Grid';
 import { Pagination } from '@/components/templates/Pagination';
 import Layout from '@/layout/Layout';
@@ -29,7 +29,7 @@ function CharacterItems() {
     return getAllCharacters({ page });
   });
 
-  if (error) return <Fallback.Text />;
+  if (error) return <ErrorModal />;
   if (isLoading) return <Loading />;
 
   return (
