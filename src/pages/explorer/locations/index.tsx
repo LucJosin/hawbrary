@@ -1,6 +1,7 @@
 import { Card } from '@/components/core/Card';
+import Loading from '@/components/core/Loading';
 import { Title } from '@/components/core/Title';
-import { Fallback } from '@/components/templates/Fallback';
+import ErrorModal from '@/components/templates/ErrorModal';
 import Grid from '@/components/templates/Grid';
 import { Pagination } from '@/components/templates/Pagination';
 import Layout from '@/layout/Layout';
@@ -10,38 +11,43 @@ import { useState } from 'react';
 import useSWR from 'swr';
 
 export default function MorePage() {
+  return (
+    <Layout>
+      <div className={styles.container}>
+        <Title.Simple text="Locations" />
+        <LocationItems />
+      </div>
+    </Layout>
+  );
+}
+
+function LocationItems() {
   const [page, setPage] = useState(1);
 
   const { data, error, isLoading } = useSWR(`locations?page=${page}`, () => {
     return getAllLocations({ page });
   });
 
+  if (error) return <ErrorModal />;
+  if (isLoading) return <Loading />;
+
   return (
-    <Layout>
-      <div className={styles.container}>
-        <Title.Simple text="Locations" />
-        <Fallback.Root
-          isLoading={isLoading}
-          hasData={!(error || data?.status !== 200)}
-          fallback={<Fallback.Text />}
-        >
-          <Grid min="32rem">
-            {data?.data?.map((item, key) => {
-              return (
-                <Card.Horizontal
-                  key={key}
-                  uuid={item.uuid}
-                  target="locations"
-                  title={item.name}
-                  description={item.description}
-                  thumbnail={item.thumbnail}
-                />
-              );
-            })}
-          </Grid>
-        </Fallback.Root>
-        {data && <Pagination.Root page={page} data={data} setPage={setPage} />}
-      </div>
-    </Layout>
+    <>
+      <Grid min="32rem">
+        {data?.data?.map((item, key) => {
+          return (
+            <Card.Horizontal
+              key={key}
+              uuid={item.uuid}
+              target="locations"
+              title={item.name}
+              description={item.description}
+              thumbnail={item.thumbnail}
+            />
+          );
+        })}
+      </Grid>
+      {data && <Pagination.Root page={page} data={data} setPage={setPage} />}
+    </>
   );
 }

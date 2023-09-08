@@ -3,6 +3,7 @@ import type {
   ActorModel,
   CharacterModel,
   EpisodeModel,
+  Filters,
   HawAPIClient,
   LocationModel,
   OverviewModel,
@@ -30,40 +31,40 @@ export async function getOverview() {
   return await hawapi.getOverview<OverviewModel>();
 }
 
-export async function getAllActors(pageable?: Pageable) {
-  return await hawapi.getAll<ActorModel>('actors', null, pageable);
+export async function getAllActors(pageable?: Pageable, filters?: Filters) {
+  return await hawapi.getAll<ActorModel>('actors', filters, pageable);
 }
 
 export async function getSingleActor(uuid: string) {
   return await hawapi.getBy<ActorModel>('actors', uuid);
 }
 
-export async function getAllCharacters(pageable?: Pageable) {
-  return await hawapi.getAll<CharacterModel>('characters', null, pageable);
+export async function getAllCharacters(pageable?: Pageable, filters?: Filters) {
+  return await hawapi.getAll<CharacterModel>('characters', filters, pageable);
 }
 
 export async function getSingleCharacter(uuid: string) {
   return await hawapi.getBy<CharacterModel>('characters', uuid);
 }
 
-export async function getAllSeasons(pageable?: Pageable) {
-  return await hawapi.getAll<SeasonModel>('seasons', null, pageable);
+export async function getAllSeasons(pageable?: Pageable, filters?: Filters) {
+  return await hawapi.getAll<SeasonModel>('seasons', filters, pageable);
 }
 
 export async function getSingleSeason(uuid: string) {
   return await hawapi.getBy<SeasonModel>('seasons', uuid);
 }
 
-export async function getAllEpisodes(pageable?: Pageable) {
-  return await hawapi.getAll<EpisodeModel>('episodes', null, pageable);
+export async function getAllEpisodes(pageable?: Pageable, filters?: Filters) {
+  return await hawapi.getAll<EpisodeModel>('episodes', filters, pageable);
 }
 
 export async function getSingleEpisode(uuid: string) {
   return await hawapi.getBy<EpisodeModel>('episodes', uuid);
 }
 
-export async function getAllLocations(pageable?: Pageable) {
-  return await hawapi.getAll<LocationModel>('locations', null, pageable);
+export async function getAllLocations(pageable?: Pageable, filters?: Filters) {
+  return await hawapi.getAll<LocationModel>('locations', filters, pageable);
 }
 
 export async function getSingleLocation(uuid: string) {

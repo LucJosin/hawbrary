@@ -12,15 +12,17 @@ export default function Loading({
   margin,
 }: Props) {
   return (
-    <span
-      className={styles.loading}
-      style={{
-        border: `${borderSize} solid #00000091`,
-        borderTop: `${borderSize} solid red`,
-        height: size,
-        width: size,
-        margin: margin,
-      }}
-    ></span>
+    <div className={styles.container}>
+      <div
+        className={styles.loading}
+        style={{
+          border: `${borderSize} solid #00000091`,
+          borderTop: `${borderSize} solid red`,
+          height: size,
+          width: size,
+          margin: margin,
+        }}
+      ></div>
+    </div>
   );
 }

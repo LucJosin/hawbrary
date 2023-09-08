@@ -1,5 +1,6 @@
+import Loading from '@/components/core/Loading';
 import { APIInfo } from '@/components/templates/APIInfo';
-import { Fallback } from '@/components/templates/Fallback';
+import ErrorModal from '@/components/templates/ErrorModal';
 import { Sources } from '@/components/templates/Sources';
 import Layout from '@/layout/Layout';
 import { getSingleLocation } from '@/services/hawapi';
@@ -10,6 +11,16 @@ import { useState } from 'react';
 import useSWR from 'swr';
 
 export default function LocationDetailsPage() {
+  return (
+    <Layout>
+      <div className={styles.container}>
+        <LocationDetails />
+      </div>
+    </Layout>
+  );
+}
+
+function LocationDetails() {
   const [isImageSelected, setImageSelected] = useState(false);
   const [image, setImage] = useState<string | null>(null);
   const router = useRouter();
@@ -17,67 +28,61 @@ export default function LocationDetailsPage() {
 
   const { data, error, isLoading } = useSWR(uuid, getSingleLocation);
 
+  if (error) return <ErrorModal />;
+  if (isLoading || !data?.data) return <Loading />;
+
   return (
-    <Layout>
-      <Fallback.Root
-        isLoading={isLoading}
-        hasData={error || data !== undefined}
+    <>
+      <span
+        className={styles['thumbnail-container']}
+        style={{
+          height: isImageSelected ? 'fit-content' : '15rem',
+          cursor: isImageSelected ? 'zoom-out' : 'zoom-in',
+        }}
+        onClick={() => {
+          setImageSelected(!isImageSelected);
+        }}
       >
-        {data?.data && (
-          <div className={styles.container}>
+        <Image
+          src={image ?? data.data.thumbnail}
+          alt={data.data.name}
+          className={styles.thumbnail}
+          height={0}
+          width={0}
+        />
+      </span>
+      <span className={styles.images}>
+        {data.data.images.map((item, key) => {
+          return (
             <span
-              className={styles['thumbnail-container']}
-              style={{
-                height: isImageSelected ? 'fit-content' : '15rem',
-                cursor: isImageSelected ? 'zoom-out' : 'zoom-in',
-              }}
+              className={styles['image-container']}
+              key={key}
               onClick={() => {
-                setImageSelected(!isImageSelected);
+                setImage(item);
               }}
             >
               <Image
-                src={image ?? data.data.thumbnail}
-                alt={data.data.name}
-                className={styles.thumbnail}
+                src={item}
+                alt={`Image ${key}`}
+                className={styles.image}
                 height={0}
                 width={0}
               />
             </span>
-            <span className={styles.images}>
-              {data.data.images.map((item, key) => {
-                return (
-                  <span
-                    className={styles['image-container']}
-                    key={key}
-                    onClick={() => {
-                      setImage(item);
-                    }}
-                  >
-                    <Image
-                      src={item}
-                      alt={`Image ${key}`}
-                      className={styles.image}
-                      height={0}
-                      width={0}
-                    />
-                  </span>
-                );
-              })}
-            </span>
-            <div className={styles.info}>
-              <h1 className={styles.title}>{data.data.name}</h1>
-              <p className={styles.description}>{data.data.description}</p>
-              <Sources sources={data.data.sources} />
-              <APIInfo
-                uuid={data.data.uuid}
-                href={data.data.href}
-                createdAt={data.data.created_at}
-                updatedAt={data.data.updated_at}
-              />
-            </div>
-          </div>
-        )}
-      </Fallback.Root>
-    </Layout>
+          );
+        })}
+      </span>
+      <div className={styles.info}>
+        <h1 className={styles.title}>{data.data.name}</h1>
+        <p className={styles.description}>{data.data.description}</p>
+        <Sources sources={data.data.sources} />
+        <APIInfo
+          uuid={data.data.uuid}
+          href={data.data.href}
+          createdAt={data.data.created_at}
+          updatedAt={data.data.updated_at}
+        />
+      </div>
+    </>
   );
 }
