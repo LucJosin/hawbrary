@@ -2,7 +2,7 @@ import Banner from '@/components/core/Banner';
 import { Card } from '@/components/core/Card';
 import { Link } from '@/components/core/Link';
 import Loading from '@/components/core/Loading';
-import { Row } from '@/components/data/Row';
+import Row from '@/components/data/Row';
 import { Fallback } from '@/components/templates/Fallback';
 import Layout from '@/layout/Layout';
 import { getDetailsUrl } from '@/lib/url';
@@ -22,25 +22,25 @@ export default function ExplorerPage() {
     <Layout>
       <BannerSection />
 
-      <Row.Horizontal title="Seasons">
+      <Row title="Seasons">
         <SeasonSection />
-      </Row.Horizontal>
+      </Row>
 
-      <Row.Horizontal title="Episodes">
+      <Row title="Episodes">
         <EpisodeSection />
-      </Row.Horizontal>
+      </Row>
 
-      <Row.Horizontal title="Actors">
+      <Row title="Actors">
         <ActorSection />
-      </Row.Horizontal>
+      </Row>
 
-      <Row.Horizontal title="Characters">
+      <Row title="Characters">
         <CharacterSection />
-      </Row.Horizontal>
+      </Row>
 
-      <Row.Horizontal title="Locations" maxColumns="2">
+      <Row title="Locations" maxColumns="2">
         <LocationSection />
-      </Row.Horizontal>
+      </Row>
     </Layout>
   );
 }
