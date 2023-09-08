@@ -1,4 +1,5 @@
 import { Card } from '@/components/core/Card';
+import Loading from '@/components/core/Loading';
 import { Title } from '@/components/core/Title';
 import { Fallback } from '@/components/templates/Fallback';
 import Grid from '@/components/templates/Grid';
@@ -11,6 +12,17 @@ import { useState } from 'react';
 import useSWR from 'swr';
 
 export default function MorePage() {
+  return (
+    <Layout>
+      <div className={styles.container}>
+        <Title.Simple text="Episodes" />
+        <EpisodeItems />
+      </div>
+    </Layout>
+  );
+}
+
+function EpisodeItems() {
   const [page, setPage] = useState(1);
   const router = useRouter();
   const { season_uuid } = router.query;
@@ -18,6 +30,7 @@ export default function MorePage() {
   let filter: string;
   let key: string = `episodes?page=${page}`;
 
+  // Season uuid will have precedence over uuid
   if (season_uuid) {
     key = `episodes?season=${season_uuid}`;
     filter = '*' + season_uuid;
@@ -27,32 +40,26 @@ export default function MorePage() {
     return getAllEpisodes({ page }, { ...(season_uuid && { season: filter }) });
   });
 
+  if (error) return <Fallback.Text />;
+  if (isLoading) return <Loading />;
+
   return (
-    <Layout>
-      <div className={styles.container}>
-        <Title.Simple text="Episodes" />
-        <Fallback.Root
-          isLoading={isLoading}
-          hasData={!(error || data?.status !== 200)}
-          fallback={<Fallback.Text />}
-        >
-          <Grid>
-            {data?.data?.map((item, key) => {
-              return (
-                <Card.Simple
-                  key={key}
-                  uuid={item.uuid}
-                  target="episodes"
-                  title={`${item.title} - Ep.${item.episode_num}`}
-                  description={item.description}
-                  thumbnail={item.thumbnail}
-                />
-              );
-            })}
-          </Grid>
-        </Fallback.Root>
-        {data && <Pagination.Root page={page} data={data} setPage={setPage} />}
-      </div>
-    </Layout>
+    <>
+      <Grid>
+        {data?.data?.map((item, key) => {
+          return (
+            <Card.Simple
+              key={key}
+              uuid={item.uuid}
+              target="episodes"
+              title={`${item.title} - Ep.${item.episode_num}`}
+              description={item.description}
+              thumbnail={item.thumbnail}
+            />
+          );
+        })}
+      </Grid>
+      {data && <Pagination.Root page={page} data={data} setPage={setPage} />}
+    </>
   );
 }
