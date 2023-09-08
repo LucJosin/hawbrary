@@ -1,12 +1,12 @@
+import { Link } from '@/components/core/Link';
 import { useRouter } from 'next/router';
-import { Link } from '../../../core/Link';
-import styles from './FallbackModel.module.css';
+import styles from './ErrorModal.module.css';
 
 interface Props {
   message?: string;
 }
 
-export default function FallbackModel({ message }: Props) {
+export default function ErrorModal({ message }: Props) {
   const router = useRouter();
   const report = {
     url: 'https://github.com/LucJosin/hawbrary/issues/new',
