@@ -1,0 +1,36 @@
+name: Build
+
+# Only build after new tag.
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node with yarn caching
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build Astro
+        run: yarn build
+
+      - run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - uses: LucJosin/publish-orphan-branch@main
+        with:
+          ARGS: '--dir "out" --branch "gh-pages"'
