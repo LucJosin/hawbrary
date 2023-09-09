@@ -4,25 +4,102 @@ import type { ReactNode } from 'react';
 import Header from '../Header';
 import styles from './Layout.module.css';
 
-interface Props {
-  children: ReactNode;
-  classes?: string[];
-  isCentered?: boolean;
+interface Metadata {
+  title: string;
+  description: string;
+  tags: string;
+  url: string;
+  author: string;
+  social: string;
 }
 
-export default function Layout({ children, classes, isCentered }: Props) {
+interface Props {
+  children: ReactNode;
+  isCentered?: boolean;
+  metadata?: Metadata;
+}
+
+export default function Layout({
+  children,
+  isCentered,
+  metadata = {
+    title: 'Home | Hawbrary - A showcase for the HawAPI project',
+    description:
+      'A showcase for the HawAPI - A Free and Open Source API for Stranger Things',
+    tags: 'stranger things, stranger, things, stranger-things, api, github, git, hawapi, haw api, haw-api, HawAPI/HawAPI, theproject id, theproject.id, hawapi.theproject.id, netflix, watch, showcase, free, open source',
+    url: 'https://hawbrary.theproject.id',
+    author: 'Lucas Josino',
+    social: '@LucJosin',
+  },
+}: Props) {
   return (
     <>
       <Head>
-        <title>Home | Hawbrary - A showcase for the HawAPI project</title>
+        <meta httpEquiv="content-language" content="en-US" />
+        <meta httpEquiv="content-type" content="text/html" />
+
         <meta
-          name="description"
-          content="A showcase for the HawAPI project. A Free and Open Source API for Stranger Things"
+          name="copyright"
+          content="© 2023, Lucas Josino. All Rights Reserved."
         />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content={metadata.description} />
+        <meta name="author" content={metadata.author} />
+        <meta name="tags" content={metadata.tags} />
+        <meta name="keywords" content={metadata.tags} />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="robots" content="index,nofollow" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:creator" content={metadata.social} />
+        <meta name="twitter:site" content={metadata.social} />
+        <meta name="twitter:domain" content={metadata.url} />
+        <meta name="twitter:title" content={metadata.title} />
+        <meta
+          name="twitter:description"
+          property="og:description"
+          itemProp="description"
+          content={metadata.description}
+        />
+        <meta
+          property="twitter:image"
+          itemProp="image primaryImageOfPage"
+          content={`${metadata.url}/images/banner.png`}
+        />
+
+        <meta property="og:url" content={metadata.url} />
+        <meta property="og:title" content={metadata.title} />
+        <meta property="og:site_name" content={metadata.author} />
+        <meta property="og:description" content={metadata.description} />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:image"
+          content={`${metadata.url}/images/banner.png`}
+        />
+
+        <link rel="canonical" href={metadata.url} />
+
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href={`${metadata.url}/apple-touch-icon.png`}
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href={`${metadata.url}/favicon-32x32.png`}
+        />
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href={`${metadata.url}/favicon-16x16.png`}
+        />
         <link rel="icon" href="/favicon.ico" />
+
+        <title>{metadata.title}</title>
       </Head>
-      <main className={`${styles.main} ${classes}`}>
+      <main className={styles.main}>
         <BackgroundEffect />
         <Header />
         <div
