@@ -1,10 +1,14 @@
+import Alert from '@/components/core/Alert';
 import BackgroundEffect from '@/components/core/BackgroundEffect';
+import { Link } from '@/components/core/Link';
+import { Icon } from '@iconify-icon/react/dist/iconify.js';
 import Head from 'next/head';
 import type { ReactNode } from 'react';
 import Header from '../Header';
 import styles from './Layout.module.css';
 
 interface Metadata {
+  name: string;
   title: string;
   description: string;
   tags: string;
@@ -23,6 +27,7 @@ export default function Layout({
   children,
   isCentered,
   metadata = {
+    name: 'HawAPI',
     title: 'Home | Hawbrary - A showcase for the HawAPI project',
     description:
       'A showcase for the HawAPI - A Free and Open Source API for Stranger Things',
@@ -67,8 +72,8 @@ export default function Layout({
         />
 
         <meta property="og:url" content={metadata.url} />
-        <meta property="og:title" content={metadata.title} />
-        <meta property="og:site_name" content={metadata.author} />
+        <meta property="og:title" content={metadata.name} />
+        <meta property="og:site_name" content={metadata.name} />
         <meta property="og:description" content={metadata.description} />
         <meta property="og:type" content="website" />
         <meta
@@ -102,6 +107,16 @@ export default function Layout({
       <main className={styles.main}>
         <BackgroundEffect />
         <Header />
+        <Alert id="poweredBy">
+          <Icon icon="mdi:information" />
+          This library is powered by the{' '}
+          <Link.Simple
+            showIcon={false}
+            href=""
+            name="HawAPI - A Free and Open Source API
+            for Stranger Things"
+          />
+        </Alert>
         <div
           className={styles.container}
           style={{
