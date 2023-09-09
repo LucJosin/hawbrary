@@ -1,7 +1,7 @@
 import { Icon } from '@iconify-icon/react';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
-import styles from './HorizontalRow.module.css';
+import styles from './Row.module.css';
 
 interface Props {
   title: string;
@@ -9,7 +9,7 @@ interface Props {
   maxColumns?: string;
 }
 
-export default function HorizontalRow({
+export default function Row({
   title,
   children,
   maxColumns = 'auto-fit',

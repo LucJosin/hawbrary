@@ -1,9 +1,9 @@
 import Banner from '@/components/core/Banner';
 import { Card } from '@/components/core/Card';
+import FallbackText from '@/components/core/FallbackText';
 import { Link } from '@/components/core/Link';
 import Loading from '@/components/core/Loading';
-import { Row } from '@/components/data/Row';
-import { Fallback } from '@/components/templates/Fallback';
+import Row from '@/components/data/Row';
 import Layout from '@/layout/Layout';
 import { getDetailsUrl } from '@/lib/url';
 import {
@@ -22,25 +22,25 @@ export default function ExplorerPage() {
     <Layout>
       <BannerSection />
 
-      <Row.Horizontal title="Seasons">
+      <Row title="Seasons">
         <SeasonSection />
-      </Row.Horizontal>
+      </Row>
 
-      <Row.Horizontal title="Episodes">
+      <Row title="Episodes">
         <EpisodeSection />
-      </Row.Horizontal>
+      </Row>
 
-      <Row.Horizontal title="Actors">
+      <Row title="Actors">
         <ActorSection />
-      </Row.Horizontal>
+      </Row>
 
-      <Row.Horizontal title="Characters">
+      <Row title="Characters">
         <CharacterSection />
-      </Row.Horizontal>
+      </Row>
 
-      <Row.Horizontal title="Locations" maxColumns="2">
+      <Row title="Locations" maxColumns="2">
         <LocationSection />
-      </Row.Horizontal>
+      </Row>
     </Layout>
   );
 }
@@ -48,7 +48,7 @@ export default function ExplorerPage() {
 function BannerSection() {
   const { data, error, isLoading } = useSWR(`overview`, getOverview);
 
-  if (error) return <Fallback.Text />;
+  if (error) return <FallbackText />;
   if (isLoading || !data?.data) return <Loading />;
 
   return (
@@ -65,7 +65,7 @@ function BannerSection() {
 function SeasonSection() {
   const { data, error, isLoading } = useSWR('seasons', getAllSeasons);
 
-  if (error) return <Fallback.Text />;
+  if (error) return <FallbackText />;
   if (isLoading) return <Loading />;
 
   return (
@@ -100,7 +100,7 @@ function SeasonSection() {
 function EpisodeSection() {
   const { data, error, isLoading } = useSWR('episodes', getAllEpisodes);
 
-  if (error) return <Fallback.Text />;
+  if (error) return <FallbackText />;
   if (isLoading) return <Loading />;
 
   return (
@@ -124,7 +124,7 @@ function EpisodeSection() {
 function ActorSection() {
   const { data, error, isLoading } = useSWR('actors', getAllActors);
 
-  if (error) return <Fallback.Text />;
+  if (error) return <FallbackText />;
   if (isLoading) return <Loading />;
 
   return (
@@ -148,7 +148,7 @@ function ActorSection() {
 function CharacterSection() {
   const { data, error, isLoading } = useSWR('characters', getAllCharacters);
 
-  if (error) return <Fallback.Text />;
+  if (error) return <FallbackText />;
   if (isLoading) return <Loading />;
 
   return (
@@ -172,7 +172,7 @@ function CharacterSection() {
 function LocationSection() {
   const { data, error, isLoading } = useSWR('locations', getAllLocations);
 
-  if (error) return <Fallback.Text />;
+  if (error) return <FallbackText />;
   if (isLoading) return <Loading />;
 
   return (
