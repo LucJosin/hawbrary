@@ -5,7 +5,7 @@ import styles from '@/styles/HomePage.module.css';
 
 export default function HomePage() {
   return (
-    <Layout isCentered={true}>
+    <Layout>
       <Title.Effect title="Hawbrary" />
       <p className={styles.description}>
         A Showcase for the{' '}
