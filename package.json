@@ -25,6 +25,7 @@
     "eslint": "8.48.0",
     "eslint-config-next": "13.4.19",
     "eslint-config-prettier": "^9.0.0",
+    "loader-utils": "^3.2.1",
     "prettier": "^3.0.3",
     "typescript": "5.2.2"
   }
