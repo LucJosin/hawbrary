@@ -6,9 +6,15 @@ interface Props {
   href: string;
   name: string;
   isLocal?: boolean;
+  showIcon?: boolean;
 }
 
-export default function SimpleLink({ href, name, isLocal = false }: Props) {
+export default function SimpleLink({
+  href,
+  name,
+  isLocal = false,
+  showIcon = true,
+}: Props) {
   return (
     <Link
       href={href}
@@ -16,7 +22,7 @@ export default function SimpleLink({ href, name, isLocal = false }: Props) {
       target={isLocal ? undefined : '_blank'}
     >
       {name}
-      {!isLocal && <Icon icon="mdi:open-in-new" width="15" />}
+      {!isLocal && showIcon && <Icon icon="mdi:open-in-new" width="15" />}
     </Link>
   );
 }
