@@ -24,7 +24,8 @@
   align-items: center;
   gap: 2.5rem;
   justify-content: space-between;
-  color: red;
+  color: var(--link-color);
+  font-size: 0.95em;
 }
 
 .selection {
@@ -33,13 +34,13 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  color: red;
+  color: var(--link-color);
 }
 
 .select {
   padding: 1rem;
   appearance: none;
-  color: red;
+  color: var(--link-color);
   font-size: 1em;
   border: 0;
   background-color: transparent;
@@ -49,7 +50,7 @@
 
 .select > option {
   cursor: pointer;
-  background: #000;
+  background: var(--background);
 }
 
 @media (max-width: 850px) {

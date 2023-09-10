@@ -3,3 +3,7 @@
   grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
   gap: 1rem;
 }
+
+.sources > a {
+  font-size: 0.85em;
+}
