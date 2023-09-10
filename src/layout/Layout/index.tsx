@@ -30,7 +30,7 @@ export default function Layout({
     name: 'HawAPI',
     title: 'Home | Hawbrary - A showcase for the HawAPI project',
     description:
-      'A showcase for the HawAPI - A Free and Open Source API for Stranger Things',
+      'A showcase for the HawAPI - A Free and Open Source API for Stranger Things. This library includes actors, characters, episodes, locations, seasons and all its information.',
     tags: 'stranger things, stranger, things, stranger-things, api, github, git, hawapi, haw api, haw-api, HawAPI/HawAPI, theproject id, theproject.id, hawapi.theproject.id, netflix, watch, showcase, free, open source',
     url: 'https://hawbrary.theproject.id',
     author: 'Lucas Josino',
