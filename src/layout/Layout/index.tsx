@@ -105,14 +105,12 @@ export default function Layout({
         <title>{metadata.title}</title>
       </Head>
       <main className={styles.main}>
-        <BackgroundEffect />
         <Header />
         <Alert id="poweredBy">
           <Icon icon="mdi:information" />
           This library is powered by the{' '}
           <Link.Simple
-            showIcon={false}
-            href=""
+            href="https://hawapi.theproject.id/"
             name="HawAPI - A Free and Open Source API
             for Stranger Things"
           />
@@ -124,6 +122,7 @@ export default function Layout({
             justifyContent: isCentered ? 'center' : undefined,
           }}
         >
+          <BackgroundEffect />
           {children}
         </div>
       </main>
