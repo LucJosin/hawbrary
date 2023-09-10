@@ -6,6 +6,7 @@ import Loading from '@/components/core/Loading';
 import Row from '@/components/data/Row';
 import Layout from '@/layout/Layout';
 import { getDetailsUrl } from '@/lib/url';
+import { getGender } from '@/lib/utils';
 import {
   getAllActors,
   getAllCharacters,
@@ -98,7 +99,7 @@ function SeasonSection() {
 }
 
 function EpisodeSection() {
-  const { data, error, isLoading } = useSWR('episodes', getAllEpisodes);
+  const { data, error, isLoading } = useSWR('episodes?page=1', getAllEpisodes);
 
   if (error) return <FallbackText />;
   if (isLoading) return <Loading />;
@@ -122,7 +123,7 @@ function EpisodeSection() {
 }
 
 function ActorSection() {
-  const { data, error, isLoading } = useSWR('actors', getAllActors);
+  const { data, error, isLoading } = useSWR('actors?page=1', getAllActors);
 
   if (error) return <FallbackText />;
   if (isLoading) return <Loading />;
@@ -136,7 +137,10 @@ function ActorSection() {
             uuid={actor.uuid}
             target="actors"
             name={`${actor.first_name} ${actor.last_name}`}
-            description={['Example: 1', 'Example: 2']}
+            description={[
+              `Nationality: ${actor.nationality}`,
+              `Birth Date: ${actor.birth_date}`,
+            ]}
             thumbnail={actor.thumbnail}
           />
         );
@@ -146,7 +150,10 @@ function ActorSection() {
 }
 
 function CharacterSection() {
-  const { data, error, isLoading } = useSWR('characters', getAllCharacters);
+  const { data, error, isLoading } = useSWR(
+    'characters?page=1',
+    getAllCharacters
+  );
 
   if (error) return <FallbackText />;
   if (isLoading) return <Loading />;
@@ -160,7 +167,10 @@ function CharacterSection() {
             uuid={character.uuid}
             target="characters"
             name={`${character.first_name} ${character.last_name}`}
-            description={['Example: 1', 'Example: 2']}
+            description={[
+              `Gender: ${getGender(character.gender)}`,
+              `Birth Date: ${character.birth_date}`,
+            ]}
             thumbnail={character.thumbnail}
           />
         );
@@ -170,7 +180,10 @@ function CharacterSection() {
 }
 
 function LocationSection() {
-  const { data, error, isLoading } = useSWR('locations', getAllLocations);
+  const { data, error, isLoading } = useSWR(
+    'locations?page=1',
+    getAllLocations
+  );
 
   if (error) return <FallbackText />;
   if (isLoading) return <Loading />;
