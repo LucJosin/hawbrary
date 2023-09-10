@@ -9,7 +9,11 @@ export default function HomePage() {
       <Title.Effect title="Hawbrary" />
       <p className={styles.description}>
         A Showcase for the{' '}
-        <Link.Simple href="https://github.com/HawAPI/HawAPI" name="HawAPI" />{' '}
+        <Link.Simple
+          showIcon={false}
+          href="https://github.com/HawAPI/HawAPI"
+          name="HawAPI"
+        />{' '}
         project
       </p>
       <span className={styles.links}>
