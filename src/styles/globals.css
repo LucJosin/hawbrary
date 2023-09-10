@@ -10,8 +10,8 @@
     'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
   --foreground: #fff;
-  --foreground-rgb: 255, 255, 255;
-  --background: #000;
+  --foreground-rgb: 15, 15, 15;
+  --background: #0f0f0f;
   --background-rgb: 0, 0, 0;
 }
 
