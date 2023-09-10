@@ -84,7 +84,7 @@ This tutorial gives a brief introduction to how to run this react (nextjs) proje
 ## Prerequisites
 
 - Text editor (**VSCode** recommanded)
-- Terminal (with bash) for [Scripts](../scripts)
+- Terminal (with bash)
 - Yarn
 
 ### Local
