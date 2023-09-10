@@ -99,7 +99,7 @@ function SeasonSection() {
 }
 
 function EpisodeSection() {
-  const { data, error, isLoading } = useSWR('episodes', getAllEpisodes);
+  const { data, error, isLoading } = useSWR('episodes?page=1', getAllEpisodes);
 
   if (error) return <FallbackText />;
   if (isLoading) return <Loading />;
@@ -123,7 +123,7 @@ function EpisodeSection() {
 }
 
 function ActorSection() {
-  const { data, error, isLoading } = useSWR('actors', getAllActors);
+  const { data, error, isLoading } = useSWR('actors?page=1', getAllActors);
 
   if (error) return <FallbackText />;
   if (isLoading) return <Loading />;
@@ -150,7 +150,10 @@ function ActorSection() {
 }
 
 function CharacterSection() {
-  const { data, error, isLoading } = useSWR('characters', getAllCharacters);
+  const { data, error, isLoading } = useSWR(
+    'characters?page=1',
+    getAllCharacters
+  );
 
   if (error) return <FallbackText />;
   if (isLoading) return <Loading />;
@@ -177,7 +180,10 @@ function CharacterSection() {
 }
 
 function LocationSection() {
-  const { data, error, isLoading } = useSWR('locations', getAllLocations);
+  const { data, error, isLoading } = useSWR(
+    'locations?page=1',
+    getAllLocations
+  );
 
   if (error) return <FallbackText />;
   if (isLoading) return <Loading />;
