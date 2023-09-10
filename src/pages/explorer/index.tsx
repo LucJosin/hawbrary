@@ -6,6 +6,7 @@ import Loading from '@/components/core/Loading';
 import Row from '@/components/data/Row';
 import Layout from '@/layout/Layout';
 import { getDetailsUrl } from '@/lib/url';
+import { getGender } from '@/lib/utils';
 import {
   getAllActors,
   getAllCharacters,
@@ -136,7 +137,10 @@ function ActorSection() {
             uuid={actor.uuid}
             target="actors"
             name={`${actor.first_name} ${actor.last_name}`}
-            description={['Example: 1', 'Example: 2']}
+            description={[
+              `Nationality: ${actor.nationality}`,
+              `Birth Date: ${actor.birth_date}`,
+            ]}
             thumbnail={actor.thumbnail}
           />
         );
@@ -160,7 +164,10 @@ function CharacterSection() {
             uuid={character.uuid}
             target="characters"
             name={`${character.first_name} ${character.last_name}`}
-            description={['Example: 1', 'Example: 2']}
+            description={[
+              `Gender: ${getGender(character.gender)}`,
+              `Birth Date: ${character.birth_date}`,
+            ]}
             thumbnail={character.thumbnail}
           />
         );
