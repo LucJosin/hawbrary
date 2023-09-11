@@ -29,4 +29,4 @@ jobs:
 
       - uses: LucJosin/publish-orphan-branch@main
         with:
-          ARGS: '--dir "out" --branch "gh-pages"' --cname "hawbrary.theproject.id" --nojekyll "yes"
+          ARGS: '--dir "out" --branch "gh-pages" --cname "hawbrary.theproject.id" --nojekyll "yes"'
