@@ -37,4 +37,4 @@ jobs:
 
       # Create a .nojekyll file to prevent GitHub from attempting to compile a Jekyll site
       - name: Create .nojekyll file
-        run: echo 'Add this file to prevent GitHub Pages from using Jekyll.' >> ./out/.nojekyll
+        run: echo 'Add this file to prevent GitHub Pages from using Jekyll.' >> .nojekyll
