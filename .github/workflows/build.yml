@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Build Astro
+      - name: Build NextJs
         run: yarn build
 
       - run: |
@@ -34,3 +34,7 @@ jobs:
       - uses: LucJosin/publish-orphan-branch@main
         with:
           ARGS: '--dir "out" --branch "gh-pages"'
+
+      # Create a .nojekyll file to prevent GitHub from attempting to compile a Jekyll site
+      - name: Create .nojekyll file
+        run: echo 'Add this file to prevent GitHub Pages from using Jekyll.' >> ./out/.nojekyll
