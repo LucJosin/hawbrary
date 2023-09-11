@@ -27,14 +27,6 @@ jobs:
       - name: Build NextJs
         run: yarn build
 
-      - run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
       - uses: LucJosin/publish-orphan-branch@main
         with:
-          ARGS: '--dir "out" --branch "gh-pages"'
-
-      # Create a .nojekyll file to prevent GitHub from attempting to compile a Jekyll site
-      - name: Create .nojekyll file
-        run: touch .nojekyll
+          ARGS: '--dir "out" --branch "gh-pages"' --cname "hawbrary.theproject.id" --nojekyll "yes"
