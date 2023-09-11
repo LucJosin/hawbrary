@@ -27,7 +27,7 @@ export default function Layout({
   children,
   isCentered,
   metadata = {
-    name: 'HawAPI',
+    name: 'Hawbrary',
     title: 'Home | Hawbrary - A showcase for the HawAPI project',
     description:
       'A showcase for the HawAPI - A Free and Open Source API for Stranger Things. This library includes actors, characters, episodes, locations, seasons and all its information.',
