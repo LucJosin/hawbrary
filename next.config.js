@@ -12,7 +12,7 @@ const hashOnlyIdent = (context, _, exportName) =>
       ),
       'md4',
       'base64',
-      6
+      8
     )
     .replace(/[^a-zA-Z0-9-_]/g, '_')
     .replace(/^(-?\d|--)/, '_$1');
