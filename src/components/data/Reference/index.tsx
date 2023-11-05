@@ -14,6 +14,8 @@ export default function Reference({ title, target, data }: Props) {
       <h3>{title}</h3>
       <div className={styles.reference}>
         {data.map((item, key) => {
+          if (item == null) return;
+
           return (
             <Link.Secondary
               key={key}
