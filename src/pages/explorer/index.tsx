@@ -4,6 +4,7 @@ import FallbackText from '@/components/core/FallbackText';
 import { Link } from '@/components/core/Link';
 import Loading from '@/components/core/Loading';
 import Row from '@/components/data/Row';
+import { APICount } from '@/components/templates/APICount';
 import Layout from '@/layout/Layout';
 import { getDetailsUrl } from '@/lib/url';
 import { getGender } from '@/lib/utils';
@@ -22,7 +23,7 @@ import useSWR from 'swr';
 export default function ExplorerPage() {
   return (
     <Layout>
-      <BannerSection />
+      <OverviewSection />
 
       <Row title="Seasons">
         <SeasonSection />
@@ -51,12 +52,13 @@ export default function ExplorerPage() {
   );
 }
 
-function BannerSection() {
+function OverviewSection() {
   const { data, error, isLoading } = useSWR(`overview`, getOverview);
 
   if (error) return <FallbackText />;
   if (isLoading || !data?.data) return <Loading />;
 
+  const dataCount = data.data.data_count;
   return (
     <div className={styles.banner}>
       <Banner
@@ -64,6 +66,8 @@ function BannerSection() {
         description={data.data.description}
         thumbnail={data.data.thumbnail}
       />
+
+      <APICount dataCount={dataCount} />
     </div>
   );
 }
