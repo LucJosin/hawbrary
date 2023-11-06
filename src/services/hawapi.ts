@@ -4,6 +4,7 @@ import type {
   CharacterModel,
   EpisodeModel,
   Filters,
+  GameModel,
   HawAPIClient,
   LocationModel,
   OverviewModel,
@@ -69,4 +70,12 @@ export async function getAllLocations(pageable?: Pageable, filters?: Filters) {
 
 export async function getSingleLocation(uuid: string) {
   return await hawapi.getBy<LocationModel>('locations', uuid);
+}
+
+export async function getAllGames(pageable?: Pageable, filters?: Filters) {
+  return await hawapi.getAll<GameModel>('games', filters, pageable);
+}
+
+export async function getSingleGame(uuid: string) {
+  return await hawapi.getBy<GameModel>('games', uuid);
 }
