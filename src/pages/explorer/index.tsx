@@ -11,6 +11,7 @@ import {
   getAllActors,
   getAllCharacters,
   getAllEpisodes,
+  getAllGames,
   getAllLocations,
   getAllSeasons,
   getOverview,
@@ -41,6 +42,10 @@ export default function ExplorerPage() {
 
       <Row title="Locations" maxColumns="2">
         <LocationSection />
+      </Row>
+
+      <Row title="Games" maxColumns="auto-fill">
+        <GameSection />
       </Row>
     </Layout>
   );
@@ -200,6 +205,34 @@ function LocationSection() {
             description={location.description}
             thumbnail={location.thumbnail}
           />
+        );
+      })}
+    </>
+  );
+}
+
+function GameSection() {
+  const { data, error, isLoading } = useSWR('games', getAllGames);
+
+  if (error) return <FallbackText />;
+  if (isLoading) return <Loading />;
+
+  return (
+    <>
+      {data?.data?.map((season, key) => {
+        return (
+          <Card.Vertical
+            key={key}
+            title={season.name}
+            description={season.description}
+            thumbnail={season.thumbnail}
+          >
+            <Link.Primary
+              href={getDetailsUrl('games', season.uuid)}
+              name="See more"
+              isLocal={true}
+            />
+          </Card.Vertical>
         );
       })}
     </>
