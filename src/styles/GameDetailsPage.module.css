@@ -39,7 +39,7 @@
 
 .genres {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
   gap: 1rem;
 }
 
@@ -49,6 +49,10 @@
   background-color: rgba(255, 0, 0, 0.596);
   transition: all 0.2s;
   text-align: center;
+  text-wrap: nowrap;
+  overflow: hidden;
+  font-size: 0.9em;
+  text-overflow: ellipsis;
 }
 
 .genre:hover {
@@ -67,4 +71,14 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
   gap: 1rem;
+}
+
+.stores {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 1rem;
+}
+
+.stores > a {
+  font-size: 0.85em;
 }

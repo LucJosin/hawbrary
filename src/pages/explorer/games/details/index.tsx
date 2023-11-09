@@ -1,3 +1,4 @@
+import { Link } from '@/components/core/Link';
 import Loading from '@/components/core/Loading';
 import { APIInfo } from '@/components/templates/APIInfo';
 import ErrorModal from '@/components/templates/ErrorModal';
@@ -40,7 +41,6 @@ function GameDetails() {
 
   const getEmbedUrl = (url: string) => {
     const params = new URL(url).searchParams;
-    console.log(params);
 
     return 'https://www.youtube.com/embed/' + params.get('v');
   };
@@ -68,29 +68,11 @@ function GameDetails() {
       <div className={styles.info}>
         <h1 className={styles.title}>{data.data.name}</h1>
         <p className={styles.description}>{data.data.description}</p>
-        <span className={styles.genres}>
-          {data.data.genres.map((item, key) => {
-            return (
-              <span key={key} className={styles.genre}>
-                {item}
-              </span>
-            );
-          })}
-        </span>
-        <span className={styles.genres}>
-          {data.data.tags.map((item, key) => {
-            return (
-              <span key={key} className={styles.genre}>
-                {item}
-              </span>
-            );
-          })}
-        </span>
         <InfoBox.Root title="About:">
           <InfoBox.Item
             icon="mingcute:game-2-fill"
             name="Mode"
-            value={`${data.data.modes}`}
+            value={`${data.data.modes.join(', ')}`}
           />
           {data.data.playtime && (
             <InfoBox.Item
@@ -109,7 +91,51 @@ function GameDetails() {
             name="Age rating"
             value={data.data.age_rating}
           />
+          <InfoBox.Item
+            icon="ic:baseline-developer-board"
+            name="Developers"
+            value={data.data.developers.join(', ')}
+          />
+          <InfoBox.Item
+            icon="ic:baseline-publish"
+            name="Publishers"
+            value={data.data.publishers.join(', ')}
+          />
+          <InfoBox.Item
+            icon="ic:baseline-date-range"
+            name="Release date"
+            value={data.data.release_date}
+          />
         </InfoBox.Root>
+        <h3>Genres:</h3>
+        {data.data.genres && (
+          <span className={styles.genres}>
+            {data.data.genres.map((item, key) => {
+              return (
+                <span key={key} className={styles.genre}>
+                  {item}
+                </span>
+              );
+            })}
+          </span>
+        )}
+        <h3>Tags:</h3>
+        <span className={styles.genres}>
+          {data.data.tags.map((item, key) => {
+            return (
+              <span key={key} className={styles.genre}>
+                {item}
+              </span>
+            );
+          })}
+        </span>
+        <h3>Stores:</h3>
+        <div className={styles.stores}>
+          {data.data.stores.map((item, key) => {
+            const url = new URL(item);
+            return <Link.Secondary key={key} href={item} name={url.host} />;
+          })}
+        </div>
         {data.data.trailer && (
           <iframe
             width="560"
