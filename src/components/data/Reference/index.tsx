@@ -1,5 +1,5 @@
+import { SecondaryLink } from '@/components/core/Link';
 import { getDetailsUrlFromHref } from '@/lib/url';
-import { Link } from '../../core/Link';
 import styles from './Reference.module.css';
 
 interface Props {
@@ -17,7 +17,7 @@ export default function Reference({ title, target, data }: Props) {
           if (item == null) return;
 
           return (
-            <Link.Secondary
+            <SecondaryLink
               key={key}
               href={getDetailsUrlFromHref(target, item)}
               name={`${title.slice(0, -2)} ${key + 1}`}

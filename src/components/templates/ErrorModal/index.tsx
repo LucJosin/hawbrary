@@ -1,4 +1,4 @@
-import { Link } from '@/components/core/Link';
+import { PrimaryLink, SimpleLink } from '@/components/core/Link';
 import { useRouter } from 'next/router';
 import styles from './ErrorModal.module.css';
 
@@ -20,11 +20,11 @@ export default function ErrorModal({ message }: Props) {
       <div className={styles.fallback}>
         <h2>{message ?? 'Something went wrong!'}</h2>
         <span className={styles.options}>
-          <Link.Primary href="/explorer" isLocal={true} name="Go to explorer" />
+          <PrimaryLink href="/explorer" isLocal={true} name="Go to explorer" />
         </span>
         <span className={styles.report}>
           Something is wrong?{' '}
-          <Link.Simple
+          <SimpleLink
             href={`${report.url}?title=${report.title}&assignees=${report.assignees}&labels=${report.labels}&body=${report.body}`}
             name="Report error"
           />

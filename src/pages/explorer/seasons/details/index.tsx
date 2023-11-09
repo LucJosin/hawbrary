@@ -1,4 +1,4 @@
-import { Link } from '@/components/core/Link';
+import { SecondaryLink } from '@/components/core/Link';
 import Loading from '@/components/core/Loading';
 import Reference from '@/components/data/Reference';
 import { APIInfo } from '@/components/templates/APIInfo';
@@ -100,14 +100,14 @@ function SeasonDetails() {
           <h3>Seasons: </h3>
           <span className={styles.seas}>
             {data.data.prev_season && (
-              <Link.Secondary
+              <SecondaryLink
                 href={getDetailsUrlFromHref('seasons', data.data.prev_season)}
                 name="Prev season"
                 isLocal={true}
               />
             )}
             {data.data.next_season && (
-              <Link.Secondary
+              <SecondaryLink
                 href={getDetailsUrlFromHref('seasons', data.data.next_season)}
                 name="Next season"
                 isLocal={true}

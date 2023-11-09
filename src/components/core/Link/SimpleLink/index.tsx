@@ -9,7 +9,7 @@ interface Props {
   showIcon?: boolean;
 }
 
-export default function SimpleLink({
+export function SimpleLink({
   href,
   name,
   isLocal = false,

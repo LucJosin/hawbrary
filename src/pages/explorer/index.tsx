@@ -6,7 +6,7 @@ import {
   VerticalCard,
 } from '@/components/core/Card';
 import FallbackText from '@/components/core/FallbackText';
-import { Link } from '@/components/core/Link';
+import { PrimaryLink, SecondaryLink } from '@/components/core/Link';
 import Loading from '@/components/core/Loading';
 import Row from '@/components/data/Row';
 import { APICount } from '@/components/templates/APICount';
@@ -93,12 +93,12 @@ function SeasonSection() {
             description={season.description}
             thumbnail={season.thumbnail}
           >
-            <Link.Primary
+            <PrimaryLink
               href={getDetailsUrl('seasons', season.uuid)}
               name="See more"
               isLocal={true}
             />
-            <Link.Secondary
+            <SecondaryLink
               href={`/explorer/episodes/?season_uuid=${
                 season.uuid
               }&season_num=${key + 1}`}
@@ -236,7 +236,7 @@ function GameSection() {
             description={season.description}
             thumbnail={season.thumbnail}
           >
-            <Link.Primary
+            <PrimaryLink
               href={getDetailsUrl('games', season.uuid)}
               name="See more"
               isLocal={true}

@@ -1,6 +1,6 @@
 import Alert from '@/components/core/Alert';
 import BackgroundEffect from '@/components/core/BackgroundEffect';
-import { Link } from '@/components/core/Link';
+import { SimpleLink } from '@/components/core/Link';
 import { Icon } from '@iconify-icon/react/dist/iconify.js';
 import Head from 'next/head';
 import type { ReactNode } from 'react';
@@ -109,7 +109,7 @@ export default function Layout({
         <Alert id="poweredBy">
           <Icon icon="mdi:information" width={18} />
           This library is powered by the{' '}
-          <Link.Simple
+          <SimpleLink
             href="https://hawapi.theproject.id/"
             name="HawAPI - A Free and Open Source API
             for Stranger Things"

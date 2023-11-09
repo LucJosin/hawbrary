@@ -1,4 +1,4 @@
-import { Link } from '@/components/core/Link';
+import { SecondaryLink } from '@/components/core/Link';
 import Loading from '@/components/core/Loading';
 import { APIInfo } from '@/components/templates/APIInfo';
 import ErrorModal from '@/components/templates/ErrorModal';
@@ -133,7 +133,7 @@ function GameDetails() {
         <div className={styles.stores}>
           {data.data.stores.map((item, key) => {
             const url = new URL(item);
-            return <Link.Secondary key={key} href={item} name={url.host} />;
+            return <SecondaryLink key={key} href={item} name={url.host} />;
           })}
         </div>
         {data.data.trailer && (

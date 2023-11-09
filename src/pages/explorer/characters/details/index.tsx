@@ -1,4 +1,4 @@
-import { Link } from '@/components/core/Link';
+import { SecondaryLink } from '@/components/core/Link';
 import Loading from '@/components/core/Loading';
 import { APIInfo } from '@/components/templates/APIInfo';
 import ErrorModal from '@/components/templates/ErrorModal';
@@ -63,7 +63,7 @@ function CharacterDetails() {
       </div>
       <div className={styles.info}>
         <h1>{`${data.data.first_name} ${data.data.last_name}`}</h1>
-        <Link.Secondary
+        <SecondaryLink
           href={getDetailsUrlFromHref('actors', data.data.actor)}
           name="See Actor"
           isLocal={true}

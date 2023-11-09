@@ -1,4 +1,4 @@
-import { Link } from '@/components/core/Link';
+import { SecondaryLink } from '@/components/core/Link';
 import Loading from '@/components/core/Loading';
 import Reference from '@/components/data/Reference';
 import { APIInfo } from '@/components/templates/APIInfo';
@@ -70,7 +70,7 @@ function EpisodeDetails() {
         <div className={styles.season}>
           <span className={styles.seas}>
             {data.data.season && (
-              <Link.Secondary
+              <SecondaryLink
                 href={getDetailsUrlFromHref('seasons', data.data.season)}
                 name="See season"
                 isLocal={true}
