@@ -12,24 +12,48 @@ export function APICount({ dataCount, title }: Props) {
       {title && <h3>{title}</h3>}
 
       <div className={styles['api-count-data']}>
-        <span className={styles['api-count-item']}>
+        <a
+          className={styles['api-count-item']}
+          href="#actors"
+          title="HawAPI count for 'actors'"
+        >
           Actors: {dataCount.actors}
-        </span>
-        <span className={styles['api-count-item']}>
+        </a>
+        <a
+          className={styles['api-count-item']}
+          href="#characters"
+          title="HawAPI count for 'characters'"
+        >
           Characters: {dataCount.characters}
-        </span>
-        <span className={styles['api-count-item']}>
+        </a>
+        <a
+          className={styles['api-count-item']}
+          href="#episodes"
+          title="HawAPI count for 'episodes'"
+        >
           Episodes: {dataCount.episodes}
-        </span>
-        <span className={styles['api-count-item']}>
+        </a>
+        <a
+          className={styles['api-count-item']}
+          href="#seasons"
+          title="HawAPI count for 'seasons'"
+        >
           Seasons: {dataCount.seasons}
-        </span>
-        <span className={styles['api-count-item']}>
+        </a>
+        <a
+          className={styles['api-count-item']}
+          href="#locations"
+          title="HawAPI count for 'locations'"
+        >
           Locations: {dataCount.locations}
-        </span>
-        <span className={styles['api-count-item']}>
+        </a>
+        <a
+          className={styles['api-count-item']}
+          href="#games"
+          title="HawAPI count for 'games'"
+        >
           Games: {dataCount.games}
-        </span>
+        </a>
       </div>
     </div>
   );
