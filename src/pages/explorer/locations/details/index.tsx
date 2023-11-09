@@ -1,3 +1,4 @@
+import { Description } from '@/components/core/Description';
 import Loading from '@/components/core/Loading';
 import { APIInfo } from '@/components/templates/APIInfo';
 import ErrorModal from '@/components/templates/ErrorModal';
@@ -74,7 +75,7 @@ function LocationDetails() {
       </span>
       <div className={styles.info}>
         <h1 className={styles.title}>{data.data.name}</h1>
-        <p className={styles.description}>{data.data.description}</p>
+        <Description value={data.data.description} />
         <Sources sources={data.data.sources} />
         <APIInfo
           uuid={data.data.uuid}

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { Description } from '../Description';
 import styles from './Banner.module.css';
 
 interface Props {
@@ -12,7 +13,7 @@ export default function Banner({ title, description, thumbnail }: Props) {
     <div className={styles.banner}>
       <div className={styles.container}>
         <h1>{title}</h1>
-        <p>{description}</p>
+        <Description value={description} />
       </div>
       <Image
         src={thumbnail}

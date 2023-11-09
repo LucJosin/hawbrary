@@ -1,3 +1,4 @@
+import { Description } from '@/components/core/Description';
 import { SecondaryLink } from '@/components/core/Link';
 import Loading from '@/components/core/Loading';
 import Reference from '@/components/data/Reference';
@@ -48,7 +49,7 @@ function EpisodeDetails() {
         <h1 className={styles.title}>
           {`${data.data.title} - Ep.${data.data.episode_num}`}
         </h1>
-        <p>{data.data.description}</p>
+        <Description value={data.data.description} />
         <InfoBox.Root title="About:">
           <InfoBox.Item
             icon="ic:baseline-place"

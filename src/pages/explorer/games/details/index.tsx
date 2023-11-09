@@ -1,3 +1,4 @@
+import { Description } from '@/components/core/Description';
 import { SecondaryLink } from '@/components/core/Link';
 import Loading from '@/components/core/Loading';
 import { APIInfo } from '@/components/templates/APIInfo';
@@ -67,7 +68,7 @@ function GameDetails() {
       </span>
       <div className={styles.info}>
         <h1 className={styles.title}>{data.data.name}</h1>
-        <p className={styles.description}>{data.data.description}</p>
+        <Description value={data.data.description} />
         <InfoBox.Root title="About:">
           <InfoBox.Item
             icon="mingcute:game-2-fill"

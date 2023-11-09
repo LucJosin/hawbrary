@@ -1,3 +1,4 @@
+import { Description } from '@/components/core/Description';
 import { SecondaryLink } from '@/components/core/Link';
 import Loading from '@/components/core/Loading';
 import Reference from '@/components/data/Reference';
@@ -64,7 +65,7 @@ function SeasonDetails() {
       </span>
       <div className={styles.info}>
         <h1 className={styles.title}>{data.data.title}</h1>
-        <p className={styles.description}>{data.data.description}</p>
+        <Description value={data.data.description} />
         <span className={styles.genres}>
           {data.data.genres.map((item, key) => {
             return (
