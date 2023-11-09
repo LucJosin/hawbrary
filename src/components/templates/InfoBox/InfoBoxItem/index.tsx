@@ -10,7 +10,7 @@ interface Props {
 export default function InfoBoxItem({ icon, name, value }: Props) {
   return (
     <span className={styles.item}>
-      <Icon icon={icon} />
+      <Icon icon={icon} width={20} className={styles.icon} />
       {`${name}: ${value}`}
     </span>
   );

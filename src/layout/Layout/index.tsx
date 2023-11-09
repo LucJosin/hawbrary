@@ -107,7 +107,7 @@ export default function Layout({
       <main className={styles.main}>
         <Header />
         <Alert id="poweredBy">
-          <Icon icon="mdi:information" />
+          <Icon icon="mdi:information" width={18} />
           This library is powered by the{' '}
           <Link.Simple
             href="https://hawapi.theproject.id/"

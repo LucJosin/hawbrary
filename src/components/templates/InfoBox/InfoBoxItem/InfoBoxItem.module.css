@@ -3,3 +3,8 @@
   flex-direction: row;
   gap: 0.5rem;
 }
+
+.icon {
+  display: flex;
+  align-items: center;
+}
