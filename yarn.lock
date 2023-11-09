@@ -1631,7 +1631,7 @@ __metadata:
     prettier: "npm:^3.0.3"
     react: "npm:^18.2.0"
     react-dom: "npm:^18.2.0"
-    swr: "npm:^2.2.4"
+    swr: "npm:2.2.2"
     typescript: "npm:^5.2.2"
   languageName: unknown
   linkType: soft
@@ -2777,15 +2777,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"swr@npm:^2.2.4":
-  version: 2.2.4
-  resolution: "swr@npm:2.2.4"
+"swr@npm:2.2.2":
+  version: 2.2.2
+  resolution: "swr@npm:2.2.2"
   dependencies:
     client-only: "npm:^0.0.1"
     use-sync-external-store: "npm:^1.2.0"
   peerDependencies:
     react: ^16.11.0 || ^17.0.0 || ^18.0.0
-  checksum: ad7d3205f2b4969f6727b25819f2f999af792083b63a25c54fae10bc841c94827fb06652764ef94fa7a46cf9dda25a41f088809919d070dd0fec5b0005a3e839
+  checksum: c0de3212b9e6cc0def7a66dc4c621382c473907450e8eed7d2888e38b9d44ee7f820395fc52836d3081164f815757b2ee91107ddef2e968f1c978231d2235160
   languageName: node
   linkType: hard
 
