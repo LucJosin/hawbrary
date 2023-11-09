@@ -1,4 +1,5 @@
 import Loading from '@/components/core/Loading';
+import EffectTitle from '@/components/core/Title/EffectTitle';
 import { setLanguage as setHawAPILanguage } from '@/services/hawapi';
 import { Icon } from '@iconify-icon/react/dist/iconify.js';
 import Link from 'next/link';
