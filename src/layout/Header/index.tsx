@@ -1,5 +1,4 @@
 import Loading from '@/components/core/Loading';
-import { Title } from '@/components/core/Title';
 import { setLanguage as setHawAPILanguage } from '@/services/hawapi';
 import { Icon } from '@iconify-icon/react/dist/iconify.js';
 import Link from 'next/link';
@@ -31,7 +30,7 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <Link href="/">
-        <Title.Effect title="Hawbrary" size="1.2rem" />
+        <EffectTitle title="Hawbrary" size="1.2rem" />
       </Link>
       <div className={styles.links}>
         <Link href="/explorer/">Explorer</Link>|

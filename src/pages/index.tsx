@@ -1,12 +1,12 @@
 import { PrimaryLink, SecondaryLink, SimpleLink } from '@/components/core/Link';
-import { Title } from '@/components/core/Title';
+import EffectTitle from '@/components/core/Title/EffectTitle';
 import Layout from '@/layout/Layout';
 import styles from '@/styles/HomePage.module.css';
 
 export default function HomePage() {
   return (
     <Layout>
-      <Title.Effect title="Hawbrary" />
+      <EffectTitle title="Hawbrary" />
       <p className={styles.description}>
         A Showcase for the{' '}
         <SimpleLink

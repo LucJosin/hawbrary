@@ -1,6 +1,6 @@
 import { VerticalCard } from '@/components/core/Card';
 import Loading from '@/components/core/Loading';
-import { Title } from '@/components/core/Title';
+import SimpleTitle from '@/components/core/Title/SimpleTitle';
 import ErrorModal from '@/components/templates/ErrorModal';
 import Grid from '@/components/templates/Grid';
 import Layout from '@/layout/Layout';
@@ -14,7 +14,7 @@ export default function MorePage() {
   return (
     <Layout>
       <div className={styles.container}>
-        <Title.Simple text="Seasons" />
+        <SimpleTitle text="Seasons" />
         <SeasonItems />
       </div>
     </Layout>

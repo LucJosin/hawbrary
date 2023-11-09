@@ -1,6 +1,6 @@
 import { HorizontalCard } from '@/components/core/Card';
 import Loading from '@/components/core/Loading';
-import { Title } from '@/components/core/Title';
+import SimpleTitle from '@/components/core/Title/SimpleTitle';
 import ErrorModal from '@/components/templates/ErrorModal';
 import Grid from '@/components/templates/Grid';
 import { Pagination } from '@/components/templates/Pagination';
@@ -14,7 +14,7 @@ export default function MorePage() {
   return (
     <Layout>
       <div className={styles.container}>
-        <Title.Simple text="Locations" />
+        <SimpleTitle text="Locations" />
         <LocationItems />
       </div>
     </Layout>
