@@ -1,2 +1,2 @@
 export * from './EffectTitle';
-export * from './SimpleTitle';
+export * from './Title';
