@@ -11,7 +11,7 @@ interface Props {
   thumbnail: string;
 }
 
-export default function HorizontalCard({
+export function HorizontalCard({
   uuid,
   target,
   title,

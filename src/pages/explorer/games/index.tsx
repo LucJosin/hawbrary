@@ -1,4 +1,4 @@
-import { Card } from '@/components/core/Card';
+import { VerticalCard } from '@/components/core/Card';
 import Loading from '@/components/core/Loading';
 import { Title } from '@/components/core/Title';
 import ErrorModal from '@/components/templates/ErrorModal';
@@ -34,7 +34,7 @@ function GameItems() {
       {data?.data?.map((item, key) => {
         return (
           <Link key={key} href={getDetailsUrl('games', item.uuid)}>
-            <Card.Vertical
+            <VerticalCard
               title={item.name}
               description={item.description}
               thumbnail={item.thumbnail}

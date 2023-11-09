@@ -1,4 +1,4 @@
-import { Card } from '@/components/core/Card';
+import { PersonCard } from '@/components/core/Card';
 import Loading from '@/components/core/Loading';
 import { Title } from '@/components/core/Title';
 import ErrorModal from '@/components/templates/ErrorModal';
@@ -36,7 +36,7 @@ function ActorItems() {
       <Grid>
         {data?.data?.map((item, key) => {
           return (
-            <Card.Person
+            <PersonCard
               key={key}
               uuid={item.uuid}
               target="actors"

@@ -11,7 +11,7 @@ interface Props {
   thumbnail: string;
 }
 
-export default function SimpleCard({
+export function SimpleCard({
   uuid,
   target,
   title,

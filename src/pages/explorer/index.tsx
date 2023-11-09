@@ -1,5 +1,10 @@
 import Banner from '@/components/core/Banner';
-import { Card } from '@/components/core/Card';
+import {
+  HorizontalCard,
+  PersonCard,
+  SimpleCard,
+  VerticalCard,
+} from '@/components/core/Card';
 import FallbackText from '@/components/core/FallbackText';
 import { Link } from '@/components/core/Link';
 import Loading from '@/components/core/Loading';
@@ -82,7 +87,7 @@ function SeasonSection() {
     <>
       {data?.data?.map((season, key) => {
         return (
-          <Card.Vertical
+          <VerticalCard
             key={key}
             title={season.title}
             description={season.description}
@@ -100,7 +105,7 @@ function SeasonSection() {
               name="Episodes"
               isLocal={true}
             />
-          </Card.Vertical>
+          </VerticalCard>
         );
       })}
     </>
@@ -117,7 +122,7 @@ function EpisodeSection() {
     <>
       {data?.data?.slice(0, 4).map((episode, key) => {
         return (
-          <Card.Simple
+          <SimpleCard
             key={key}
             uuid={episode.uuid}
             target="episodes"
@@ -141,7 +146,7 @@ function ActorSection() {
     <>
       {data?.data?.slice(0, 3).map((actor, key) => {
         return (
-          <Card.Person
+          <PersonCard
             key={key}
             uuid={actor.uuid}
             target="actors"
@@ -171,7 +176,7 @@ function CharacterSection() {
     <>
       {data?.data?.slice(0, 4).map((character, key) => {
         return (
-          <Card.Person
+          <PersonCard
             key={key}
             uuid={character.uuid}
             target="characters"
@@ -201,7 +206,7 @@ function LocationSection() {
     <>
       {data?.data?.slice(0, 4).map((location, key) => {
         return (
-          <Card.Horizontal
+          <HorizontalCard
             key={key}
             uuid={location.uuid}
             target="locations"
@@ -225,7 +230,7 @@ function GameSection() {
     <>
       {data?.data?.map((season, key) => {
         return (
-          <Card.Vertical
+          <VerticalCard
             key={key}
             title={season.name}
             description={season.description}
@@ -236,7 +241,7 @@ function GameSection() {
               name="See more"
               isLocal={true}
             />
-          </Card.Vertical>
+          </VerticalCard>
         );
       })}
     </>

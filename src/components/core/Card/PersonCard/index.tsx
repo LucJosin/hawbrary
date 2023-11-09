@@ -11,7 +11,7 @@ interface Props {
   thumbnail: string;
 }
 
-export default function PersonCard({
+export function PersonCard({
   uuid,
   target,
   name,
