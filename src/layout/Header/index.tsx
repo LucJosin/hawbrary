@@ -1,7 +1,7 @@
 import Loading from '@/components/core/Loading';
+import SimpleIcon from '@/components/core/SimpleIcon';
 import EffectTitle from '@/components/core/Title/EffectTitle';
 import { setLanguage as setHawAPILanguage } from '@/services/hawapi';
-import { Icon } from '@iconify-icon/react/dist/iconify.js';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useSWRConfig } from 'swr';
@@ -57,7 +57,7 @@ export default function Header() {
         ) : (
           <Loading borderSize="0.2rem" size="1.8rem" margin="1rem" />
         )}
-        <Icon icon="tabler:language" width="20" />
+        <SimpleIcon icon="tabler:language" size="20" />
       </div>
     </header>
   );

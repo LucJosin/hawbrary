@@ -1,4 +1,4 @@
-import { Icon } from '@iconify-icon/react/dist/iconify.js';
+import SimpleIcon from '@/components/core/SimpleIcon';
 import styles from './PaginationItem.module.css';
 
 interface Props {
@@ -19,7 +19,7 @@ export function PaginationItem({
       className={isSelected ? styles.selectedBox : styles.box}
       onClick={onClick}
     >
-      {name || <Icon icon={icon!} width="16" />}
+      {name || <SimpleIcon icon={icon!} size="16" />}
     </span>
   );
 }

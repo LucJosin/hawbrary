@@ -1,4 +1,4 @@
-import { Icon } from '@iconify-icon/react';
+import SimpleIcon from '@/components/core/SimpleIcon';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import styles from './Row.module.css';
@@ -23,7 +23,7 @@ export default function Row({
           href={`/explorer/${title.toLocaleLowerCase()}/`}
         >
           <p>See more</p>
-          <Icon icon="octicon:arrow-right-16" width="24" />
+          <SimpleIcon icon="octicon:arrow-right-16" size="20" />
         </Link>
       </div>
       <div

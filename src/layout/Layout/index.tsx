@@ -1,7 +1,7 @@
 import Alert from '@/components/core/Alert';
 import BackgroundEffect from '@/components/core/BackgroundEffect';
 import { SimpleLink } from '@/components/core/Link';
-import { Icon } from '@iconify-icon/react/dist/iconify.js';
+import SimpleIcon from '@/components/core/SimpleIcon';
 import Head from 'next/head';
 import type { ReactNode } from 'react';
 import Header from '../Header';
@@ -107,7 +107,7 @@ export default function Layout({
       <main className={styles.main}>
         <Header />
         <Alert id="poweredBy">
-          <Icon icon="mdi:information" width={18} />
+          <SimpleIcon icon="mdi:information" size="18" />
           This library is powered by the{' '}
           <SimpleLink
             href="https://hawapi.theproject.id/"

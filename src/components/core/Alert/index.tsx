@@ -1,5 +1,5 @@
-import { Icon } from '@iconify-icon/react/dist/iconify.js';
 import { useEffect, useState, type ReactNode } from 'react';
+import SimpleIcon from '../SimpleIcon';
 import styles from './Alert.module.css';
 
 interface Props {
@@ -25,7 +25,7 @@ export default function Alert({ id, children }: Props) {
     <div className={styles.banner}>
       <span className={styles.message}>{children}</span>
       <span className={styles.close} onClick={dismissAlert}>
-        <Icon icon="mdi:close" width="18" />
+        <SimpleIcon icon="mdi:close" size="18" />
       </span>
     </div>
   );
