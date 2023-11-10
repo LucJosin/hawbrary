@@ -86,6 +86,7 @@ body {
 }
 
 iframe {
+  width: 100%;
   border: 0;
 }
 
@@ -97,5 +98,11 @@ a {
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
+  }
+}
+
+@media (max-width: 780px) {
+  iframe {
+    height: 100%;
   }
 }
