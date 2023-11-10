@@ -5,6 +5,7 @@ import Title from '@/components/core/Title/Title';
 import { APIInfo } from '@/components/templates/APIInfo';
 import ErrorModal from '@/components/templates/ErrorModal';
 import { InfoBox } from '@/components/templates/InfoBox';
+import { Section } from '@/components/templates/Section';
 import { Sources } from '@/components/templates/Sources';
 import Layout from '@/layout/Layout';
 import { formatMilliseconds } from '@/lib/date';
@@ -109,35 +110,42 @@ function GameDetails() {
             value={data.data.release_date}
           />
         </InfoBox.Root>
-        <h3>Genres:</h3>
         {data.data.genres && (
-          <span className={styles.genres}>
-            {data.data.genres.map((item, key) => {
-              return (
-                <span key={key} className={styles.genre}>
-                  {item}
-                </span>
-              );
-            })}
-          </span>
+          <Section.Root title="Genres:">
+            <Section.Flex>
+              {data.data.genres.map((item, key) => {
+                return (
+                  <span key={key} className={styles.genre}>
+                    {item}
+                  </span>
+                );
+              })}
+            </Section.Flex>
+          </Section.Root>
         )}
-        <h3>Tags:</h3>
-        <span className={styles.genres}>
-          {data.data.tags.map((item, key) => {
-            return (
-              <span key={key} className={styles.genre}>
-                {item}
-              </span>
-            );
-          })}
-        </span>
-        <h3>Stores:</h3>
-        <div className={styles.stores}>
-          {data.data.stores.map((item, key) => {
-            const url = new URL(item);
-            return <SecondaryLink key={key} href={item} name={url.host} />;
-          })}
-        </div>
+        {data.data.tags && (
+          <Section.Root title="Tags:">
+            <Section.Flex>
+              {data.data.tags.map((item, key) => {
+                return (
+                  <span key={key} className={styles.genre}>
+                    {item}
+                  </span>
+                );
+              })}
+            </Section.Flex>
+          </Section.Root>
+        )}
+        {data.data.stores && (
+          <Section.Root title="Stores:">
+            <Section.Grid gridMin="10rem">
+              {data.data.stores.map((item, key) => {
+                const url = new URL(item);
+                return <SecondaryLink key={key} href={item} name={url.host} />;
+              })}
+            </Section.Grid>
+          </Section.Root>
+        )}
         {data.data.trailer && (
           <iframe
             width="560"

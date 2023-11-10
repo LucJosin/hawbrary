@@ -6,6 +6,7 @@ import Reference from '@/components/data/Reference';
 import { APIInfo } from '@/components/templates/APIInfo';
 import ErrorModal from '@/components/templates/ErrorModal';
 import { InfoBox } from '@/components/templates/InfoBox';
+import { Section } from '@/components/templates/Section';
 import { Sources } from '@/components/templates/Sources';
 import Layout from '@/layout/Layout';
 import { formatMilliseconds } from '@/lib/date';
@@ -44,6 +45,15 @@ function SeasonDetails() {
   if (error) return <ErrorModal />;
   if (isLoading || !data?.data) return <Loading />;
 
+  const prevSeasonHref = getDetailsUrlFromHref(
+    'seasons',
+    data.data.prev_season
+  );
+  const nextSeasonHref = getDetailsUrlFromHref(
+    'seasons',
+    data.data.next_season
+  );
+
   return (
     <>
       <span
@@ -67,15 +77,17 @@ function SeasonDetails() {
       <div className={styles.info}>
         <Title value={data.data.title} />
         <Description value={data.data.description} />
-        <span className={styles.genres}>
-          {data.data.genres.map((item, key) => {
-            return (
-              <span key={key} className={styles.genre}>
-                {item}
-              </span>
-            );
-          })}
-        </span>
+        <Section.Root title="Genres:">
+          <Section.Flex>
+            {data.data.genres.map((item, key) => {
+              return (
+                <span key={key} className={styles.genre}>
+                  {item}
+                </span>
+              );
+            })}
+          </Section.Flex>
+        </Section.Root>
         <InfoBox.Root title="About:">
           <InfoBox.Item
             icon="system-uicons:episodes"
@@ -98,25 +110,24 @@ function SeasonDetails() {
           target="episodes"
           data={data.data.episodes}
         />
-        <div className={styles.seasons}>
-          <h3>Seasons: </h3>
-          <span className={styles.seas}>
-            {data.data.prev_season && (
+        <Section.Root title="Seasons:">
+          <Section.Grid gridMin="8rem">
+            {prevSeasonHref && (
               <SecondaryLink
-                href={getDetailsUrlFromHref('seasons', data.data.prev_season)}
-                name="Prev season"
+                href={prevSeasonHref}
+                name="Previous season"
                 isLocal={true}
               />
             )}
-            {data.data.next_season && (
+            {nextSeasonHref && (
               <SecondaryLink
-                href={getDetailsUrlFromHref('seasons', data.data.next_season)}
+                href={nextSeasonHref}
                 name="Next season"
                 isLocal={true}
               />
             )}
-          </span>
-        </div>
+          </Section.Grid>
+        </Section.Root>
         <Sources sources={data.data.sources} />
         <APIInfo
           uuid={data.data.uuid}

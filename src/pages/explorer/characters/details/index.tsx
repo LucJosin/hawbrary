@@ -34,6 +34,8 @@ function CharacterDetails() {
   if (error) return <ErrorModal />;
   if (isLoading || !data?.data) return <Loading />;
 
+  const actorHref = getDetailsUrlFromHref('actors', data.data.actor);
+
   return (
     <>
       <div className={styles.images}>
@@ -64,11 +66,9 @@ function CharacterDetails() {
       </div>
       <div className={styles.info}>
         <Title value={`${data.data.first_name} ${data.data.last_name}`} />
-        <SecondaryLink
-          href={getDetailsUrlFromHref('actors', data.data.actor)}
-          name="See Actor"
-          isLocal={true}
-        />
+        {actorHref && (
+          <SecondaryLink href={actorHref} name="See Actor" isLocal={true} />
+        )}
         <InfoBox.Root title="About:">
           <InfoBox.Item
             icon="mdi:calendar-range"

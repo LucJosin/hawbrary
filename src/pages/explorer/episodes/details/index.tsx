@@ -6,6 +6,7 @@ import Reference from '@/components/data/Reference';
 import { APIInfo } from '@/components/templates/APIInfo';
 import ErrorModal from '@/components/templates/ErrorModal';
 import { InfoBox } from '@/components/templates/InfoBox';
+import { Section } from '@/components/templates/Section';
 import { Sources } from '@/components/templates/Sources';
 import Layout from '@/layout/Layout';
 import { formatMilliseconds } from '@/lib/date';
@@ -34,6 +35,8 @@ function EpisodeDetails() {
 
   if (error) return <ErrorModal />;
   if (isLoading || !data?.data) return <Loading />;
+
+  const seasonHref = getDetailsUrlFromHref('seasons', data.data.season);
 
   return (
     <>
@@ -66,18 +69,11 @@ function EpisodeDetails() {
           target="episodes"
           data={[data.data.prev_episode, data.data.next_episode]}
         />
-        <h3>Season:</h3>
-        <div className={styles.season}>
-          <span className={styles.seas}>
-            {data.data.season && (
-              <SecondaryLink
-                href={getDetailsUrlFromHref('seasons', data.data.season)}
-                name="See season"
-                isLocal={true}
-              />
-            )}
-          </span>
-        </div>
+        {seasonHref && (
+          <Section.Root title="Season:">
+            <SecondaryLink href={seasonHref} name="See season" isLocal={true} />
+          </Section.Root>
+        )}
         <Sources sources={data.data.sources ?? []} />
         <APIInfo
           uuid={data.data.uuid}

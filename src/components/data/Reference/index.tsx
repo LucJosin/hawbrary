@@ -16,10 +16,13 @@ export default function Reference({ title, target, data }: Props) {
         {data.map((item, key) => {
           if (item == null) return;
 
+          const href = getDetailsUrlFromHref(target, item);
+          if (href == null) return;
+
           return (
             <SecondaryLink
               key={key}
-              href={getDetailsUrlFromHref(target, item)}
+              href={href}
               name={`${title.slice(0, -2)} ${key + 1}`}
               isLocal={true}
             />
