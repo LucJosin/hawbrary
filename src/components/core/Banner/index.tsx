@@ -14,7 +14,7 @@ export default function Banner({ title, description, thumbnail }: Props) {
     <div className={styles.banner}>
       <div className={styles.container}>
         <Title value={title} />
-        <Description value={description} />
+        <Description value={description} textAlign="center" />
       </div>
       <Image
         src={thumbnail}
