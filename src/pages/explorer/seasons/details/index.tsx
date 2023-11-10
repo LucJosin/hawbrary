@@ -115,7 +115,7 @@ function SeasonDetails() {
             {prevSeasonHref && (
               <SecondaryLink
                 href={prevSeasonHref}
-                name="Previous season"
+                name="Prev season"
                 isLocal={true}
               />
             )}
