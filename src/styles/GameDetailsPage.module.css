@@ -37,12 +37,6 @@
   gap: 1rem;
 }
 
-.genres {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
-  gap: 1rem;
-}
-
 .genre {
   border-radius: 10px;
   padding: 0.4rem 0.5rem;
@@ -60,20 +54,8 @@
   cursor: pointer;
 }
 
-.seasons {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
 .seas {
   width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-  gap: 1rem;
-}
-
-.stores {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
   gap: 1rem;
