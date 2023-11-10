@@ -1,6 +1,7 @@
 import { getDetailsUrl } from '@/lib/url';
 import Image from 'next/image';
 import Link from 'next/link';
+import SubTitle from '../../Title/SubTitle';
 import styles from './SimpleCard.module.css';
 
 interface Props {
@@ -29,7 +30,7 @@ export function SimpleCard({
           className={styles.image}
         />
         <div className={styles.container}>
-          <h1 className={styles.title}>{title}</h1>
+          <SubTitle value={title} />
           <p className={styles.description}>{description}</p>
         </div>
       </div>
