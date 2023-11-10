@@ -41,7 +41,7 @@ This tutorial gives a brief introduction to how to run this react (nextjs) proje
     │   │   ├── Loading
     │   │   └── Title
     │   │       ├── EffectTitle
-    │   │       └── SimpleTitle
+    │   │       └── Title
     │   ├── data
     │   │   ├── Reference
     │   │   └── Row

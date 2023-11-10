@@ -1,6 +1,7 @@
 import { getDetailsUrl } from '@/lib/url';
 import Image from 'next/image';
 import Link from 'next/link';
+import SubTitle from '../../Title/SubTitle';
 import styles from './PersonCard.module.css';
 
 interface Props {
@@ -11,7 +12,7 @@ interface Props {
   thumbnail: string;
 }
 
-export default function PersonCard({
+export function PersonCard({
   uuid,
   target,
   name,
@@ -29,7 +30,7 @@ export default function PersonCard({
           className={styles.image}
         />
         <div className={styles.container}>
-          <h1 className={styles.name}>{name}</h1>
+          <SubTitle value={name} />
           {description.map((item, key) => {
             return (
               <span key={key} className={styles.description}>

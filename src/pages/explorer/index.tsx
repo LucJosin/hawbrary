@@ -1,9 +1,15 @@
 import Banner from '@/components/core/Banner';
-import { Card } from '@/components/core/Card';
+import {
+  HorizontalCard,
+  PersonCard,
+  SimpleCard,
+  VerticalCard,
+} from '@/components/core/Card';
 import FallbackText from '@/components/core/FallbackText';
-import { Link } from '@/components/core/Link';
+import { PrimaryLink, SecondaryLink } from '@/components/core/Link';
 import Loading from '@/components/core/Loading';
 import Row from '@/components/data/Row';
+import { APICount } from '@/components/templates/APICount';
 import Layout from '@/layout/Layout';
 import { getDetailsUrl } from '@/lib/url';
 import { getGender } from '@/lib/utils';
@@ -11,6 +17,7 @@ import {
   getAllActors,
   getAllCharacters,
   getAllEpisodes,
+  getAllGames,
   getAllLocations,
   getAllSeasons,
   getOverview,
@@ -21,7 +28,7 @@ import useSWR from 'swr';
 export default function ExplorerPage() {
   return (
     <Layout>
-      <BannerSection />
+      <OverviewSection />
 
       <Row title="Seasons">
         <SeasonSection />
@@ -42,16 +49,21 @@ export default function ExplorerPage() {
       <Row title="Locations" maxColumns="2">
         <LocationSection />
       </Row>
+
+      <Row title="Games" maxColumns="auto-fill">
+        <GameSection />
+      </Row>
     </Layout>
   );
 }
 
-function BannerSection() {
+function OverviewSection() {
   const { data, error, isLoading } = useSWR(`overview`, getOverview);
 
   if (error) return <FallbackText />;
   if (isLoading || !data?.data) return <Loading />;
 
+  const dataCount = data.data.data_count;
   return (
     <div className={styles.banner}>
       <Banner
@@ -59,6 +71,8 @@ function BannerSection() {
         description={data.data.description}
         thumbnail={data.data.thumbnail}
       />
+
+      <APICount dataCount={dataCount} />
     </div>
   );
 }
@@ -73,25 +87,25 @@ function SeasonSection() {
     <>
       {data?.data?.map((season, key) => {
         return (
-          <Card.Vertical
+          <VerticalCard
             key={key}
             title={season.title}
             description={season.description}
             thumbnail={season.thumbnail}
           >
-            <Link.Primary
+            <PrimaryLink
               href={getDetailsUrl('seasons', season.uuid)}
               name="See more"
               isLocal={true}
             />
-            <Link.Secondary
+            <SecondaryLink
               href={`/explorer/episodes/?season_uuid=${
                 season.uuid
               }&season_num=${key + 1}`}
               name="Episodes"
               isLocal={true}
             />
-          </Card.Vertical>
+          </VerticalCard>
         );
       })}
     </>
@@ -108,7 +122,7 @@ function EpisodeSection() {
     <>
       {data?.data?.slice(0, 4).map((episode, key) => {
         return (
-          <Card.Simple
+          <SimpleCard
             key={key}
             uuid={episode.uuid}
             target="episodes"
@@ -132,7 +146,7 @@ function ActorSection() {
     <>
       {data?.data?.slice(0, 3).map((actor, key) => {
         return (
-          <Card.Person
+          <PersonCard
             key={key}
             uuid={actor.uuid}
             target="actors"
@@ -162,7 +176,7 @@ function CharacterSection() {
     <>
       {data?.data?.slice(0, 4).map((character, key) => {
         return (
-          <Card.Person
+          <PersonCard
             key={key}
             uuid={character.uuid}
             target="characters"
@@ -192,7 +206,7 @@ function LocationSection() {
     <>
       {data?.data?.slice(0, 4).map((location, key) => {
         return (
-          <Card.Horizontal
+          <HorizontalCard
             key={key}
             uuid={location.uuid}
             target="locations"
@@ -200,6 +214,34 @@ function LocationSection() {
             description={location.description}
             thumbnail={location.thumbnail}
           />
+        );
+      })}
+    </>
+  );
+}
+
+function GameSection() {
+  const { data, error, isLoading } = useSWR('games', getAllGames);
+
+  if (error) return <FallbackText />;
+  if (isLoading) return <Loading />;
+
+  return (
+    <>
+      {data?.data?.map((season, key) => {
+        return (
+          <VerticalCard
+            key={key}
+            title={season.name}
+            description={season.description}
+            thumbnail={season.thumbnail}
+          >
+            <PrimaryLink
+              href={getDetailsUrl('games', season.uuid)}
+              name="See more"
+              isLocal={true}
+            />
+          </VerticalCard>
         );
       })}
     </>

@@ -9,7 +9,7 @@ interface Props {
   children?: ReactNode;
 }
 
-export default function VerticalCard(props: Props) {
+export function VerticalCard(props: Props) {
   return (
     <div className={styles.card}>
       <Image

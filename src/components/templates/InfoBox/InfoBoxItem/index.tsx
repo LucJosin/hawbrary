@@ -1,4 +1,4 @@
-import { Icon } from '@iconify-icon/react/dist/iconify.js';
+import SimpleIcon from '@/components/core/SimpleIcon';
 import styles from './InfoBoxItem.module.css';
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 export default function InfoBoxItem({ icon, name, value }: Props) {
   return (
     <span className={styles.item}>
-      <Icon icon={icon} />
+      <SimpleIcon icon={icon} size="20" />
       {`${name}: ${value}`}
     </span>
   );

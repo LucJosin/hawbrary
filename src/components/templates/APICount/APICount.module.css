@@ -1,0 +1,27 @@
+.api-count-data {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.api-count-item {
+  height: 3rem;
+  border: 1px solid #dd0400;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  padding: 1rem;
+  text-align: center;
+}
+
+.api-count-item:hover {
+  color: white;
+  background-color: #dd0400;
+  cursor: pointer;
+}

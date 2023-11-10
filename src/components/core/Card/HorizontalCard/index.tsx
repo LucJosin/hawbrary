@@ -1,6 +1,7 @@
 import { getDetailsUrl } from '@/lib/url';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Description } from '../../Description';
 import styles from './HorizontalCard.module.css';
 
 interface Props {
@@ -11,7 +12,7 @@ interface Props {
   thumbnail: string;
 }
 
-export default function HorizontalCard({
+export function HorizontalCard({
   uuid,
   target,
   title,
@@ -23,7 +24,7 @@ export default function HorizontalCard({
       <div className={styles.card}>
         <div className={styles.info}>
           <h2>{title}</h2>
-          <p>{description}</p>
+          <Description value={description} />
         </div>
         <Image
           src={thumbnail}

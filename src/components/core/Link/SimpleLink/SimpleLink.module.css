@@ -2,6 +2,7 @@
   color: red;
   border-bottom: 1px solid transparent;
   transition: all 0.2s;
+  display: flex;
 }
 
 .link:hover {

@@ -3,8 +3,12 @@ export function getUuidFromHref(href: string): string | undefined {
   return split.pop();
 }
 
-export function getDetailsUrlFromHref(target: string, href: string): string {
+export function getDetailsUrlFromHref(
+  target: string,
+  href: string
+): string | null {
   const uuid = getUuidFromHref(href);
+  if (!uuid) return null;
   return getDetailsUrl(target, uuid ?? '');
 }
 

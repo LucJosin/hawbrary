@@ -1,6 +1,6 @@
-import { Card } from '@/components/core/Card';
+import { SimpleCard } from '@/components/core/Card';
 import Loading from '@/components/core/Loading';
-import { Title } from '@/components/core/Title';
+import Title from '@/components/core/Title/Title';
 import ErrorModal from '@/components/templates/ErrorModal';
 import Grid from '@/components/templates/Grid';
 import { Pagination } from '@/components/templates/Pagination';
@@ -15,7 +15,7 @@ export default function MorePage() {
   return (
     <Layout>
       <div className={styles.container}>
-        <Title.Simple text="Episodes" />
+        <Title value="Episodes" />
         <EpisodeItems />
       </div>
     </Layout>
@@ -48,7 +48,7 @@ function EpisodeItems() {
       <Grid>
         {data?.data?.map((item, key) => {
           return (
-            <Card.Simple
+            <SimpleCard
               key={key}
               uuid={item.uuid}
               target="episodes"

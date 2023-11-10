@@ -1,9 +1,12 @@
-import { Link } from '@/components/core/Link';
+import { Description } from '@/components/core/Description';
+import { SecondaryLink } from '@/components/core/Link';
 import Loading from '@/components/core/Loading';
+import Title from '@/components/core/Title/Title';
 import Reference from '@/components/data/Reference';
 import { APIInfo } from '@/components/templates/APIInfo';
 import ErrorModal from '@/components/templates/ErrorModal';
 import { InfoBox } from '@/components/templates/InfoBox';
+import { Section } from '@/components/templates/Section';
 import { Sources } from '@/components/templates/Sources';
 import Layout from '@/layout/Layout';
 import { formatMilliseconds } from '@/lib/date';
@@ -33,6 +36,8 @@ function EpisodeDetails() {
   if (error) return <ErrorModal />;
   if (isLoading || !data?.data) return <Loading />;
 
+  const seasonHref = getDetailsUrlFromHref('seasons', data.data.season);
+
   return (
     <>
       <div className={styles.avatar}>
@@ -45,10 +50,8 @@ function EpisodeDetails() {
         />
       </div>
       <div className={styles.info}>
-        <h1 className={styles.title}>
-          {`${data.data.title} - Ep.${data.data.episode_num}`}
-        </h1>
-        <p>{data.data.description}</p>
+        <Title value={`${data.data.title} - Ep.${data.data.episode_num}`} />
+        <Description value={data.data.description} />
         <InfoBox.Root title="About:">
           <InfoBox.Item
             icon="ic:baseline-place"
@@ -66,18 +69,11 @@ function EpisodeDetails() {
           target="episodes"
           data={[data.data.prev_episode, data.data.next_episode]}
         />
-        <h3>Season:</h3>
-        <div className={styles.season}>
-          <span className={styles.seas}>
-            {data.data.season && (
-              <Link.Secondary
-                href={getDetailsUrlFromHref('seasons', data.data.season)}
-                name="See season"
-                isLocal={true}
-              />
-            )}
-          </span>
-        </div>
+        {seasonHref && (
+          <Section.Root title="Season:">
+            <SecondaryLink href={seasonHref} name="See season" isLocal={true} />
+          </Section.Root>
+        )}
         <Sources sources={data.data.sources ?? []} />
         <APIInfo
           uuid={data.data.uuid}

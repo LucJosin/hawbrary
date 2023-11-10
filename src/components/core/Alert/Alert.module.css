@@ -4,13 +4,19 @@
   padding: 1rem 0;
   background-color: rgba(var(--background-rgb), 0.3);
   backdrop-filter: blur(2px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
 }
 
 .message {
   display: flex;
+  align-items: center;
   justify-content: center;
   gap: 0.2rem;
   font-size: 0.9rem;
+  text-align: center;
 }
 
 .close {
@@ -21,4 +27,20 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+}
+
+@media (max-width: 780px) {
+  .message {
+    width: 80%;
+    flex-direction: column;
+  }
+
+  .close {
+    height: initial;
+    width: 100%;
+    top: initial;
+    right: 0;
+    position: relative;
+    justify-content: center;
+  }
 }

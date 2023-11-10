@@ -1,0 +1,4 @@
+.section-grid {
+  display: grid;
+  gap: 1rem;
+}

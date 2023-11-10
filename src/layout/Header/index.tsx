@@ -1,7 +1,7 @@
 import Loading from '@/components/core/Loading';
-import { Title } from '@/components/core/Title';
+import SimpleIcon from '@/components/core/SimpleIcon';
+import EffectTitle from '@/components/core/Title/EffectTitle';
 import { setLanguage as setHawAPILanguage } from '@/services/hawapi';
-import { Icon } from '@iconify-icon/react/dist/iconify.js';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useSWRConfig } from 'swr';
@@ -31,14 +31,16 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <Link href="/">
-        <Title.Effect title="Hawbrary" size="1.2rem" />
+        <EffectTitle title="Hawbrary" size="1.2rem" />
       </Link>
       <div className={styles.links}>
+        <Link href="/explorer/">Explorer</Link>|
         <Link href="/explorer/actors/">Actors</Link>
         <Link href="/explorer/characters/">Characters</Link>
         <Link href="/explorer/episodes/">Episodes</Link>
         <Link href="/explorer/seasons/">Seasons</Link>
         <Link href="/explorer/locations/">Locations</Link>
+        <Link href="/explorer/games/">Games</Link>
       </div>
       <div className={styles.selection}>
         {language ? (
@@ -55,7 +57,7 @@ export default function Header() {
         ) : (
           <Loading borderSize="0.2rem" size="1.8rem" margin="1rem" />
         )}
-        <Icon icon="tabler:language" width="20" />
+        <SimpleIcon icon="tabler:language" size="20" />
       </div>
     </header>
   );

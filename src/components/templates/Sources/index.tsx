@@ -1,4 +1,4 @@
-import { Link } from '../../core/Link';
+import { SecondaryLink } from '@/components/core/Link';
 import styles from './Sources.module.css';
 
 interface Props {
@@ -12,7 +12,7 @@ export function Sources({ sources }: Props) {
       <div className={styles.sources}>
         {sources.map((item, key) => {
           const url = new URL(item);
-          return <Link.Secondary key={key} href={item} name={url.host} />;
+          return <SecondaryLink key={key} href={item} name={url.host} />;
         })}
       </div>
     </>

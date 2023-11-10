@@ -1,5 +1,5 @@
-import { Icon } from '@iconify-icon/react/dist/iconify.js';
 import Link from 'next/link';
+import SimpleIcon from '../../SimpleIcon';
 import styles from './SimpleLink.module.css';
 
 interface Props {
@@ -7,13 +7,15 @@ interface Props {
   name: string;
   isLocal?: boolean;
   showIcon?: boolean;
+  iconSize?: string;
 }
 
-export default function SimpleLink({
+export function SimpleLink({
   href,
   name,
   isLocal = false,
   showIcon = true,
+  iconSize = '15',
 }: Props) {
   return (
     <Link
@@ -22,7 +24,9 @@ export default function SimpleLink({
       target={isLocal ? undefined : '_blank'}
     >
       {name}
-      {!isLocal && showIcon && <Icon icon="mdi:open-in-new" width="15" />}
+      {!isLocal && showIcon && (
+        <SimpleIcon icon="mdi:open-in-new" size={iconSize} />
+      )}
     </Link>
   );
 }

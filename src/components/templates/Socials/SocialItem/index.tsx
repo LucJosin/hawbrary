@@ -1,4 +1,4 @@
-import { Icon } from '@iconify-icon/react/dist/iconify.js';
+import SimpleIcon from '@/components/core/SimpleIcon';
 import Link from 'next/link';
 import styles from './SocialItem.module.css';
 
@@ -16,7 +16,7 @@ export function SocialItem({ name, url, handle }: Props) {
       target="_blank"
       className={styles.social}
     >
-      <Icon icon={'simple-icons:' + name.toLocaleLowerCase()} />
+      <SimpleIcon icon={'simple-icons:' + name.toLocaleLowerCase()} />
       {name}
     </Link>
   );

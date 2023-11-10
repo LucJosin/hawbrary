@@ -1,5 +1,6 @@
-import { Link } from '@/components/core/Link';
+import { SecondaryLink } from '@/components/core/Link';
 import Loading from '@/components/core/Loading';
+import Title from '@/components/core/Title/Title';
 import { APIInfo } from '@/components/templates/APIInfo';
 import ErrorModal from '@/components/templates/ErrorModal';
 import { InfoBox } from '@/components/templates/InfoBox';
@@ -33,6 +34,8 @@ function CharacterDetails() {
   if (error) return <ErrorModal />;
   if (isLoading || !data?.data) return <Loading />;
 
+  const actorHref = getDetailsUrlFromHref('actors', data.data.actor);
+
   return (
     <>
       <div className={styles.images}>
@@ -62,12 +65,10 @@ function CharacterDetails() {
         </div>
       </div>
       <div className={styles.info}>
-        <h1>{`${data.data.first_name} ${data.data.last_name}`}</h1>
-        <Link.Secondary
-          href={getDetailsUrlFromHref('actors', data.data.actor)}
-          name="See Actor"
-          isLocal={true}
-        />
+        <Title value={`${data.data.first_name} ${data.data.last_name}`} />
+        {actorHref && (
+          <SecondaryLink href={actorHref} name="See Actor" isLocal={true} />
+        )}
         <InfoBox.Root title="About:">
           <InfoBox.Item
             icon="mdi:calendar-range"

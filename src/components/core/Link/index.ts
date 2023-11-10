@@ -1,9 +1,3 @@
-import { PrimaryLink } from './PrimaryLink';
-import { SecondaryLink } from './SecondaryLink';
-import SimpleLink from './SimpleLink';
-
-export const Link = {
-  Primary: PrimaryLink,
-  Secondary: SecondaryLink,
-  Simple: SimpleLink,
-};
+export * from './PrimaryLink';
+export * from './SecondaryLink';
+export * from './SimpleLink';
