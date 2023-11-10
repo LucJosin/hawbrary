@@ -1,5 +1,6 @@
 import { SecondaryLink } from '@/components/core/Link';
 import Loading from '@/components/core/Loading';
+import Title from '@/components/core/Title/Title';
 import Reference from '@/components/data/Reference';
 import { APIInfo } from '@/components/templates/APIInfo';
 import ErrorModal from '@/components/templates/ErrorModal';
@@ -64,7 +65,7 @@ function ActorDetails() {
         </div>
       </div>
       <div className={styles.info}>
-        <h1>{`${data.data.first_name} ${data.data.last_name}`}</h1>
+        <Title value={`${data.data.first_name} ${data.data.last_name}`} />
         <SecondaryLink
           href={getDetailsUrlFromHref('characters', data.data.character)}
           name="See Character"

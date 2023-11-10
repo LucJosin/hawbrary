@@ -1,6 +1,7 @@
 import { Description } from '@/components/core/Description';
 import { SecondaryLink } from '@/components/core/Link';
 import Loading from '@/components/core/Loading';
+import Title from '@/components/core/Title/Title';
 import { APIInfo } from '@/components/templates/APIInfo';
 import ErrorModal from '@/components/templates/ErrorModal';
 import { InfoBox } from '@/components/templates/InfoBox';
@@ -67,7 +68,7 @@ function GameDetails() {
         />
       </span>
       <div className={styles.info}>
-        <h1 className={styles.title}>{data.data.name}</h1>
+        <Title value={data.data.name} />
         <Description value={data.data.description} />
         <InfoBox.Root title="About:">
           <InfoBox.Item

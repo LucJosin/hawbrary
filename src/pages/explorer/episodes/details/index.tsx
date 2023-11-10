@@ -1,6 +1,7 @@
 import { Description } from '@/components/core/Description';
 import { SecondaryLink } from '@/components/core/Link';
 import Loading from '@/components/core/Loading';
+import Title from '@/components/core/Title/Title';
 import Reference from '@/components/data/Reference';
 import { APIInfo } from '@/components/templates/APIInfo';
 import ErrorModal from '@/components/templates/ErrorModal';
@@ -46,9 +47,7 @@ function EpisodeDetails() {
         />
       </div>
       <div className={styles.info}>
-        <h1 className={styles.title}>
-          {`${data.data.title} - Ep.${data.data.episode_num}`}
-        </h1>
+        <Title value={`${data.data.title} - Ep.${data.data.episode_num}`} />
         <Description value={data.data.description} />
         <InfoBox.Root title="About:">
           <InfoBox.Item
